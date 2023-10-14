@@ -21,15 +21,15 @@ export const saveTokensStorage = (accessToken,refreshToken) => {
 }
 
 export const getUserFromStorage = () => {
-    const data = getPayloadToken();
-    if(data?.type === 'user') {
+    // const data = getPayloadToken();
+    // if(data?.type === 'user') {
         return JSON.parse(localStorage.getItem('user') || null)
-    } else if(data?.type === 'agent') {
-        return JSON.parse(localStorage.getItem('agent') || null)
-    } else if(data?.type === 'admin') {
-        return localStorage.getItem('role') || null
-    } else {
-    }
+    // } else if(data?.type === 'agent') {
+    //     return JSON.parse(localStorage.getItem('agent') || null)
+    // } else if(data?.type === 'admin') {
+    //     return localStorage.getItem('role') || null
+    // } else {
+    // }
 
 }
  
@@ -46,25 +46,26 @@ export const removeFromStorage = () => {
 }
 
 export const saveToStorage = (data) => {
-    saveTokensStorage(data.accessToken, data.refreshToken)
-    const decoded = jwt.decode(data.accessToken);
-    if(decoded.type === 'user') {
+    saveTokensStorage(data.token, data.refresh_token)
+    const decoded = jwt.decode(data.token);
+    // console.log('decoded',decoded)
+    // if(decoded.type === 'user') {
         localStorage.setItem('user', JSON.stringify(data.user))
-    }
-    if(decoded.type === 'agent') {
-        localStorage.setItem('agent', JSON.stringify(data.user))
-    }
-    localStorage.setItem('date', decoded.date.date)
+    // }
+    // if(decoded.type === 'agent') {
+    //     localStorage.setItem('agent', JSON.stringify(data.user))
+    // }
+    // localStorage.setItem('date', decoded.date.date)
 
-    if(data?.role) {
-        localStorage.setItem('role', data.role);
-    }
-    if(data?.agentExId) {
-        localStorage.setItem('agentExId',data.agentExId)
-    }
-    if(!data.role && !data.agentExId) {
-        localStorage.setItem('selectedMode',1)
-    }
+    // if(data?.role) {
+    //     localStorage.setItem('role', data.role);
+    // }
+    // if(data?.agentExId) {
+    //     localStorage.setItem('agentExId',data.agentExId)
+    // }
+    // if(!data.role && !data.agentExId) {
+    //     localStorage.setItem('selectedMode',1)
+    // }
 
 }
 

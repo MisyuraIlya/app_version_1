@@ -289,9 +289,9 @@ const SearchHook= params =>
 											<div key={key} className="searchRes-row flex-container"
 												onClick={() => prodPopUpFunc(item)}>
 												<div className="img-cont col-lg-3">
-													<img className="img"
+													{/* <img className="img"
 														src={item.Img ? globalFileServer + 'products/' + item.Img : globalFileServer + 'logo.png'}
-														onError={(e) => e.target.src = globalFileServer + 'placeholder.jpg'}/>
+														onError={(e) => e.target.src = globalFileServer + 'placeholder.jpg'}/> */}
 												</div>
 												<div className="content col-lg-9">
 													<p className="title">{app.state.lang == 'he' ? item.Title : item.Description}</p>
@@ -1210,36 +1210,33 @@ export default class Header extends Component
 
 					<div className={localStorage.user || localStorage.agent || localStorage.role ? "header-wrapper" : "header-wrapper no-cats"}>
 						<div className="header-wrapper-subcont flex-container">
-							<div
-								className={this.state.toggleMenu ? "main-menu col-lg-6 opened" : "main-menu col-lg-6 closed"}>
-
-								<div className="open-menu">
-									<div onClick={this.toggleMenu}
-									     className={this.state.toggleMenu ? "nav-icon3 open" : "nav-icon3"}>
-										<span></span><span></span><span></span><span></span>
-										
-									</div>
-									{/*
-									<NotificationIcon/>
-									*/}
-									<div className="main-logo-mobile">
-										<NavLink to="/">
-											<img src={globalFileServer + 'logo.png'} width={50}/>
-										</NavLink>
-										
-									</div>
-
-									<div>
-										<div className="back" onClick={this.goBack}>
-											<span className="material-symbols-outlined">arrow_back_ios</span>
+							<div className={this.state.toggleMenu ? "main-menu col-lg-6 opened" : "main-menu col-lg-6 closed"}>
+									<div className="open-menu">
+										<div onClick={this.toggleMenu}
+											className={this.state.toggleMenu ? "nav-icon3 open" : "nav-icon3"}>
+											<span></span><span></span><span></span><span></span>
+											
 										</div>
-										<div className="search-icon"
-										     onClick={() => this.setState({showSearchMob: !this.state.showSearchMob})}>
-											<span className="material-symbols-outlined">search</span>
+										{/*
+										<NotificationIcon/>
+										*/}
+										<div className="main-logo-mobile">
+											{/* <NavLink to="/">
+												<img src={globalFileServer + 'logo.png'} width={50}/>
+											</NavLink> */}
+											
+										</div>
+
+										<div>
+											<div className="back" onClick={this.goBack}>
+												<span className="material-symbols-outlined">arrow_back_ios</span>
+											</div>
+											<div className="search-icon"
+												onClick={() => this.setState({showSearchMob: !this.state.showSearchMob})}>
+												<span className="material-symbols-outlined">search</span>
+											</div>
 										</div>
 									</div>
-								</div>
-								
 								<>
 									<nav className={this.state.toggleMenu ? "header-right-cont-main-bigRes opened" : "header-right-cont-main-bigRes closed"}>
 										{localStorage.role ?
@@ -1419,18 +1416,6 @@ export default class Header extends Component
 												</>
 										:null}
 
-								</div>
-							</div>
-							<div
-								className={this.props.state.headerPop ? "header-popup-main-cont active" : "header-popup-main-cont"}>
-								<div className="header-popup-sub-cont">
-									<h3 id='header-popup-id'>מוצר התווסף לסל הקניות</h3>
-								</div>
-							</div>
-							<div
-								className={this.props.state.user.Blocked ? "header-popup-glb-alert active" : "header-popup-glb-alert"}>
-								<div className="header-popup-glb-alert-sub-cont">
-									<h3>אין באפשרותך לבצע הזמנה. אנא צור קשר</h3>
 								</div>
 							</div>
 						</div>

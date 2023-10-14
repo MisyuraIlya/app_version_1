@@ -8,6 +8,7 @@ global.entry = 'https://b2bportal.co.il';
 global.globalServer = 'https://b2bportal.co.il/app/';
 global.globalFileServer = 'https://b2bportal.co.il/src/img/';
 
+global.api = 'http://localhost:8080'
 
 global.globalSiteName = "";
 global.globalAdminMail = "statosbiz@statos.co";//falkon1@bezeqint.net

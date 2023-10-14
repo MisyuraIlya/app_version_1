@@ -3,25 +3,26 @@ import './NotificationIcon.styles.scss'
 import { useNotifications } from '../../provider/PushNotification';
 import { getCurrentUserId } from '../../../Auth/helpers/getCurrentUserId';
 import CircleCount from '../CircleCount/CircleCount';
-const NotificationIcon = ({handleOpen, isOpen}) => {
+import { useAuth } from '../../../Auth/providers/AuthProvider';
+const NotificationIcon = () => {
+    const {user} = useAuth()
     const {lengthNotifications, NotificationsMethods, modalNotification} = useNotifications()
     const onHandleOpen = () => {
-        handleOpen()
+        // handleOpen()
         NotificationsMethods.getNotifications()
-        console.log('isOpen',isOpen)
     }
 
     const handleClose = () => {
         NotificationsMethods.clearNotifications()
-        handleOpen()
+        // handleOpen()
     }
     return (
         <>
-            {isOpen ?
+            {false ?
                 <div onClick={() => handleClose()} className="fake-notification"></div>
             : null}
 
-            {getCurrentUserId() &&
+            {user  &&
                 <li className={"left"}>
                     <button className="icon" onClick={() => onHandleOpen()}>
                             <span
@@ -31,7 +32,7 @@ const NotificationIcon = ({handleOpen, isOpen}) => {
                         <span className="material-symbols-outlined">campaign</span>
                     </button>
                 </li>
-            }	
+            }
         {/* <div className='not_with_circle' onClick={() => NotificationsMethods.handleNotificationModal()} >
             <span className="material-symbols-outlined">campaign</span>
             <div className='not_cirlce'>

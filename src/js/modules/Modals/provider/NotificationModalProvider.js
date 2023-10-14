@@ -8,6 +8,9 @@ import ProductPopUp from '../components/ProductPopUp/ProductPopUp';
 import useSelectedProduct from '../store/SelectedProductStore';
 import TablePopUp from '../components/TablePopUp/TablePopUp';
 import PayPopUp from '../components/PayPopUp/PayPopUp';
+import AuthPopUp from '../components/AuthPopUp/AuthPopUp';
+import MobileSideBar from '../components/MobileSideBar/MobileSideBar';
+import SideBar from '../components/SideBar/SideBar';
 // Local
 
 // Defines
@@ -30,6 +33,9 @@ const NotificationModalProvider = ({children}) => {
   const [selectedProduct, setSelectedProduct] = useState(false)
   const [activeTablePopUp, setActiveTablePopUp] = useState(false)
   const [openPopUpPay, setOpenPopUpPay] = useState(false)
+  const [openAuthModal, setOpenAuthModal] = useState(false)
+  const [openMobileSideBar, setOpenMobileSideBar] = useState(false)
+  const [openSideBar, setOpenSideBar] = useState(false)
 
   const openStockNotify = () => {
     setStockNotify(true)
@@ -69,7 +75,13 @@ const NotificationModalProvider = ({children}) => {
     selectProduct,
     setActiveTablePopUp,
     openPopUpPay,
-    setOpenPopUpPay
+    setOpenPopUpPay,
+    openMobileSideBar,
+    setOpenMobileSideBar,
+    openSideBar,
+    setOpenSideBar,
+    openAuthModal,
+    setOpenAuthModal
   };
 
   return (
@@ -80,7 +92,12 @@ const NotificationModalProvider = ({children}) => {
       </div>
   
         <OrderSettings active={openCartSettings} setActive={setOpenCartSettings}/>     
-        <ProductPopUp active={selectedProduct} setActive={onCloseSelectedProduct}/> 
+        <ProductPopUp active={selectedProduct} setActive={onCloseSelectedProduct}/>
+        {openAuthModal &&
+          <AuthPopUp active={openAuthModal} setActive={setOpenAuthModal}/> 
+        }
+        <MobileSideBar active={openMobileSideBar} setActive={setOpenMobileSideBar}/>
+        <SideBar active={openSideBar} setActive={setOpenSideBar}/>
         {/* {!loading && */}
           <TablePopUp active={activeTablePopUp} setActive={setActiveTablePopUp}/>       
         {/* } */}

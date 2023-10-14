@@ -34,7 +34,8 @@ import Filters from './components/routs/Filters';
 import Gis from './components/routs/Gis';
 import AdminAgent from './components/routs/AdminAgent';
 
-import Header from './components/Header';
+// import Header from './components/Header';
+import Header from "./modules/Header/Header";
 import Footer from './components/Footer';
 // import MiniCart from './components/MiniCart';
 import Nav from './components/Nav';
@@ -134,6 +135,7 @@ const BasicRouter = (prop) => (
 		<PushNotificationHandlers/>
 			<NotificationModalProvider>
 				<header id="header">
+					{/* <Route {...prop} render={matchProps => (<Header {...matchProps}{...prop} />)}/> */}
 					<Route {...prop} render={matchProps => (<Header {...matchProps}{...prop} />)}/>
 				</header>
 				<Route {...prop} render={matchProps => (<Nav {...matchProps}{...prop} />)}/>

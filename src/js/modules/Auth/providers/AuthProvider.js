@@ -24,9 +24,11 @@ const AuthProvider = (props) => {
   // state
   const history = useHistory()
   const [loading, setLoading] = useState(false);
+  const [isValidUser, setIsValidUser] = useState(false)
   const userType = getUserFromStorage()?.Type;
   const isUserBlocked = getUserFromStorage()?.Blocked;
   const user = getUserFromStorage();
+  const isAdmin = true
   const isAgent = getPayloadToken()?.type === 'agent'
   const isSuperAgent = getPayloadToken()?.type === 'agentSuper'
   // Helpers
@@ -34,8 +36,9 @@ const AuthProvider = (props) => {
     try {
       setLoading(true)
       const response = await AuthService.login(username, password)
+      console.log('response',response)
       if(response.status === 'success') {
-        saveToStorage(response.data)
+        saveToStorage(response)
         onSuccessAlert('ברוכים הבאים',response.message)
         setTimeout(() => {
           location.reload();
@@ -88,6 +91,73 @@ const AuthProvider = (props) => {
     }
   }
 
+  const validation = async (userExId, phone) => {
+    try {
+      setLoading(true)
+      const response = await AuthService.validation(userExId, phone)
+      if(response.status === 'success') {
+        setIsValidUser(true)
+        return true
+      } else {
+        onErrorAlert('שגיאה', response.message)
+        return false
+      }
+    } catch(e) {
+      console.error('[AuthProvider] error validation', error)
+      return true
+    } finally {
+      setLoading(false)
+    }
+  } 
+
+  const registration = async (userExId, username, password) => {
+    try {
+      setLoading(true)
+      const response = await AuthService.registration(userExId,username, password)
+      if(response.status === 'success') {
+        login(data.email,data.password)
+      } else {
+        onErrorAlert('שגיאה', response.message)
+      }
+    } catch(e) {
+      console.error('[AuthProvider] error registration', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const restorePasswordStepOne = async (email) => {
+    try {
+      setLoading(true)
+      const response = await AuthService.restorePasswordStepOne(email)
+      if(response.status === 'success') {
+        onSuccessAlert(response.message,'')
+      } else {
+        onErrorAlert('שגיאה', response.message)
+      }
+    } catch(e) {
+      console.error('[AuthProvider] error restorePasswordStepOne', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const restorePasswordStepTwo = async (email, token, password) => {
+    try {
+      setLoading(true)
+      const response = await AuthService.restorePasswordStepTwo(email, token, password)
+      if(response.status === 'success') {
+        onSuccessAlert(response.message,'')
+      } else {
+        onErrorAlert('שגיאה', response.message)
+      }
+    } catch(e) {
+      console.error('[AuthProvider] error restorePasswordStepTwo', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   const logOut = () => {
     removeFromStorage()
     history.push('/')
@@ -109,11 +179,17 @@ const AuthProvider = (props) => {
     login,
     loading,
     registerClient,
+    validation,
+    registration,
+    isValidUser,
     userType,
     isUserBlocked,
     isAgent,
     isSuperAgent,
-    user
+    user,
+    isAdmin,
+    restorePasswordStepOne,
+    restorePasswordStepTwo
 
   };
 

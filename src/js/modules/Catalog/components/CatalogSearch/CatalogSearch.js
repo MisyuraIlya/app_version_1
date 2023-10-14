@@ -10,7 +10,6 @@ const CatalogSearch = () => {
     const {searchValue, setSearchValue, loading, products, findProductsByValue, clearProducts} = useSearchStore()
     const {selectProduct} = useNotificationModal()
     const [valueDebounced] = useDebounce(searchValue, 1000);
-
     useEffect(() => {
         if(valueDebounced) {
             findProductsByValue(valueDebounced)

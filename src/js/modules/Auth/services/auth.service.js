@@ -1,90 +1,51 @@
-import { ajax } from "../../../helpers/ajaxFunc"
-
-const point = "new_app/index"
-const classPoint = "Auth"
+import axios from 'axios'
 
 export const AuthService = {
     async login(username, password) {
-        const val = {
+
+        const response = await axios.post(global.api + '/api/auth',
+        {
             username,
             password
-        }
-        const valAjax = {
-            point,
-            classPoint,
-            funcName: 'login',
-            val:val
-          };
+        })
 
-        const response = await ajax(valAjax)
-        return response
+        return response.data
     }, 
-
-
-
     async getAccessToken(refreshToken){
-        const val = {
-            refreshToken,
-        }
-        const valAjax = {
-            point,
-            classPoint,
-            funcName: 'getAccessToken',
-            val:val
-          };
-
-        const response = await ajax(valAjax)
-        return response
+        const response = await axios.post(global.api + '/auth/refresh', {
+            refresh_token: refreshToken
+        })
+        return response.data
     },
-
-    async registerNewClient(data) {
-        console.log('data',data)
-        const val = {
-            ...data
-        }
-        const valAjax = {
-            point,
-            classPoint,
-            funcName: 'registerClient',
-            val:val
-          };
-
-        const response = await ajax(valAjax)
-        return response
-    },
-
-    async validationUser(userExId, phone) {
-        const val = {
-            userExId,
+    async validation(userExId, phone) {
+        const response = await axios.post(global.api+'/auth/validation',{
+            exId:userExId,
             phone
-        }
-        const valAjax = {
-            point,
-            classPoint,
-            funcName: 'validationUser',
-            val:val
-          };
-
-        const response = await ajax(valAjax)
-        return response
+        })
+        return response.data
+    },
+    async registration(extId, username, password){
+        const response = await axios.put(global.api + '/auth/registration', {
+            extId,
+            username,
+            password
+        })
+        return response.data
     },
 
-    async RegisterUser(id,email,phone, password,recovery){
-        const val = {
-            id,
+    async restorePasswordStepOne(email) {
+        const response = await axios.post(global.api + '/auth/restorePasswordStepOne', {
             email,
-            phone,
-            password,
-            recovery
-        }
-        const valAjax = {
-            point,
-            classPoint,
-            funcName: 'RegisterUser',
-            val:val
-          };
+        })
+        return response.data
+    },
 
-        const response = await ajax(valAjax)
-        return response
+    async restorePasswordStepTwo(email, token, password) {
+        const response = await axios.post(global.api + '/auth/restorePasswordStepTwo', {
+            email,
+            token,
+            password
+        })
+        return response.data
     }
 }
