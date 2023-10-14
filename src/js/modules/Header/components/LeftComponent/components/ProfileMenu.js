@@ -1,8 +1,9 @@
 import React from 'react';
 import { useAuth } from '../../../../Auth/providers/AuthProvider';
 import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
+import { onAsk } from '../../../../../agents/utils/sweetAlert';
 const ProfileMenu = () => {
-    const {isAgent, user, isAdmin} = useAuth()
+    const {isAgent, user, isAdmin, logOut} = useAuth()
     let profileObj = [
         /*
         {
@@ -124,6 +125,13 @@ const ProfileMenu = () => {
         }
     ];
 
+    const beforeLogOut = async () => {
+        const ask = await onAsk('האם אתה בטוח?','כל המוצרים בסל ימחקו')
+        if(ask){
+            logOut()
+        }
+    }
+
     return (
     <div id="MyProfileMenu-cont" className="MyProfileMenu-cont">
         <div className="MyProfileMenu-subcont">
@@ -175,7 +183,7 @@ const ProfileMenu = () => {
                     :null}
                     <div className="btn-cont col">
                         <div className="logOutCont" onClick={() => beforeLogOut()}>
-                            <p>{user ? 'התנתק מלקוח' : 'התנתק'}</p>
+                            <p>{isAgent ? 'התנתק מלקוח' : 'התנתק'}</p>
                         </div>
                     </div>
                 </div>

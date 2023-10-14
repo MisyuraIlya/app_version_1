@@ -12,7 +12,7 @@ export const AuthService = {
         return response.data
     }, 
     async getAccessToken(refreshToken){
-        const response = await axios.post(global.api + '/auth/refresh', {
+        const response = await axios.post(global.api + '/api/auth/refresh', {
             refresh_token: refreshToken
         })
         return response.data

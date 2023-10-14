@@ -1,6 +1,6 @@
 import { ajax } from "../../../helpers/ajaxFunc"
 import { getCurrentUserId } from "../../Auth/helpers/getCurrentUserId"
-
+import axios from "axios"
 const point = "new_app/index"
 const classPoint = "Catalog"
 
@@ -84,6 +84,17 @@ export const CatalogServices = {
         const response = await ajax(valAjax)
         return response
     }, 
+
+    //NEW API
+
+    async GetCategories() {
+        const response = await axios.get(global.api + '/api/categories',{
+            headers: {
+                'Accept': 'application/json',
+              }
+        })
+        return response.data
+    }
 
 
 }

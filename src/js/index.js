@@ -150,32 +150,32 @@ const BasicRouter = (prop) => (
 
 											{/*AgentDashboard*/ }
 
-									<Route path="/home/:lang"
+									<Route path="/home"
 										render={(props) => (<Home key={props.match.params.lang} {...props}{...prop}/>)}/>
 
 									<Route path="/promotionPage" render={(props) => (<PromotionPage {...props}{...prop}/>)}/>
 
 							{localStorage.role || localStorage.agent || localStorage.user ? 
-							<Route path="/categoryOld/:type/:lvl1/:lvl2/:lvl3/:page/:parent/:lang"
+							<Route path="/categoryOld/:type/:lvl1/:lvl2/:lvl3/:page/:parent"
 								render={(props) => (<CategoryPage {...props}{...prop}/>)}/>: null}
-							<Route path="/category/:type/:lvl1/:lvl2/:lvl3/:page/:parent/:lang"
+							<Route path="/category/:type/:lvl1/:lvl2/:lvl3/:page/:parent"
 								render={(props) => (<Catalog {...props}{...prop}/>)}/>
 
-							<Route path="/category-page/:lang"
+							<Route path="/category-page"
 								render={(props) => (<CategoryView {...props}{...prop}/>)}/>
-							<Route path="/productParent/:lvl1/:lvl2/:lvl3/:id/:lang"
+							<Route path="/productParent/:lvl1/:lvl2/:lvl3/:id"
 								render={(props) => (<ProductParent {...props}{...prop}/>)}/>
 
-							<Route path="/brands/:type/:rule/:lang" render={(props) => (<BrandsPage {...props}{...prop}/>)}/>
+							<Route path="/brands/:type/:rule" render={(props) => (<BrandsPage {...props}{...prop}/>)}/>
 
 
-									<Route path="/cartOld/:lang" render={(props) => (<ShopCart {...props}{...prop}/>)}/>
-									<Route path="/cart/:lang" render={(props) => (<CartPage {...props}{...prop}/>)}/>
-									<Route path="/wishList/:lang" render={(props) => (<WishList {...props}{...prop}/>)}/>
+									<Route path="/cartOld" render={(props) => (<ShopCart {...props}{...prop}/>)}/>
+									<Route path="/cart" render={(props) => (<CartPage {...props}{...prop}/>)}/>
+									<Route path="/wishList" render={(props) => (<WishList {...props}{...prop}/>)}/>
 
 									<Route path="/sales/:id" render={(props) => (<ForSale {...props}{...prop} />)}/>
 
-									<Route path="/profile/:lang" render={(props) => (<Profile {...props}{...prop}/>)}/>
+									<Route path="/profile" render={(props) => (<Profile {...props}{...prop}/>)}/>
 									{localStorage.role ?
 										<Route path="/admin-history" render={(props) => (<AdminHistory {...props}{...prop}/>)}/> : null}
 									{localStorage.role ?
@@ -196,44 +196,44 @@ const BasicRouter = (prop) => (
 
 
 									<Route path="/notification" render={(props) => (<Notification {...props}{...prop}/>)}/>
-									<Route path="/departments/:id/:lang" render={(props) => (<Departments {...props}{...prop}/>)}/>
+									<Route path="/departments/:id" render={(props) => (<Departments {...props}{...prop}/>)}/>
 
 							{localStorage.user ?
 								<Route path="/history" render={(props) => (<History {...props}{...prop}/>)}/> : null}
-							{localStorage.user ? <Route path="/docs/:page/:lang" render={(props) => (<Docs {...props}{...prop}/>)}/> : null}
-							{localStorage.user ? <Route path="/docsNew/:page/:lang" render={(props) => (<DocumentsModule/>)}/> : null}
+							{localStorage.user ? <Route path="/docs/:page" render={(props) => (<Docs {...props}{...prop}/>)}/> : null}
+							{localStorage.user ? <Route path="/docsNew/:page" render={(props) => (<DocumentsModule/>)}/> : null}
 							{localStorage.agent ?
-								<Route path="/docsAgent/:page/:lang" render={(props) => (<DocsAgent {...props}{...prop}/>)}/> : null}
+								<Route path="/docsAgent/:page" render={(props) => (<DocsAgent {...props}{...prop}/>)}/> : null}
 
 							{localStorage.agent || localStorage.role ?
-								<Route path="/approveDoc/:page/:lang" render={(props) => (<DocsAgentApproval {...props}{...prop}/>)}/> : null}
+								<Route path="/approveDoc/:page" render={(props) => (<DocsAgentApproval {...props}{...prop}/>)}/> : null}
 
 							{localStorage.agent || localStorage.role ?
-								<Route path="/approveDocItems/:id/:lang" render={(props) => (<DocsItemsAgentApproval {...props}{...prop}/>)}/> : null}
+								<Route path="/approveDocItems/:id" render={(props) => (<DocsItemsAgentApproval {...props}{...prop}/>)}/> : null}
 
-							<Route path="/docsItems/:id/:lang" render={(props) => (<DocsAgentItems {...props}{...prop}/>)}/>
-							<Route path="/docsItemsNew/:id/:lang" render={(props) => (<DocCard {...props}{...prop}/>)}/>
+							<Route path="/docsItems/:id" render={(props) => (<DocsAgentItems {...props}{...prop}/>)}/>
+							<Route path="/docsItemsNew/:id" render={(props) => (<DocCard {...props}{...prop}/>)}/>
 							
-								<Route path="/docsHistoryItems/:id/:lang" render={(props) => (<DocsHistoryItems {...props}{...prop}/>)}/> 
+								<Route path="/docsHistoryItems/:id" render={(props) => (<DocsHistoryItems {...props}{...prop}/>)}/> 
 
 						
 
-							{localStorage.agent ? <Route path="/docsHistoryAgent/:page/:lang"
+							{localStorage.agent ? <Route path="/docsHistoryAgent/:page"
 														render={(props) => (<DocsHistoryAgent {...props}{...prop}/>)}/> : null}
 							{localStorage.agent ?
 								<Route path="/agentGviya" render={(props) => (<AgentGviya {...props}{...prop}/>)}/> : null}
-							{localStorage.agent && !localStorage.role ? <Route path="/agentDrafts/:page/:lang" render={(props) => (<AgentDrafts {...props}{...prop}/>)} /> :null}
+							{localStorage.agent && !localStorage.role ? <Route path="/agentDrafts/:page" render={(props) => (<AgentDrafts {...props}{...prop}/>)} /> :null}
 
 							
 							{localStorage.user ?
-								<Route path="/docsHistory/:page/:lang" render={(props) => (<DocsHistory {...props}{...prop}/>)}/> : null}
+								<Route path="/docsHistory/:page" render={(props) => (<DocsHistory {...props}{...prop}/>)}/> : null}
 							{localStorage.user ?
-								<Route path="/docsKarteset/:page/:lang" render={(props) => (<CartessetPage {...props}{...prop}/>)}/> : null}
+								<Route path="/docsKarteset/:page" render={(props) => (<CartessetPage {...props}{...prop}/>)}/> : null}
 
 
-									{localStorage.user ? <Route path="/shoppinglist/:lang"
+									{localStorage.user ? <Route path="/shoppinglist"
 																render={(props) => (<Shoppinglist {...props}{...prop}/>)}/> : null}
-									{localStorage.user ? <Route path="/shoppinglistItems/:id/:lang"
+									{localStorage.user ? <Route path="/shoppinglistItems/:id"
 																render={(props) => (<ShoppinglistItems {...props}{...prop}/>)}/> : null}
 
 
@@ -241,8 +241,8 @@ const BasicRouter = (prop) => (
 										<Route path="/returns" render={(props) => (<Returns {...props}{...prop}/>)}/> : null}
 
 									<Route path="/filters" render={(props) => (<Filters {...props}{...prop}/>)}/>
-									<Route path="/contact/:lang" render={(props) => (<Contact {...props}{...prop}/>)}/>
-									<Route path="/about/:lang" render={(props) => (<About {...props}{...prop}/>)}/>
+									<Route path="/contact" render={(props) => (<Contact {...props}{...prop}/>)}/>
+									<Route path="/about" render={(props) => (<About {...props}{...prop}/>)}/>
 
 									<Route path="/gis" render={(props) => (<Gis {...props}{...prop}/>)}/>
 									{localStorage.role ?
@@ -250,7 +250,7 @@ const BasicRouter = (prop) => (
 									<Route path="/chat" render={(props) => (<Chat {...props}{...prop}/>)}/>
 									{localStorage.role ?
 										<Route path="/clients" render={(props) => (<Clients {...props}{...prop}/>)}/> : null}
-										{localStorage.agent ? <Route path="/ClientsAgent/:page/:lang" render={(props) => (<ClientsAgent {...props}{...prop}/>)} /> : null}
+										{localStorage.agent ? <Route path="/ClientsAgent/:page" render={(props) => (<ClientsAgent {...props}{...prop}/>)} /> : null}
 
 
 
@@ -273,7 +273,7 @@ const BasicRouter = (prop) => (
 		QuestionFormListComplete
 		*/}
 							{/* agenet */}
-							{localStorage.role || localStorage.agent ? <Route path="/agent-statistics/:date/:lang" render={(props) => (<AgentStatistics {...props}{...prop}/>)} /> : null}
+							{localStorage.role || localStorage.agent ? <Route path="/agent-statistics/:date" render={(props) => (<AgentStatistics {...props}{...prop}/>)} /> : null}
 							{localStorage.agent || localStorage.role ? <Route path="/objectives/:id" render={(props) => (<Objectives {...props}{...prop}/>)}/> : null}
 							{localStorage.agent || localStorage.role ? <Route path="/target/:id" render={(props) => (<Target {...props}{...prop}/>)}/> : null}
 							{localStorage.agent || localStorage.role ? <Route path="/visits/:id/:page" render={(props) => (<Visits {...props}{...prop}/>)}/> : null}

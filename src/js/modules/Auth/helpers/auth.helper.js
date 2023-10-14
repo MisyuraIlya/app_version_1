@@ -37,11 +37,7 @@ export const removeFromStorage = () => {
     Cookies.remove('accessToken')
     Cookies.remove('refreshToken')
     let siteVer = localStorage.siteVer;
-
-    for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        localStorage.removeItem(key);
-    }
+    localStorage.clear()
     localStorage.siteVer = siteVer;
 }
 

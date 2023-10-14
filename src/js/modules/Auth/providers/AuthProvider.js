@@ -189,7 +189,8 @@ const AuthProvider = (props) => {
     user,
     isAdmin,
     restorePasswordStepOne,
-    restorePasswordStepTwo
+    restorePasswordStepTwo,
+    logOut
 
   };
 
