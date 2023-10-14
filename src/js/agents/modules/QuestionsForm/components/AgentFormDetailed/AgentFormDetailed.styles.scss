@@ -1,0 +1,29 @@
+.AgentFormDetailed{
+    .close_btn{
+        span{
+            font-size: 32px;
+            border-radius: 5px;
+
+            background: #F7F9FC;
+            &:hover{
+                background:  darken(#F7F9FC, 10%);
+            }
+        }
+        font-size: 22px;
+        cursor: pointer;
+    }
+    
+    .head{
+        padding: 20px;
+    }
+
+    .card{
+        padding: 20px;
+    }
+
+    h4 {
+        color:#2D3E58;
+        font-size: 19px;
+
+    }
+}

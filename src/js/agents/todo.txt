@@ -1,0 +1,34 @@
+1 - visits fetch only today day query
+3 - חזרה -> without green onClickBtn
+4- delete green btn -> stroke
+5 - icons in list to of head 
+6 - icons height 
+7 - opacity in toggle - gray color
+8 - modal head height minimize
+9 - same border in all
+10 - create modal - calendar input -> icon right side , value in center
+11 - X in create modal left side
+12 - 1400px -> 1200px
+13 - charts -> $c1 color
+14 - BigBtn - minimize in 2
+15 - status 
+16 - targets font size bigger 
+17 - same status card size
+18 - ממתין - yellow
+19 - missions - card target same 
+20 - chart dashboard target  - target -> green - value -> #ccc
+21 - question form card statues set in card 
+22 - question from set title and date in flex and minimize card
+23 - creation question form and same color
+24 - הוסף + question -> green card
+
+25- select box - green 
+26 infobar -> card -> margins
+27 dashboard circle chart -> split to flex container
+28 dashboard -> total and target title heigt minimize -> add '/'
+
+29 - * -> add calendar in mobile
+30 - mobile create modal side minimize
+31 - fixed down button 
+32 - mobile hours minimize - icon in center - minimize card
+33 - search bar max-width 100%

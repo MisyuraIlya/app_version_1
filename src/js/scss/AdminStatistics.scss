@@ -1,0 +1,148 @@
+.mainStatisticAdmin {
+    //padding-top: 20px;
+    //padding-right: 20px;
+    color: $Title;
+    font-weight: 900;
+    font-size: 20px;
+    fill: rgb(55, 61, 63);
+    text-anchor: start;
+    dominant-baseline: auto;
+    margin:0;
+
+}
+
+.priceStstisticAdmin{
+    /*position: absolute;
+    bottom:0px;
+    left: 20px;
+    font-weight: 900;
+    font-size: 24px;
+    fill: rgb(55, 61, 63);
+    text-anchor: start;
+    dominant-baseline: auto;*/
+}
+.mt-3{
+  margin-top: 36px;
+}
+.rb-tabs .rb-tabs-header{
+//  margin-bottom:20px;
+ // margin-bottom: 50px;
+  .rb-tabs-items{
+    border-bottom: none !important;
+  }
+}
+.card_shadowing{
+  margin:0 auto;
+  min-height: 250px;
+  box-shadow: 0px 10px 15px rgba(31, 41, 55, 0.1), 0px 0px 6px rgba(31, 41, 55, 0.05);
+  margin-bottom:20px;
+  .card_shadowing_cont{
+    padding: 24px;
+    background: #FFFFFF;
+    .hello-img-cont{
+      width:120px;
+      margin-top:40px;
+    }
+    .values-cont{
+      margin-bottom:18px;
+      p{
+        margin:0;
+        margin-bottom:4px;
+      }
+      .values-subcont{
+        p{
+          font-size:22px;
+          color:$new2;
+          font-weight:600;
+        }
+        &.smaller-font{
+          p{
+            font-size:16px;
+          }
+        }
+      }
+      .values-title{
+        font-size:16px;
+        color: rgb(55, 61, 63);
+        font-size: 12px;
+        font-weight: 400;      }
+    }
+    .select-cont{
+      margin-top: 16px;
+      select{
+        width:120px;
+        height: 38px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      
+    }
+  }
+  &.agents-stats-card{
+    min-height: 300px;
+  }
+}
+.apexcharts-legend-series{
+  margin-bottom:4px !important;
+  .apexcharts-legend-text{
+    margin-right: 8px;
+  }
+  .apexcharts-legend-marker{
+    top: 2px !important;
+  }
+}
+.list-block{
+  margin-top: 20px;
+  .card_shadowing{
+    padding-bottom: 8px;
+    .apexcharts-toolbar{
+      right: auto !important;
+      left:10px !important;
+      top: 20px !important;
+    }
+  }
+  .list-block-title-cont{
+    align-items: center;
+    margin-bottom:16px;
+    .title_cont{
+      h2{
+        color: $Title;
+        font-weight: 900;
+        font-size: 20px;
+      }
+    }
+
+    &.comparison-block{
+      position: relative;
+      .compare-select-cont{
+        position:absolute;
+        top:-5px;
+        left: 66px;
+      }
+      .apexcharts-toolbar{
+        right: auto !important;
+        left:-53px !important;
+        top: 0 !important;
+      }
+    }
+  }
+  .prod_container{
+    margin:8px 0;
+    padding:0 0 16px 0;
+    font-size:14px;
+    border-bottom:1px solid #eee;
+  }
+}
+
+
+
+.App{
+  min-height: calc(100vh - 250px);
+  .container-app{
+    margin-top:160px;
+    padding-bottom:100px;
+  }
+}
+.apexcharts-canvas{
+  position: initial !important;
+}

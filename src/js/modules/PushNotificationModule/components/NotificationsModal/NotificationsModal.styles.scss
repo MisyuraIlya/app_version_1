@@ -1,0 +1,27 @@
+.NotificationModules_background{
+    // position: fixed;
+    // height: 100vh;
+    // opacity: 0.75;
+    // background-color: #000;
+    // width: 100%;
+    // z-index: 1000; 
+}
+
+.WrapperNotification {
+    width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    .WrapperNotification {
+        // position: fixed;
+        // top: 130px;
+        // z-index: 100000000;
+        // width: 100%;
+    }
+}
+
+.NotificationsModal{
+    width: 100%;
+    position: relative;
+}
+

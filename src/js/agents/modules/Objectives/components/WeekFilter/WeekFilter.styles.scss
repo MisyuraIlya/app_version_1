@@ -1,0 +1,18 @@
+.WeekFilter{
+    .img {
+        img {
+            cursor: pointer;
+            &:hover{
+                border-radius: 50%;
+                background-color: rgba(107, 122, 153, 0.25);
+            }
+        }
+    }
+    .filterDates{
+        padding: 20px;
+        p{
+            color: #6B7A99;
+            font-weight: 800;
+        }
+    }
+}

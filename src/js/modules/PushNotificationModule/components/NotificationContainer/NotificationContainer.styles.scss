@@ -1,0 +1,72 @@
+
+@media screen and (min-width: 600px) {
+    .NotificationContainer {
+        padding-top: 10px;
+        justify-content: center;
+        align-items: center;
+        background: #00000014;
+        height: calc(100vh - 60px);
+
+        .notificationWrapper {
+            width: 85% !important;
+            overflow: auto;
+            height: 100vh;
+            overflow-x: hidden;
+            margin: 0 auto;
+            padding-left: 10px;
+            height: calc(100vh - 60px);
+
+            .NotificationCard{
+                margin: 16px 0;
+                width: 100%;
+            }
+        }
+        .notificationWrapper::-webkit-scrollbar {
+            width: 2px !important;
+            height: 2px !important;
+          }
+        .notificationWrapper::-webkit-scrollbar-track {
+            background-color: #fff !important;
+        }
+        .notificationWrapper::-webkit-scrollbar-thumb {
+            background-color: #24426b !important;
+            outline: 1px solid #fff !important;
+        }
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    .NotificationContainer {
+        display: flex;
+        justify-content: center;
+        margin-top: 8px;
+        background: #00000014;
+        padding-top: 10px;
+        .notificationWrapper::-webkit-scrollbar {
+            width: 2px !important;
+            height: 2px !important;
+          }
+        .notificationWrapper::-webkit-scrollbar-track {
+            background-color: #fff !important;
+        }
+        .notificationWrapper::-webkit-scrollbar-thumb {
+            background-color: #24426b !important;
+            outline: 1px solid #fff !important;
+        }
+        .notificationWrapper {
+            overflow: auto;
+            height: calc(100vh - 60px);
+            overflow-x: hidden;
+            padding-left: 10px;
+            width: 85% !important;
+            .NotificationCard{
+                margin: 16px 0;
+                width: 100%;
+            }
+
+        }
+        
+    }
+
+}

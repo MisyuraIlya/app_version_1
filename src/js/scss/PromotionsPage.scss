@@ -1,0 +1,57 @@
+.promotion-page {
+  .page-sub-container{
+    max-width:1200px;
+    margin:0 auto;
+    margin-top:50px;
+    .heading{
+      h1{
+        text-align: center;
+        color:$new1;
+      }
+    }
+    .prom-body-cont{
+      margin-top:50px;
+      .prom-body-right-cont{
+        .prom-body-right-subcont{
+          width: 80%;
+          margin: 0 auto;
+          .text-cont{
+            margin-bottom: 50px;
+            h1,h3{
+              color:$new2;
+              line-height:30px;
+              margin-bottom: 30px;
+            }
+            p{
+              position:relative;
+              color:$new2;
+              margin-right: 24px;
+              &:before{
+                position:absolute;
+                content:"";
+                width:8px;
+                height:8px;
+                border-radius:100%;
+                background-color:$new2;
+                right:-24px;
+                top:5px;
+              }
+            }
+          }
+          .links-main-cont{
+            h3{
+              color:$new2;
+              text-align: center;
+              margin-bottom:10px;
+            }
+            img{
+              cursor:pointer;
+            }
+
+          }
+
+        }
+      }
+    }
+  }
+}

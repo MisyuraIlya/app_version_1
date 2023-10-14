@@ -1,0 +1,27 @@
+.not_with_circle{
+    position: fixed;
+    right: 80px;
+    top: 16px;
+    span{
+        font-size: 30px;
+    }
+    .not_cirlce{
+        background-color: #24426b ;
+        width: 15px;
+        height: 15px;
+        color: #fff;
+        font-size: 10px;
+        line-height: 13px;
+        border-radius: 50%;
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 100;
+        p{
+            color: white;
+        }
+    }
+}

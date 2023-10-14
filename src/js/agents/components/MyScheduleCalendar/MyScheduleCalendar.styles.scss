@@ -1,0 +1,211 @@
+.weekly-scheduler {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid #F7F8FA;
+  font-size: 12px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+}
+
+.cell {
+  flex: 1;
+  border-right: 1px solid #F7F8FA;
+  // padding: 15px; 
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+.day {
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.img_time{
+  flex: 0.30 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.row {
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #F7F8FA;
+
+}
+
+.hour {
+  flex: 0 0 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p{
+    color: #ADB8CC;
+  }
+  border-right: none;
+  font-weight: bold;
+}
+
+.event_1 {
+  background-color: white;
+  .entire{
+    height: 100%;
+    background: rgba(46, 230, 202, 0.25);
+    &:hover{
+      background: rgba(46, 230, 202, 0.35);
+    }
+    .head{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .hour_card{
+        margin: 5px;
+        border-radius: 5px;
+        padding: 5px 10px 5px 10px;
+        background-color: #2EE6CA;
+        color: white;
+      }
+    }
+    .cont_block{
+      padding: 5px;
+      .heading{
+        h3{
+          color: #4D5E80;
+          font-weight: 900;
+        }
+      }
+      .title_cont{
+        p{
+          color: #4D5E80;
+          font-weight: 800;
+        }
+      }
+
+    }
+
+  }
+  color: #fff;
+  width: calc(100% / 7.5);
+
+  // padding: 5px;
+  border-radius: 4.495px;
+  cursor: pointer;
+  position: absolute;
+  border: 1px solid #2EE6CA;
+}
+
+.event_2 {
+  background-color: white;
+
+  .entire{
+    height: 100%;
+    background: rgba(255, 102, 51, 0.25);
+    &:hover{
+      background: rgba(255, 102, 51, 0.35);
+    }
+    .head{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .hour_card{
+        margin: 5px;
+        border-radius: 5px;
+        padding: 5px 10px 5px 10px;
+        background-color: #FF6633;
+        color: white;
+      }
+    }
+    .cont_block{
+      padding: 5px;
+      .heading{
+        h3{
+          color: #4D5E80;
+          font-weight: 900;
+        }
+      }
+      .title_cont{
+        p{
+          color: #4D5E80;
+          font-weight: 800;
+        }
+      }
+
+    }
+
+  }
+
+  color: #fff;
+  width: calc(100% / 7.5);
+  // padding: 5px;
+  border-radius: 4.495px;
+  cursor: pointer;
+  position: absolute;
+  border: 1px solid #FF6633;
+}
+
+.event_3 {
+  background-color: white;
+  .entire{
+    height: 100%;
+    background: rgba(255, 203, 51, 0.25);
+    &:hover{
+      background: rgba(255, 203, 51, 0.35);
+    }
+    .head{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .hour_card{
+        margin: 5px;
+        border-radius: 5px;
+        padding: 5px 10px 5px 10px;
+        background-color: #FFCB33;
+        color: white;
+      }
+    }
+    .cont_block{
+      padding: 5px;
+      .heading{
+        h3{
+          color: #4D5E80;
+          font-weight: 900;
+        }
+      }
+      .title_cont{
+        p{
+          color: #4D5E80;
+          font-weight: 800;
+        }
+      }
+
+    }
+
+  }
+  color: #fff;
+  width: calc(100% / 7.5);
+
+  // padding: 5px;
+  border-radius: 4.495px;
+  cursor: pointer;
+  position: absolute;
+  border: 1px solid #FFCB33;
+}
+

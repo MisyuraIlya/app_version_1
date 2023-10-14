@@ -1,0 +1,62 @@
+.brands-page {
+  .brands-page-subcont{
+    max-width:1200px;
+    margin: auto;
+    .brands-page-subcont2{
+      margin: 0 16px;
+      .h1-cont{
+        h1{
+          color: $new2;
+          display: inline-block;
+          position: relative;
+          font-size: 26px;
+          font-weight: 400;
+        }
+      }
+      .brands-wrapper{
+        .brands-page-view{
+          justify-content: space-between;
+          .brand-main-cont{
+            box-shadow: 0px 1px 3px #b6b6b6;
+            width: 15%;
+            background:#fff;
+            border-radius:8px;
+            transition: all 250ms ease-in-out;
+            margin-bottom:20px;
+            cursor:pointer;
+            .brand-sub-cont{
+              position:relative;
+              height:90px;
+              img{
+                position:absolute;
+                top:50%;
+                left:50%;
+                transform:translate(-50%,-50%);
+                height: 90px;
+                width: auto;
+              }
+              h2{
+                position:absolute;
+                top:50%;
+                left:50%;
+                transform:translate(-50%,-50%);
+                font-weight:600;
+                font-size:16px;
+                text-align: center;
+                margin:0;
+                color: $new2;
+                width: 90%;
+                //line-height:70px;
+              }
+            }
+            &:hover{
+              box-shadow: 0px 8px 25px #b6b4b48c;
+            }
+          }
+        }
+
+      }
+    }
+
+  }
+}

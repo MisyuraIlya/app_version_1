@@ -1,0 +1,33 @@
+.MyAddInputButton{
+    border: 1px solid #D6E0ED;
+    border-radius: 35px;
+    padding: 5px;
+
+    .textInput {
+        display: flex;
+        align-items: center;
+        .inputWith{
+            width: 90%;
+        }
+        .blockInput{
+            padding-right: 10px;
+            input {
+                border: none;
+                font-size: 17px;
+                width: 100%;
+            }
+        }
+    }
+
+    .btn{
+        background-color:  #002D74;
+        color: white;
+        font-size: 18px;
+        padding: 10px;
+        border-radius: 50px;
+        cursor: pointer;
+        &:hover {
+            background-color: darken(#002D74, 10%);
+        }
+    }
+}

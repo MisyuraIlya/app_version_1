@@ -1,0 +1,14 @@
+.MyButton{
+    button {
+        background-color: $new2;
+        padding: 15px 30px 15px 30px;
+        color: white;
+        border: none;
+        border-radius: 35px;
+        font-weight: 700;
+        cursor: pointer;
+        &:hover {
+            background: darken($new2, 10%);
+        }
+    }
+}
