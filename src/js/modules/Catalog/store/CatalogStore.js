@@ -11,21 +11,18 @@ const useCatalog = create((set, get) => ({
     lvl3id:'0',
     parent:'0',
     page:'1',
-    setCatalogParameters: (lvl1, lvl2, lvl3, page) => {
+    searchParams:'',
+    setCatalogParameters: (lvl1, lvl2, lvl3, searchParams) => {
         set({
             lvl1id: lvl1,
             lvl2id: lvl2,
             lvl3id: lvl3,
-            page,
+            searchParams,
         })
     },
 
     // FILTERS 
-    prodsPerPage:'24',
-    setProdsPerPage: (value) => {
-        set({prodsPerPage:value, activeProdsPerPage:false})
-        get().getCatalog()
-    },
+
     activeProdsPerPage: false,
     setActiveProdsPerPage: (value) => (set({activeProdsPerPage: value})),
     activeSortPerPage:false,
@@ -43,7 +40,9 @@ const useCatalog = create((set, get) => ({
     },
     action:'',
     searchParam:'',
-    setSearchParam: (value) => {set({searchParam:value})},
+    setSearchParam: (value) => {
+        set({searchParam:value})
+    },
     categoriesLvl1: [],
     categoriesLvl2: [],
     categoriesLvl3: [],
@@ -62,28 +61,70 @@ const useCatalog = create((set, get) => ({
         set({filters: arr})
     },
     getCatalog: async () => {
+
         set({loading:true})
         try {
             const response = await CatalogServices.GetCatalog(
                 get().lvl1id,
                 get().lvl2id,
                 get().lvl3id, 
-                get().page, 
-                get().prodsPerPage,
-                get().urlSearch,
-                get().searchParam,
-                get().lvl1id
+                get().searchParams, 
                 )
+                const products = response['hydra:member']
+                const totalItems = response['hydra:totalItems']
 
-            if(response.status === 'success') {
-                const res1 = response.data.categories.filter((item) => item.LvlNumber == 1)
-                const res2 = response.data.categories.filter((item) => item.LvlNumber == 2)
-                const res3 = response.data.categories.filter((item) => item.LvlNumber == 3)
-                const filters = response.data.filterObj
-                const products = response.data.products
-                const pagination = response.data.paginateObj
-                set({categoriesLvl1:res1, categoriesLvl2: res2, categoriesLvl3: res3, filters: filters, products:products, paginateObj:pagination})
-            }
+                if(totalItems) {
+                    set({products:products})
+                }
+
+                if(response["hydra:view"]["hydra:last"]) {
+                    const totalPages = (response["hydra:view"]["hydra:last"]?.split('page='))[1]
+                    set({totalPages:totalPages})
+                } else {
+                    set({totalPages:1})
+
+                }
+                if(response["hydra:view"]["@id"]) {
+                    const currentPage = (response["hydra:view"]["@id"]?.split('page='))[1]
+                    if(currentPage) {
+                        set({currentPage:currentPage})
+                    } else {
+                        set({currentPage:1})
+                    }
+
+                } else {
+                    set({currentPage:1})
+
+                }
+        
+                if(response["hydra:view"]["hydra:last"]) {
+                    const lastPage = (response["hydra:view"]["hydra:last"]?.split('page='))[1]
+                    set({lastPage:lastPage})
+
+                } else {
+                    set({lastPage:1})
+
+                }
+            
+                if(response["hydra:view"]["hydra:next"]) {
+                    const nextPage = (response["hydra:view"]["hydra:next"]?.split('page='))[1]
+                    set({nextPage:nextPage})
+
+                } else {
+                    if(response["hydra:view"]["hydra:last"]) {
+                        set({nextPage:(response["hydra:view"]["hydra:last"]?.split('page='))[1]})
+                    } else {
+                        set({nextPage:1})
+                    }
+                }
+                if(response["hydra:view"]["hydra:previous"]) {
+                    const previousPage = (response["hydra:view"]["hydra:previous"]?.split('page='))[1]
+                    set({previousPage:previousPage})
+                } else {
+                    set({previousPage:1})
+                }
+           
+
         } catch(e) {
             console.log('[ERROR] error fetch catalog',e)
         } finally {
@@ -92,6 +133,25 @@ const useCatalog = create((set, get) => ({
 
     },
     toShow:24,
+    totalItems:0,
+    totalPages:1,
+    currentPage:1,
+    nextPage:null,
+    previous:null,
+    lastPage: null,
+    goToPage: (updatedUrl) => {
+
+
+        set({searchParams:updatedUrl})
+        get().getCatalog()
+    },
+
+    prodsPerPage:'24',
+    setProdsPerPage: (updatedUrl,number) => {
+        set({prodsPerPage:number, activeProdsPerPage:false,searchParams:updatedUrl})
+        set({currentPage:1})
+        get().getCatalog()
+    },
 
 }))
 

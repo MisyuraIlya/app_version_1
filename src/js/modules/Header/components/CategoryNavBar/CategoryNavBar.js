@@ -23,7 +23,7 @@ const CategoryNavBar = () => {
           {categories?.map((element, index) => {
             return (
               <li key={index} className={active === element.Id ? 'active main-li' : 'main-li'}>
-                <NavLink onClick={(e) => hideNav("sub_menu_" + element.Id)} to={`/category/catalog/${element.Id}/0/0/1/0/`}>
+                <NavLink to={`/catalog/${element.id}/0/0`}>
                   <p>{element.title}</p>
                 </NavLink>
 

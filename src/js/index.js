@@ -158,7 +158,7 @@ const BasicRouter = (prop) => (
 							{localStorage.role || localStorage.agent || localStorage.user ? 
 							<Route path="/categoryOld/:type/:lvl1/:lvl2/:lvl3/:page/:parent"
 								render={(props) => (<CategoryPage {...props}{...prop}/>)}/>: null}
-							<Route path="/category/:type/:lvl1/:lvl2/:lvl3/:page/:parent"
+							<Route path="/catalog/:lvl1/:lvl2/:lvl3"
 								render={(props) => (<Catalog {...props}{...prop}/>)}/>
 
 							<Route path="/category-page"
@@ -1409,7 +1409,6 @@ class App extends Component {
 			data.myUser && JSON.parse(data.myUser).DispatchingDays ? areaCode = JSON.parse(data.myUser).DispatchingDays : null;
 			
 			let userArea = [];
-			console.log('JSON.parse(data.categories)',JSON.parse(data.categories))
 			tmpDefaults.userArea = null;
 			this.setState({
 				categories: JSON.parse(data.categories),

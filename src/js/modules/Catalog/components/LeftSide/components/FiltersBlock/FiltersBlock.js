@@ -21,7 +21,8 @@ const FiltersBlock = () => {
         searchParam,
         setSearchParam,
         getCatalog,
-        setUrlSearch
+        setUrlSearch,
+        totalItems,
     } = useCatalog()
 
     const {isAgent} = useAuth()
@@ -58,6 +59,15 @@ const FiltersBlock = () => {
       setActiveSortPerPage(false)
     }
 
+    const handleChangeItemsPerPage = (number) => {
+      const urlSearchParams = new URLSearchParams(history.location.search);
+      urlSearchParams.set('itemsPerPage', number);
+      urlSearchParams.set('page', 1);
+      const updatedUrl = '?' + urlSearchParams.toString();
+      setProdsPerPage(updatedUrl,number)
+      history.push(history.location.pathname+updatedUrl)
+    }
+
     useEffect(() => {
       if(searchDebounce){
         getCatalog()
@@ -70,7 +80,7 @@ const FiltersBlock = () => {
         <div className="view-mode-rightcont flex-container">
           <div className="block quant-main">
             
-              <p> {loading ? '' : 'נמצאו: ' + paginateObj?.ProdTtlCount + ' מוצרים'}</p>
+              <p> {loading ? '' : 'נמצאו: ' + totalItems + ' מוצרים'}</p>
             {isAgent && ((params.props.match.params.lvl2 && params.props.match.params.lvl2!='0') || params.props.match.params.type.includes('brand')) ?
               <div className="file-main-cont">
                 <div className="file-cont" onClick={()=> params.downloadExcelPdf('xls', params.breadCrumbsNav)}>
@@ -108,8 +118,8 @@ const FiltersBlock = () => {
                 {activeProdsPerPage ?
                   <div className="drop-down-open-cont">
                     <ul>
-                      <li onClick={()=> setProdsPerPage('24')}>24</li>
-                      <li onClick={()=> setProdsPerPage('48')}>48</li>
+                      <li onClick={()=> handleChangeItemsPerPage('24')}>24</li>
+                      <li onClick={()=> handleChangeItemsPerPage('48')}>48</li>
                     </ul>
                   </div>
                 :null}

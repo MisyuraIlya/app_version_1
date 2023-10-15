@@ -4,12 +4,33 @@ import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min
 import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Pagination = () => {
-  const { paginateObj } = useCatalog();
+  const { currentPage, nextPage, previous, totalPages, totalItems, toShow, goToPage, lastPage } = useCatalog();
   const { lang, lvl1, lvl2, lvl3, page, parent, type } = useParams();
-  const { location } = useHistory();
+  const { pathname,location,push } = useHistory();
   let title1 = 'מציג ';
   let title2 = ' מתוך ';
   let title3 = ' מוצרים';
+  console.log('currentPage',currentPage)
+  const getPageNumbers = () => {
+    const halfRange = Math.floor(7 / 2);
+    const start = Math.max(1, currentPage - halfRange);
+    const end = Math.min(totalPages, start + 7 - 1);
+
+    const pageNumbers = [];
+    for (let i = start; i <= end; i++) {
+      pageNumbers.push(i);
+    }
+    return pageNumbers;
+  };
+
+  const handleGoToPage = (page) => {
+    const urlSearchParams = new URLSearchParams(location.search);
+    urlSearchParams.set('page', page);
+    const updatedUrl = '?' + urlSearchParams.toString();
+    goToPage(updatedUrl)
+    push(location.pathname+updatedUrl)
+
+  }
 
   return (
     <div className="paginate-main-cont">
@@ -17,46 +38,37 @@ const Pagination = () => {
         <div className="paginate-controller-main col-lg-8">
           <div className="paginate-controller-sub">
             <div className="pageBtn glbBtn">
-              <NavLink to={`/category/${type}/${lvl1}/${lvl2}/${lvl3}/1/0/${lang}${location.search}`}>
-                <p>{"<<"}</p>
-              </NavLink>
+                <p onClick={() => handleGoToPage(1)}  >{"<<"}</p>
             </div>
-            <div className="pageBtn glbBtn">
-              {paginateObj?.PreviosPage ? (
-                <NavLink to={`/category/${type}/${lvl1}/${lvl2}/${lvl3}/${paginateObj?.PreviosPage}/0/${lang}${location.search}`}>
-                  <p>{"<"}</p>
-                </NavLink>
+            <div className="pageBtn glbBtn" >
+              {previous ? (
+                  <p onClick={() => handleGoToPage(previous)}>{"<"}</p>
               ) : (
                 <p>{"<"}</p>
               )}
             </div>
-            {paginateObj?.pageViewArr?.map((item, index) => (
+            {getPageNumbers()?.map((item, index) => (
               <div key={index} className="pageBtn">
-                <NavLink to={`/category/${type}/${lvl1}/${lvl2}/${lvl3}/${item}/0/${lang}${location.search}`}>
-                  <p className={item === paginateObj?.PageChosen ? 'active' : null}>{item}</p>
-                </NavLink>
+                  <p className={item == currentPage ? 'active' : null} onClick={() => handleGoToPage(item)}>{item}</p>
               </div>
             ))}
             <div className="pageBtn glbBtn">
-              {paginateObj?.NextPage ? (
-                <NavLink to={`/category/${type}/${lvl1}/${lvl2}/${lvl3}/${paginateObj?.NextPage}/0/${lang}${location.search}`}>
-                  <p>{">"}</p>
-                </NavLink>
+              {nextPage ? (
+                  <p onClick={() => handleGoToPage(nextPage)}>{">"}</p>
               ) : (
                 <p>{">"}</p>
               )}
             </div>
             <div className="pageBtn glbBtn">
-              <NavLink to={`/category/${type}/${lvl1}/${lvl2}/${lvl3}/${paginateObj?.LastPage}/0/${lang}${location.search}`}>
-                <p>{">>"}</p>
-              </NavLink>
+                <p onClick={() => handleGoToPage(lastPage)}>{">>"}</p>
             </div>
           </div>
         </div>
         <div className="paginate-info-main col-lg-4">
-          {paginateObj?.ProdTtlCount &&
-            <p>{`${title1}${paginateObj?.prodRange}${title2}${paginateObj?.ProdTtlCount}${title3}`}</p>        
-          }
+          {/* {totalItems &&
+          //TODO
+            // <p>{`מציג ${toShow}- `}</p>        
+          } */}
         </div>
       </div>
     </div>

@@ -14,21 +14,21 @@ const BasicInfo = ({product}) => {
         </div>
         <div
           className={user ? "prod-data-cont user" : "prod-data-cont"}>
-          <h3 className="p-title">{product.Title}</h3>
+          <h3 className="p-title">{product?.title}</h3>
           <div className="barcode-cont">
             <div>
               <p className="row-title">מק״ט: </p>
-              <p className="Mask-long">{product.CatalogNumber}</p>
+              <p className="Mask-long">{product?.sku}</p>
             </div>
-            {product.Barcode ?
+            {product?.Barcode ?
                 <div>
                     <p className="row-title">ברקוד: </p>
-                    <p className="Mask">{product.Barcode}</p>
+                    <p className="Mask">{product.barcode}</p>
                 </div>
             : null}
             <div>
                 <p className="row-title">מארז: </p>
-                <p className="Mask-long">{product.PackQuan + " יח'"}</p>
+                <p className="Mask-long">{product?.packQuan + " יח'"}</p>
             </div>
             {/* {product.OnHand && isAgent ?
                 <div className="">

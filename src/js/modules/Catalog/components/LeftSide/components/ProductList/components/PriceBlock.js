@@ -10,12 +10,12 @@ const PriceBlock = ({product}) => {
     const inCart = getCartItem(product);
     return (
         <div className="price-and-addtocart-cont">
-        {(user && selectedMode) && product.Price && product.Price != 0 && !product.IsParent && parseInt(product.OnHand) != 0 ?
+        {(user && selectedMode) && product.finalPrice && product.finalPrice != 0 && !product.IsParent && parseInt(product.OnHand) != 0 ?
             <div className="price-cont flex-container">
                 <div className="price-cont-sub top col-lg-12 flex-container">
                     <div className="price-cont-sub-right-box col-lg-4">
                         <p className="row-title">{"מחיר יח'"}</p>
-                        <p className="row-val price">{parseFloat(product.OrgPrice).toFixed(1)}</p>
+                        <p className="row-val price">{parseFloat(product.finalPrice).toFixed(1)}</p>
                     </div>
                     <div className="price-cont-sub-right-box  col-lg-4">
                         <p className="row-title">{'הנחה'}</p>
