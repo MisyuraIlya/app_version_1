@@ -11,11 +11,9 @@ import { BallClipRotate } from 'react-pure-loaders';
 const Catalog = () => {
     const {lvl1, lvl2, lvl3} = useParams() 
     const asd = useHistory()
-    console.log('asd',asd)
     const {location} = useHistory()
     const {loading, setCatalogParameters, getCatalog,setUrlSearch} = useCatalog()
     const {setCart} = useCart()
-    console.log('lvl1, lvl2, lvl3',lvl1, lvl2, lvl3)
     useEffect(() => {
         setCatalogParameters(lvl1,lvl2, lvl3, location.search)
         // setUrlSearch(decodeURIComponent(location.search))

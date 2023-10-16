@@ -5,12 +5,13 @@ import { useNotificationModal } from '../../../Modals/provider/NotificationModal
 import useSelectedProduct from '../../../Modals/store/SelectedProductStore';
 
 const AddToCart = ({item}) => {
+    console.log('item',item)
     const {cart,addToCart,increaseCart,decreaseCart, deleteFromCart, changeQuantity, avoidNullInCart} = useCart()
     const {selectedProd} = useSelectedProduct()
     const {openStockNotify,openAddToCartTotify} = useNotificationModal()
-    const find = cart?.filter((itemCart) => itemCart.Id === item.CatalogNumber)
-    const Quantity = find[0]?.Quantity
-    const isInCart = find[0]?.Id ? true : false
+    const find = cart?.filter((itemCart) => itemCart.sku === item.sku)
+    const Quantity = find[0]?.quantity
+    const isInCart = find[0]?.sku ? true : false
 
     const selectInput = (id) =>{
         setTimeout(() => {
@@ -20,37 +21,33 @@ const AddToCart = ({item}) => {
 
     const addToCartFunc = () => {
 
-        if(parseFloat(item.OnHand) >= parseFloat(item.PackQuan)) {
-            console.log('here')
+        if(parseFloat(item.stock) >= parseFloat(item.packQuantity)) {
             addToCart(item, selectedProd)
             openAddToCartTotify()
         } else {
-            console.log('here2')
             openStockNotify()
         }
     }
 
     const increaseCartFunc = () => {
-        console.log('item.OnHand',item)
-        if(parseFloat(item.OnHand) > parseFloat(Quantity)) {
-            increaseCart(item.CatalogNumber)
+        if(parseFloat(item.stock) > parseFloat(Quantity)) {
+            increaseCart(item.sku)
         } else {
             // openStockNotify()
         }
     }
 
     const onChangeQuantityFunc = (value) => {
-        if(parseFloat(item.OnHand) >= (value * parseFloat(item.PackQuan))) {
-            changeQuantity(item.CatalogNumber, value)
+        if(parseFloat(item.stock) >= (value * parseFloat(item.packQuantity))) {
+            changeQuantity(item.sku, value)
         } else {
             openStockNotify()
         }
     }
-    console.log('selectedProd',selectedProd)
     return (
         <>
         
-        {parseInt(item.OnHand) !== 0 ?
+        {parseInt(item.stock) !== 0 ?
         <div className="product-page barcode-pop">
             <div className="wrapp flex-container" onClick={!isInCart ? () =>  addToCartFunc() : null}>
                 <div className="col-lg-4 fx-btn" onClick={() => increaseCartFunc()}>
@@ -59,15 +56,15 @@ const AddToCart = ({item}) => {
                 {isInCart ?
                     <Fragment>
                     <div className="col-lg-4">
-                        <input id={"input_"+item.CatalogNumber}
+                        <input id={"input_"+item.sku}
                         type="number"
                         value={Quantity}
                         onChange={(e) => onChangeQuantityFunc(e.target.value)}
-                        onBlur={() => avoidNullInCart(item.CatalogNumber)}
+                        onBlur={() => avoidNullInCart(item.sku)}
                         onClick={() => selectInput(find)}
                         />
                     </div>
-                    <div className="col-lg-4 fx-btn" onClick={isInCart && Quantity> 1 ? () => decreaseCart(item.CatalogNumber) : () => deleteFromCart(item.CatalogNumber)}>
+                    <div className="col-lg-4 fx-btn" onClick={isInCart && Quantity> 1 ? () => decreaseCart(item.sku) : () => deleteFromCart(item.sku)}>
                         <img
                         src={globalFileServer + 'icons/cart_minus.svg'}
                         />
@@ -75,7 +72,7 @@ const AddToCart = ({item}) => {
                     </Fragment>
                 :
                 <>
-                    {parseInt(item.OnHand) !== 0 ?
+                    {parseInt(item.stock) !== 0 ?
                         <div className="col-lg-8">
                             <p>{'הוספה לסל'}</p>
                         </div>

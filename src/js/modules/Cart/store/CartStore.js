@@ -15,7 +15,7 @@ const useCart = create((set, get) => ({
 	},
 	getCartItem: (product) => {
 		const cart = get().cart;
-		const itemFind = cart.filter((item) => item.Id === product.CatalogNumber);
+		const itemFind = cart.filter((item) => item.sku === product.sku);
 		if (itemFind.length > 0) {
 			return itemFind[0];
 		} else {
@@ -23,18 +23,17 @@ const useCart = create((set, get) => ({
 		}
 	},
 	addToCart: (product, parent = null) => {
-		console.log('product?.ParentId',product?.ParentId)
 		const { cart } = get();
-		const existingProduct = cart.find((item) => item.CatalogNumber === product.CatalogNumber);
+		const existingProduct = cart.find((item) => item.sku === product.sku);
 		if (existingProduct) {
 		  const updatedCart = cart.map((item) =>
-			item.CatalogNumber === product.CatalogNumber
+			item.sku === product.sku
 			  ? {
 				  ...item,
-				  Quantity: item.Quantity + 1,
-				  UnitChosen:
-					parseInt(item.Products.PackQuan) !== 1 &&
-					item.Products.Unit === '1'
+				  quantity: item.quantity + 1,
+				  unitChosen:
+					parseInt(item.product.packQuantity) !== 1 &&
+					item.product.unit === '1'
 					  ? 1
 					  : 0,
 				}
@@ -44,61 +43,61 @@ const useCart = create((set, get) => ({
 		  set({ cart: updatedCart });
 		} else {
 		  const cartProduct = {
-			Id: product.CatalogNumber,
-			Quantity: 1,
-			Products: product,
-			SelectedProduct: product?.ParentId ? parent : product,
-			CategoryId: product.CatalogNumber,
-			UnitChosen:
-			  parseInt(product.PackQuan) !== 1 && product.Unit === '1' ? 1 : 0,
+			sku: product.sku,
+			quantity: 1,
+			product: product,
+			selectedProduct: product?.parentId ? parent : product,
+			categoryId: product.sku,
+			unitChosen:
+			  parseInt(product.packQuantity) !== 1 && product.unit === '1' ? 1 : 0,
 		  };
 	
 		  set({ cart: [...cart, cartProduct] });
 		  setProductLocalstorage([...cart, cartProduct])
 		}
 	  },
-	increaseCart: (itemId) => {
+	increaseCart: (sku) => {
 		const cart = get().cart;
-		const itemIndex = cart.findIndex((item) => item.Id === itemId);
+		const itemIndex = cart.findIndex((item) => item.sku === sku);
 		if (itemIndex !== -1) {
-			cart[itemIndex].Quantity += 1;
+			cart[itemIndex].quantity += 1;
 		} else {
 			console.error("Item not found in cart");
 		}
 		set({ cart }); 
 		setProductLocalstorage(cart)
 	},
-	decreaseCart: (itemId) => {
+	decreaseCart: (sku) => {
 		const cart = get().cart;
-		const itemIndex = cart.findIndex((item) => item.Id === itemId);
+		const itemIndex = cart.findIndex((item) => item.sku === sku);
 		if (itemIndex !== -1) {
-			cart[itemIndex].Quantity -= 1;
+			cart[itemIndex].quantity -= 1;
 		} else {
 			console.error("Item not found in cart");
 		}
 		set({ cart }); 
 		setProductLocalstorage(cart)
 	},
-	deleteFromCart: (itemId) => {
+	deleteFromCart: (sku) => {
 		const cart = get().cart;
-		const filtered = cart.filter((item) => item.Id !== itemId);
+		const filtered = cart.filter((item) => item.sku !== sku);
 		set({ cart: filtered }); 
 		setProductLocalstorage(filtered)
 	},
-	changeQuantity: (itemId, quantity) => {
+	changeQuantity: (sku, quantity) => {
 		const cart = get().cart;
-		const itemIndex = cart.findIndex((item) => item.Id === itemId);
+		const itemIndex = cart.findIndex((item) => item.sku === sku);
 		if (itemIndex !== -1) {
-			cart[itemIndex].Quantity = quantity;
+			cart[itemIndex].quantity = quantity;
 		} else {
 			console.error("Item not found in cart");
 		}
 		set({ cart }); 
 		setProductLocalstorage(cart)
 	},
-	avoidNullInCart: (itemId) => {
+	avoidNullInCart: (sku) => {
 		const cart = get().cart;
-		const itemIndex = cart.findIndex((item) => item.Id === itemId);
+		const itemIndex = cart.findIndex((item) => item.sku === sku);
 		if (itemIndex.Quantity == 0) {
 			deleteFromCart(id);
 		}
@@ -153,11 +152,10 @@ const useCart = create((set, get) => ({
 	
 	// ========== ALL CALCULATIONS ==========
 
+	
 	calculateProductByQuantityAndPackage: (product) => {
-		if(product?.Id) {
-		console.log('product',product, parseFloat(product.Products.Price) * product.Quantity * parseInt(product.Products.PackQuan))
-
-			return (parseFloat(product.Products.Price) * product.Quantity * parseInt(product.Products.PackQuan)).toFixed(1) 
+		if(product?.sku) {
+			return (parseFloat(product.product.finalPrice) * product.quantity * parseInt(product.product.packQuantity)).toFixed(1) 
 		} else {
 			return 0
 		}
@@ -165,7 +163,7 @@ const useCart = create((set, get) => ({
 
 	priceBeforeTax: () => {
 		const priceBefore = get().cart.reduce((accumulator, item) => {
-			const itemPrice = item.Products.Price * item.Quantity;
+			const itemPrice = item.product.finalPrice * item.quantity;
 			return accumulator + itemPrice;
 		  }, 0); 
 

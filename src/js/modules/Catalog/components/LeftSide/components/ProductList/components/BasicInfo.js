@@ -20,7 +20,7 @@ const BasicInfo = ({product}) => {
               <p className="row-title">מק״ט: </p>
               <p className="Mask-long">{product?.sku}</p>
             </div>
-            {product?.Barcode ?
+            {product?.barcode ?
                 <div>
                     <p className="row-title">ברקוד: </p>
                     <p className="Mask">{product.barcode}</p>
@@ -28,7 +28,7 @@ const BasicInfo = ({product}) => {
             : null}
             <div>
                 <p className="row-title">מארז: </p>
-                <p className="Mask-long">{product?.packQuan + " יח'"}</p>
+                <p className="Mask-long">{product?.packQuantity + " יח'"}</p>
             </div>
             {/* {product.OnHand && isAgent ?
                 <div className="">

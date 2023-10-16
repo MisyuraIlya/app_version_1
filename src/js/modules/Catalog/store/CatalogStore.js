@@ -12,6 +12,7 @@ const useCatalog = create((set, get) => ({
     parent:'0',
     page:'1',
     searchParams:'',
+    setSearchParams: (value) => set({searchParams:value}),
     setCatalogParameters: (lvl1, lvl2, lvl3, searchParams) => {
         set({
             lvl1id: lvl1,
@@ -27,8 +28,6 @@ const useCatalog = create((set, get) => ({
     setActiveProdsPerPage: (value) => (set({activeProdsPerPage: value})),
     activeSortPerPage:false,
     setActiveSortPerPage: (value) => (set({activeSortPerPage: value})),
-    sortProdSetting: 'שם',
-    setSortProdSetting: (value) => (set({sortProdSetting: value})),
     listView:false,
     setListView: (value) => (set({listView:value})),
 
@@ -72,11 +71,7 @@ const useCatalog = create((set, get) => ({
                 )
                 const products = response['hydra:member']
                 const totalItems = response['hydra:totalItems']
-
-                if(totalItems) {
-                    set({products:products})
-                }
-
+                set({totalItems: totalItems, products:products})
                 if(response["hydra:view"]["hydra:last"]) {
                     const totalPages = (response["hydra:view"]["hydra:last"]?.split('page='))[1]
                     set({totalPages:totalPages})
@@ -152,6 +147,10 @@ const useCatalog = create((set, get) => ({
         set({currentPage:1})
         get().getCatalog()
     },
+    sortProdSetting: 'שם',
+    setSortProdSetting: (value) => (set({sortProdSetting: value})),
+
+
 
 }))
 

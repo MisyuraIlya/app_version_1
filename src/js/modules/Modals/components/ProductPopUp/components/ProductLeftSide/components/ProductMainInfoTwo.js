@@ -34,16 +34,16 @@ const ProductMainInfoTwo = () => {
             <>
         {getUserFromStorage() && (
             <>
-                {selectedProd.RePrice ? (
+                {selectedProd.basePrice ? (
                     <div className="prod-info-cont flex-container">
                         <div className="col-lg-3">
                             <p className="c-title">{"מחיר ליח' מקורי"}</p>
                         </div>
                         <div className="col-lg-9">
                             <p className="c-nomber rtl">
-                                {selectedProd.PriceCalcNoChange
-                                    ? (parseFloat(selectedProd.PriceCalcNoChange)).toFixed(1)
-                                    : selectedProd.OrgPrice}
+                                {selectedProd.basePrice
+                                    ? (parseFloat(selectedProd.basePrice)).toFixed(1)
+                                    : selectedProd.basePrice}
                             </p>
                         </div>
                     </div>
@@ -93,11 +93,11 @@ const ProductMainInfoTwo = () => {
                                 //     this,
                                 //     selectedProd
                                 // )}
-                                value={parseFloat(parseFloat(selectedProd.Price).toFixed(1))}
+                                value={parseFloat(parseFloat(selectedProd.finalPrice).toFixed(1))}
                             />
                         ) : (
                             <p className="c-nomber rtl">
-                                {parseFloat(parseFloat(selectedProd.Price).toFixed(1))}
+                                {parseFloat(parseFloat(selectedProd.finalPrice).toFixed(1))}
                             </p>
                         )}
                     </div>
@@ -120,10 +120,10 @@ const ProductMainInfoTwo = () => {
                                 //     this,
                                 //     selectedProd
                                 // )}
-                                value={calcVatPrice(selectedProd.Price)}
+                                value={calcVatPrice(selectedProd.finalPrice)}
                             />
                         ) : (
-                            <p className="c-nomber rtl">{calPriceWithTax(selectedProd.Price)}</p>
+                            <p className="c-nomber rtl">{calPriceWithTax(selectedProd.finalPrice)}</p>
                         )}
                     </div>
                 </div>

@@ -1,14 +1,14 @@
 export const calculatePrice = (product, quantity, unitChosed) => {
 
-    return parseFloat(product.Price) * parseFloat(quantity)
+    return parseFloat(product.finalPrice) * parseFloat(quantity)
 }
 
 export const getDiscountPrecent = (productCart) => {
-    return parseFloat((100-(parseFloat(productCart.Products.Price) * 100 /parseFloat(productCart.Products.OrgPrice))).toFixed(1));
+    return parseFloat((100-(parseFloat(productCart.product.finalPrice) * 100 /parseFloat(productCart.product.basePrice))).toFixed(1));
 }
 
 export const getDiscountPrecentProduct = (product) => {
-    let calc = parseFloat((100-(parseFloat(product.Price) * 100 /parseFloat(product.OrgPrice))).toFixed(1));
+    let calc = parseFloat((100-(parseFloat(product.finalPrice) * 100 /parseFloat(product.basePrice))).toFixed(1));
     if(calc) {
         return calc 
     } else {
@@ -17,10 +17,10 @@ export const getDiscountPrecentProduct = (product) => {
 }
 
 export const getPriceByOriginalPrice = (element) => {
-    return (parseFloat(element.Products.OrgPrice) * parseInt(element.Products.PackQuan) * element.Quantity).toFixed(1);
+    return (parseFloat(element.product.basePrice) * parseInt(element.product.packQuantity) * element.quantity).toFixed(1);
 }
 
-export const calPriceWithTax = (price) => {
-    const res = parseFloat((parseFloat(price) * 1.17).toFixed(1)); //TODO FIX
+export const calPriceWithTax = (finalPrice) => {
+    const res = parseFloat((parseFloat(finalPrice) * 1.17).toFixed(1)); //TODO FIX
     return res
 }

@@ -21,8 +21,8 @@ const FiltersBlock = () => {
         searchParam,
         setSearchParam,
         getCatalog,
-        setUrlSearch,
         totalItems,
+        setSearchParams
     } = useCatalog()
 
     const {isAgent} = useAuth()
@@ -31,31 +31,20 @@ const FiltersBlock = () => {
     const {lang, lvl1, lvl2, lvl3, page, parent, type } = useParams()
     const history = useHistory()
 
-    const handleOrderBy = (val, hebVal, engVal) => {
-
-      //TODO FIX
-      let searchSplit;
-      let searchString = '';
-      let search = history.location.search;
-      if(search.includes('%26')){
-        searchSplit = search.split('%26');
-        searchSplit.map((searchSplitRec) => {
-          if(!searchSplitRec.includes('OrderBy') && searchSplitRec!=""){
-            searchString += searchSplitRec + '%26';
-          }
-        })
+    const handleOrderBy = (val) => {
+      const urlSearchParams = new URLSearchParams(history.location.search);
+      urlSearchParams.set('orderBy', val);
+      const updatedUrl = '?' + urlSearchParams.toString();
+      setSearchParams(updatedUrl)
+      getCatalog()
+      history.push(history.location.pathname+updatedUrl)
+      if(val === 'sku') {
+        setSortProdSetting('מק״ט')
+      } else if(val === 'title') {
+        setSortProdSetting('שם')
+      } else if(val === 'id') {
+        setSortProdSetting('מומלץ')
       }
-      if(searchString==""){
-        searchString = '?OrderBy=';
-      }else{
-        searchString = searchString + '&OrderBy=';
-      }
-      searchString = searchString + val + '%26';
-  
-      let path = search;
-      path = lvl1+'/'+lvl2+'/'+lvl3+'/'+'1'+'/'+parent+'/'+lang;
-      history.push('/category/'+ type + '/' + path + searchString);
-      setSortProdSetting(hebVal)
       setActiveSortPerPage(false)
     }
 
@@ -68,11 +57,23 @@ const FiltersBlock = () => {
       history.push(history.location.pathname+updatedUrl)
     }
 
-    useEffect(() => {
-      if(searchDebounce){
-        getCatalog()
-
+    const handleSearchValue = (value) => {
+      const urlSearchParams = new URLSearchParams(history.location.search);
+      urlSearchParams.set('page', 1);
+      if(value) {
+        urlSearchParams.set('title', value);
+      } else {
+        urlSearchParams.delete('title');
+        setSearchParam('')
       }
+      const updatedUrl = '?' + urlSearchParams.toString();
+      setSearchParams(updatedUrl)
+      history.push(history.location.pathname+updatedUrl)
+      getCatalog()
+    }
+
+    useEffect(() => {
+        handleSearchValue(searchDebounce)
     },[searchDebounce])
     
     return (
@@ -103,7 +104,7 @@ const FiltersBlock = () => {
             {searchParam  == "" ?
               <span className="material-symbols-outlined search-img">search</span>
             :
-              <span className="material-symbols-outlined search-img" onClick={()=> {setSearchParam('');  getCatalog()}}>close</span>
+              <span className="material-symbols-outlined search-img" onClick={()=> {handleSearchValue('')}}>close</span>
             }
           </div>
   
@@ -118,6 +119,7 @@ const FiltersBlock = () => {
                 {activeProdsPerPage ?
                   <div className="drop-down-open-cont">
                     <ul>
+                      <li onClick={()=> handleChangeItemsPerPage('2')}>2</li>
                       <li onClick={()=> handleChangeItemsPerPage('24')}>24</li>
                       <li onClick={()=> handleChangeItemsPerPage('48')}>48</li>
                     </ul>
@@ -138,9 +140,9 @@ const FiltersBlock = () => {
                 {activeSortPerPage ?
                   <div className="drop-down-open-cont">
                     <ul>
-                      <li onClick={()=> handleOrderBy('recommended','מומלץ','Recommended')}>{'מומלץ'}</li>
-                      <li onClick={()=> handleOrderBy('title','שם','Title')}>{'שם'}</li>
-                      <li onClick={()=> handleOrderBy('sku','מק״ט','Sku')}>{'מק״ט'}</li>
+                      <li onClick={()=> handleOrderBy('id')}>{'מומלץ'}</li>
+                      <li onClick={()=> handleOrderBy('title')}>{'שם'}</li>
+                      <li onClick={()=> handleOrderBy('sku')}>{'מק״ט'}</li>
                     </ul>
                   </div>
                 :null}

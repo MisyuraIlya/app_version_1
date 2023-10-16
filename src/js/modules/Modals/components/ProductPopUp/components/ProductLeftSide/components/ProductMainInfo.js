@@ -6,13 +6,13 @@ const ProductMainInfo = () => {
     console.log('selectedProd',selectedProd)
     return (
         <>
-        <h2>{selectedProd?.Title}</h2>
-        {selectedProd.Title ? (
+        <h2>{selectedProd?.title}</h2>
+        {selectedProd.title ? (
             <div className="details">
-                <p>{selectedProd.Title}</p>
+                <p>{selectedProd.title}</p>
             </div>
         ) : null}
-        {selectedProd?.CatalogNumber && (
+        {selectedProd?.sku && (
             <div className="prod-info-cont flex-container">
                 <div className="col-lg-3">
                     <p className="c-title">
@@ -21,7 +21,7 @@ const ProductMainInfo = () => {
                 </div>
                 <div className="col-lg-9">
                     <p className="c-nomber">
-                        {selectedProd?.CatalogNumber}
+                        {selectedProd?.sku}
                     </p>
                 </div>
             </div>
@@ -40,7 +40,7 @@ const ProductMainInfo = () => {
                 </div>
             </div>
         )}
-        {selectedProd?.PackQuan && (
+        {selectedProd?.packQuantity && (
             <div className="prod-info-cont flex-container">
                 <div className="col-lg-3">
                     <p className="c-title pack_quan">
@@ -49,7 +49,7 @@ const ProductMainInfo = () => {
                 </div>
                 <div className="col-lg-9">
                     <p className="c-nomber rtl">
-                        {selectedProd?.PackQuan}
+                        {selectedProd?.packQuantity}
                     </p>
                 </div>
             </div>

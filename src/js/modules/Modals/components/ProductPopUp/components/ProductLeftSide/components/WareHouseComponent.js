@@ -7,7 +7,7 @@ const WareHouseComponent = () => {
     const {isSuperAgent, isAgent} = useAuth()
     return (
         <>
-        {selectedProd?.Id ? (
+        {selectedProd?.sku ? (
         <>
             <div className="devider"></div>
             <div className="prod-info-cont flex-container">
@@ -15,7 +15,7 @@ const WareHouseComponent = () => {
                     <p className="c-title">{"מלאי מחסן"}</p>
                 </div>
                 <div className="col-lg-9">
-                    <p className="c-nomber">{selectedProd.OnHandWareHouse}</p>
+                    <p className="c-nomber">{selectedProd.stock}</p>
                 </div>
             </div>
             {/* <div className="prod-info-cont flex-container">
@@ -77,7 +77,7 @@ const WareHouseComponent = () => {
                     <p className="c-title">{"זמין למכירה"}</p>
                 </div>
                 <div className="col-lg-9">
-                    <p className="c-nomber">{selectedProd.OnHand}</p>
+                    <p className="c-nomber">{selectedProd.stock}</p>
                 </div>
             </div>
         </>

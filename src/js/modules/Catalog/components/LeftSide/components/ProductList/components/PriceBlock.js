@@ -10,7 +10,7 @@ const PriceBlock = ({product}) => {
     const inCart = getCartItem(product);
     return (
         <div className="price-and-addtocart-cont">
-        {(user && selectedMode) && product.finalPrice && product.finalPrice != 0 && !product.IsParent && parseInt(product.OnHand) != 0 ?
+        {(user && selectedMode) && product.finalPrice && product.finalPrice != 0 && !product.IsParent && parseInt(product.stock) != 0 ?
             <div className="price-cont flex-container">
                 <div className="price-cont-sub top col-lg-12 flex-container">
                     <div className="price-cont-sub-right-box col-lg-4">
@@ -20,37 +20,37 @@ const PriceBlock = ({product}) => {
                     <div className="price-cont-sub-right-box  col-lg-4">
                         <p className="row-title">{'הנחה'}</p>
                         {isAgent && user && selectedMode ? 
-                            <input id={"inputPrice_"+product.CatalogNumber}
+                            <input id={"inputPrice_"+product.sku}
                                 type="number"
-                                onClick={()=> this.selectInput(product.CatalogNumber, '#inputPrice_')}
+                                onClick={()=> this.selectInput(product.sku, '#inputPrice_')}
                                 onChange={this.props.agentRepriceDiscount.bind(this, product)}
                                 onBlur={this.props.agentRepriceValidate.bind(this,product)}
-                                value={product.Discount}
+                                value={product.discount}
                             />
                         :
-                            <p className="row-val percent">{product.Discount ?? 0}</p>
+                            <p className="row-val percent">{product.discount ?? 0}</p>
                         }
                     </div>
                     <div className="price-cont-sub-right-box  col-lg-4">
                         <p className="row-title highlight-p-cls">{"סה״כ"}</p>
                         {isAgent && user &&  selectedMode ? 
-                            <input id={"inputDiscount_"+product.CatalogNumber}
+                            <input id={"inputDiscount_"+product.sku}
                                 className=''
                                 type="number"
-                                onClick={()=> this.selectInput(product.CatalogNumber, '#inputDiscount_')}
+                                onClick={()=> this.selectInput(product.sku, '#inputDiscount_')}
                                 onChange={this.props.agentReprice.bind(this, product)}
                                 onBlur={this.props.agentRepriceValidate.bind(this,product)}
                                 value={parseFloat(parseFloat(product.Price).toFixed(1))}
                             />
                         :
-                            <p className="row-val price highlight-p-cls">{parseFloat(parseFloat(product.Price).toFixed(1))}</p>
+                            <p className="row-val price highlight-p-cls">{parseFloat(parseFloat(product.finalPrice).toFixed(1))}</p>
                         }
                     </div>
                 </div>
                 <div className="price-cont-sub col-lg-12 flex-container">
                     <div className="price-cont-sub-left-box col-lg-6">
                         <p className="row-title highlight-p-cls">{"יח' להזמנה"}</p>
-                        <p className="row-val no-bg highlight-p-cls">{inCart?.CatalogNumber ? (parseFloat(inCart.Quantity) * parseInt(product.PackQuan)).toFixed(1) : '0'}</p>
+                        <p className="row-val no-bg highlight-p-cls">{inCart?.sku ? (parseFloat(inCart.quantity) * parseInt(product.packQuantity)).toFixed(1) : '0'}</p>
                     </div>
                     <div className="price-cont-sub-right-box  col-lg-6">
                         <p className="row-title">{'סה״כ להזמנה'}</p>
@@ -60,7 +60,7 @@ const PriceBlock = ({product}) => {
             </div>
         : null}
 
-        {(user && selectedMode) && product.Price && product.Price != 0 && !product.IsParent && parseInt(product.OnHand) != 0 ?
+        {(user && selectedMode) && product.finalPrice && product.finalPrice != 0 && !product.IsParent && parseInt(product.stock) != 0 ?
             <div className={inCart.length ? "add-to-cart in-cart catalog after-add" : "add-to-cart not-in-cart catalog before-add"}>
                 <AddToCartCatalog item={product}/>
             </div>

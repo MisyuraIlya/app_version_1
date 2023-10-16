@@ -7,7 +7,6 @@ const classPoint = "Catalog"
 export const CatalogServices = {
 
     async GetCatalog(lvl1, lvl2, lvl3, searchParams){
-        console.log('lvl1, lvl2, lvl3',lvl1, lvl2, lvl3)
     //     let val = {
     //         b2cPriceCode:'8',
     //         priceNoLogin:'0',
@@ -35,6 +34,20 @@ export const CatalogServices = {
     //       };
 
     //       const response = await ajax(valAjax)
+        if(searchParams.includes('orderBy')){
+            if(searchParams.includes('orderBy=sku')){
+                let splited = searchParams.split('orderBy=sku')
+                console.log('splited',splited)
+                searchParams = splited[0] + `order[sku]=asc` + splited?.[1]
+            } else if(searchParams.includes('orderBy=title')) {
+                let splited = searchParams.split('orderBy=title') + splited?.[1]
+                searchParams = splited[0] + `order[title]=asc`
+            } else if(searchParams.includes('orderBy=id')) {
+                let splited = searchParams.split('orderBy=id') + splited?.[1]
+                searchParams = splited[0] + `order[id]=asc`
+            }
+
+        } 
         if(lvl1 && lvl2 == '0'  && lvl3 == '0') {
             const response = await axios.get(global.api + `/api/catalog/${lvl1}${searchParams}`)
             return response.data

@@ -54,38 +54,38 @@ const CartList = () => {
                                 
                             </tr>
                             {cart.length > 0 ? cart?.map((element, index) => {
-                                let price = calculatePrice(element.Products, element.Quantity, element.UnitChosen); // 37 * 15.5 = 5812.5
+                                let price = calculatePrice(element.product, element.quantity, element.UnitChosen); // 37 * 15.5 = 5812.5
                                 let discount = getDiscountPrecent(element);
                                 let priceByOriginal = getPriceByOriginalPrice(element);
                                 return (
                                     <tr key={index} className={"item"} id={'docRow_' + element.Id} >
 
                                         <th className="col-cont add-to-cart sticky-col">
-                                            <AddToCart item={element.Products}/>
+                                            <AddToCart item={element.product}/>
                                         </th>
 
                                         <th className="col-cont">
                                             <img className="img"
-                                                src={element.Products.ImgPath ? element.Products.ImgPath : globalFileServer + 'products/' + element.Products.Img }
+                                                src={element.product?.ImgPath ? element.product?.ImgPath : globalFileServer + 'products/' + element?.product?.Img }
                                                 onError={(e) => e.target.src = globalFileServer + 'placeholder.jpg'}
                                                 onClick={() => selectProduct(element.SelectedProduct)} 
                                             />
                                         </th>
 
                                         <th className="col-cont" onClick={() => selectProduct(element.SelectedProduct)}>
-                                            <p className="catalog">{'#' + element.Products.CatalogNumber}</p>
-                                            <p>{element.Products.Title}</p>
+                                            <p className="catalog">{'#' + element.product.sku}</p>
+                                            <p>{element.product.title}</p>
                                         </th>
 
                                         <th className="col-cont">
-                                            <p>{parseFloat(element.Products.OrgPrice)}</p>
+                                            <p>{parseFloat(element.product.basePrice)}</p>
                                         </th>
 
                                         <th className="col-cont">
                                             {isAgent && selectedMode ? 
-                                                <input id={"inputPrice_"+element.Products.CatalogNumber}
+                                                <input id={"inputPrice_"+element.product.sku}
                                                 type="number"
-                                                onClick={()=> this.selectInput(element.Products.CatalogNumber, '#inputPrice_')}
+                                                onClick={()=> this.selectInput(element.product.sku, '#inputPrice_')}
                                                 // onChange={this.props.agentRepriceDiscount.bind(this, element.Products)}
                                                 // onBlur={this.props.agentRepriceValidate.bind(this,element.Products)}
                                                 value={discount}
@@ -97,24 +97,24 @@ const CartList = () => {
 
                                         <th className="col-cont">
                                             {isAgent && selectedMode ? 
-                                                <input id={"inputDiscount_"+element.Products.CatalogNumber}
+                                                <input id={"inputDiscount_"+element.product.sku}
                                                     type="number"
                                                     // onClick={()=> this.selectInput(element.Products.CatalogNumber, '#inputDiscount_')}
                                                     // onChange={this.props.agentReprice.bind(this, element.Products)}
                                                     // onBlur={this.props.agentRepriceValidate.bind(this,element.Products)}
-                                                    value={parseFloat(parseFloat(element.Products.Price).toFixed(1))}
+                                                    value={parseFloat(parseFloat(element.product.finalPrice).toFixed(1))}
                                                 />
                                             :
-                                                <p className="row-val price">{parseFloat(parseFloat(element.Products.Price).toFixed(1))}</p>
+                                                <p className="row-val price">{parseFloat(parseFloat(element.product.finalPrice).toFixed(1))}</p>
                                             }
                                         </th>
 
                                         <th className="col-cont">
-                                            <p>{element.Products.PackQuan}</p>
+                                            <p>{element.product.packQuantity}</p>
                                         </th>
 
                                         <th className="col-cont">
-                                            <p>{parseInt(element.Products.PackQuan) * parseInt(element.Quantity)}</p>
+                                            <p>{parseInt(element.product.packQuantity) * parseInt(element.quantity)}</p>
                                         </th>
                                         
                                         <th className="col-cont">
@@ -134,7 +134,7 @@ const CartList = () => {
                                             {discount?
                                                 <p className="c1">{'מבצע'}</p>
                                             : null}
-                                            {element.Products.RePrice ?
+                                            {element?.product?.RePrice ?
                                                 <div className={"favorite-cont change_price_cont"}>
                                                     <span className="material-symbols-outlined">price_change</span>
                                                 </div>

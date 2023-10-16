@@ -10,7 +10,6 @@ const Pagination = () => {
   let title1 = 'מציג ';
   let title2 = ' מתוך ';
   let title3 = ' מוצרים';
-  console.log('currentPage',currentPage)
   const getPageNumbers = () => {
     const halfRange = Math.floor(7 / 2);
     const start = Math.max(1, currentPage - halfRange);
