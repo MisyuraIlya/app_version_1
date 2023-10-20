@@ -2,23 +2,15 @@ import { create } from 'zustand'
 import { DocsService } from '../services/docs.services';
 import { getCurrentUserId, getUserId } from '../../Auth/helpers/getCurrentUserId';
 import moment from 'moment-timezone';
+import { HydraHandler } from '../../../helpers/hydraHandler';
 const useDocuments = create((set, get) => ({
-    urlNav : '/docsNew/',
     loading: false,
     activeTab: 0,
     setActiveTab: (tab) => set({activeTab: tab}),
     showCalendar: false,
     type:'',
-    setShowCalendar: (type) => {
-        if(type === 'from') {
-            set({showCalendar: true, type, choosedDate: get().dateFrom})
-        }
-
-        if(type === 'to') {
-            set({showCalendar: true, type, choosedDate: get().dateTo})
-
-        }
-    },
+    setType: (value) => set({type: value, showCalendar:true}),
+    setShowCalendar: (value) => set({showCalendar: value}),
     dateFrom: new Date(),
     setDateFrom: (value) => {
         set({dateFrom: value})
@@ -48,34 +40,29 @@ const useDocuments = create((set, get) => ({
     searchActive:false,
     documents:[],
     total:0,
-    page:1, 
-    setPage: (page) => set({page}),
     paginateObj: null,
     downloadFile: () => {},
-    GetDocuments: async (page) => {
-        set({page})
+    GetDocuments: async () => {
         set({loading: true})
         try {
             const response = await DocsService.
             GetDocuments(
                 getCurrentUserId(), 
-                getUserId(), 
-                get().search, 
                 get().documentType,
-                moment(get().dateFrom).format('DD/MM/YYYY'),
-                moment(get().dateTo).format('DD/MM/YYYY'),
-                new Date(),
-                page ? page : get().page
+                moment(get().dateFrom).format('YYYY-MM-DD'),
+                moment(get().dateTo).format('YYYY-MM-DD'),
+                get().page
             )
-    
-            if(response.status === 'success') {
+            // if(response.status === 'success') {
                 
                 set({
-                    documents: response.data.paginateObj.array,
-                    documentTypes: response.data.selectBox,
-                    paginateObj: response.data.paginateObj.paginateObj
+                    documents: response['hydra:member'],
+                    // documentTypes: response.selectBox['hydra:member'],
+            //         paginateObj: response.data.paginateObj.paginateObj
                 })
-            }
+                const {totalPages, page, lastPage, nextPage, previousPage} = HydraHandler.paginationHandler(response)
+                set({totalPages, page, lastPage, nextPage, previousPage})
+            // }
         } catch(e) {
             console.error("[Documents] Error fetch" , e)
         } finally {
@@ -83,22 +70,29 @@ const useDocuments = create((set, get) => ({
         }
 
     },
+
+    page:1, 
+    setPage: (page) => set({page:page}),
+    totalPages:1,
+    lastPage:1,
+    nextPage:1,
+    previousPage:1,
+
     DocumentItems:[],
     GetDocumentItem: async (documentNumber) => {
         set({loading: true})
         try {
             const response = await DocsService.GetDocumentsItem(documentNumber)
-            if(response.status === 'success') {
-                set({
-                    DocumentItems: response.data.products,
-                    documentsItemsLength: response.data.products?.length,
-                    documentsItemsSum: response.data.products?.reduce((accumulator, product) => {return accumulator + product.total;}, 0),
-                    documentsItemsDiscount: response.data.totalPrecent, 
-                    documentsItemsPriceAfterDiscount: response.data.totalAfterDiscount, 
-                    documentsItemsTax: response.data.totalTax, 
-                    documentsItemsTotalAfter: response.data.totalPriceAfterTax, 
-                })
-            }
+
+            set({
+                DocumentItems: response.products["hydra:member"],
+                documentsItemsLength: response.products["hydra:totalItems"],
+                documentsItemsSum: response.products["hydra:member"]?.reduce((accumulator, product) => {return accumulator + product.total;}, 0),
+                documentsItemsDiscount: response.totalPrecent, 
+                documentsItemsPriceAfterDiscount: response.totalAfterDiscount, 
+                documentsItemsTax: response.totalTax, 
+                documentsItemsTotalAfter: response.totalPriceAfterTax, 
+            })
         } catch(e) {
             console.error("[Documents] Error fetch" , e)
         } finally {

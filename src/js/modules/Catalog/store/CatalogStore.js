@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { CatalogServices } from '../services/catalog.services';
+import { HydraHandler } from '../../../helpers/hydraHandler';
 
 const useCatalog = create((set, get) => ({
     loading:false,
@@ -9,8 +10,6 @@ const useCatalog = create((set, get) => ({
     lvl1id:'1',
     lvl2id:'0',
     lvl3id:'0',
-    parent:'0',
-    page:'1',
     searchParams:'',
     setSearchParams: (value) => set({searchParams:value}),
     setCatalogParameters: (lvl1, lvl2, lvl3, searchParams) => {
@@ -35,7 +34,6 @@ const useCatalog = create((set, get) => ({
     urlSearch:'',
     setUrlSearch: (value) => {
         set({urlSearch: value })
-        get().getCatalog()
     },
     action:'',
     searchParam:'',
@@ -72,54 +70,8 @@ const useCatalog = create((set, get) => ({
                 const products = response['hydra:member']
                 const totalItems = response['hydra:totalItems']
                 set({totalItems: totalItems, products:products})
-                if(response["hydra:view"]["hydra:last"]) {
-                    const totalPages = (response["hydra:view"]["hydra:last"]?.split('page='))[1]
-                    set({totalPages:totalPages})
-                } else {
-                    set({totalPages:1})
-
-                }
-                if(response["hydra:view"]["@id"]) {
-                    const currentPage = (response["hydra:view"]["@id"]?.split('page='))[1]
-                    if(currentPage) {
-                        set({currentPage:currentPage})
-                    } else {
-                        set({currentPage:1})
-                    }
-
-                } else {
-                    set({currentPage:1})
-
-                }
-        
-                if(response["hydra:view"]["hydra:last"]) {
-                    const lastPage = (response["hydra:view"]["hydra:last"]?.split('page='))[1]
-                    set({lastPage:lastPage})
-
-                } else {
-                    set({lastPage:1})
-
-                }
-            
-                if(response["hydra:view"]["hydra:next"]) {
-                    const nextPage = (response["hydra:view"]["hydra:next"]?.split('page='))[1]
-                    set({nextPage:nextPage})
-
-                } else {
-                    if(response["hydra:view"]["hydra:last"]) {
-                        set({nextPage:(response["hydra:view"]["hydra:last"]?.split('page='))[1]})
-                    } else {
-                        set({nextPage:1})
-                    }
-                }
-                if(response["hydra:view"]["hydra:previous"]) {
-                    const previousPage = (response["hydra:view"]["hydra:previous"]?.split('page='))[1]
-                    set({previousPage:previousPage})
-                } else {
-                    set({previousPage:1})
-                }
-           
-
+                const {totalPages, page, lastPage, nextPage, previousPage} = HydraHandler.paginationHandler(response)
+                set({totalPages, page, lastPage, nextPage, previousPage})
         } catch(e) {
             console.log('[ERROR] error fetch catalog',e)
         } finally {
@@ -130,7 +82,7 @@ const useCatalog = create((set, get) => ({
     toShow:24,
     totalItems:0,
     totalPages:1,
-    currentPage:1,
+    page:1,
     nextPage:null,
     previous:null,
     lastPage: null,
@@ -138,14 +90,11 @@ const useCatalog = create((set, get) => ({
 
 
         set({searchParams:updatedUrl})
-        get().getCatalog()
     },
 
     prodsPerPage:'24',
     setProdsPerPage: (updatedUrl,number) => {
-        set({prodsPerPage:number, activeProdsPerPage:false,searchParams:updatedUrl})
-        set({currentPage:1})
-        get().getCatalog()
+        set({prodsPerPage:number, activeProdsPerPage:false,searchParams:updatedUrl,page:1})
     },
     sortProdSetting: 'שם',
     setSortProdSetting: (value) => (set({sortProdSetting: value})),

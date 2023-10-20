@@ -3,16 +3,16 @@ import { getPayloadToken } from "./auth.helper"
 export const getCurrentUserId = () => {
     const tokensData = getPayloadToken()
     //console.log('tokensData',tokensData)
-    if(tokensData?.type === 'admin') {
-        return tokensData.id
-    }  else if (tokensData?.type === 'agent') {
-        return tokensData.id
-    } else if(tokensData?.type === 'user') {
-        const userExId = localStorage.user ? JSON.parse(localStorage.user).ExId : null
+    // if(tokensData?.type === 'admin') {
+    //     return tokensData.id
+    // }  else if (tokensData?.type === 'agent') {
+    //     return tokensData.id
+    // } else if(tokensData?.type === 'user') {
+        const userExId = localStorage.user ? JSON.parse(localStorage.user).extId : null
         return userExId
-    } else {
-        return null;
-    }
+    // } else {
+        // return null;
+    // }
 }
 
 export const getUserId = () => {

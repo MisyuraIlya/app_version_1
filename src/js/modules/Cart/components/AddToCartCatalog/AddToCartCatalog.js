@@ -16,6 +16,7 @@ const AddToCartCatalog = ({item}) => {
     }
 
     const addToCartFunc = () => {
+        console.log('item',item)
         if(parseFloat(item.stock) >= parseFloat(item.packQuantity)) {
             addToCart(item)
             openAddToCartTotify()

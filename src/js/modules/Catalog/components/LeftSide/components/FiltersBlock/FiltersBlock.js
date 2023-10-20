@@ -36,7 +36,6 @@ const FiltersBlock = () => {
       urlSearchParams.set('orderBy', val);
       const updatedUrl = '?' + urlSearchParams.toString();
       setSearchParams(updatedUrl)
-      getCatalog()
       history.push(history.location.pathname+updatedUrl)
       if(val === 'sku') {
         setSortProdSetting('מק״ט')
@@ -69,7 +68,6 @@ const FiltersBlock = () => {
       const updatedUrl = '?' + urlSearchParams.toString();
       setSearchParams(updatedUrl)
       history.push(history.location.pathname+updatedUrl)
-      getCatalog()
     }
 
     useEffect(() => {
@@ -81,7 +79,7 @@ const FiltersBlock = () => {
         <div className="view-mode-rightcont flex-container">
           <div className="block quant-main">
             
-              <p> {loading ? '' : 'נמצאו: ' + totalItems + ' מוצרים'}</p>
+              <p> {'נמצאו: ' + totalItems + ' מוצרים'}</p>
             {isAgent && ((params.props.match.params.lvl2 && params.props.match.params.lvl2!='0') || params.props.match.params.type.includes('brand')) ?
               <div className="file-main-cont">
                 <div className="file-cont" onClick={()=> params.downloadExcelPdf('xls', params.breadCrumbsNav)}>

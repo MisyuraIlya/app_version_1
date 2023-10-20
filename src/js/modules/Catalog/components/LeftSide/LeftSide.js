@@ -2,12 +2,22 @@ import React from 'react';
 import useCatalog from '../../store/CatalogStore';
 import ProductList from './components/ProductList/ProductList';
 import FiltersBlock from './components/FiltersBlock/FiltersBlock';
-import Pagination from './components/Pagination/Pagination';
+// import Pagination from './components/Pagination/Pagination';
+import Pagination from '../../../../SharedComponents/Pagination';
 import {Helmet} from "react-helmet";
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 const LeftSide = () => {
-    const {pageTitle, categoriesLvl1, loading} = useCatalog()
+    const {
+        pageTitle,
+        categoriesLvl1, 
+        loading,
+        totalPages, 
+        page, 
+        lastPage, 
+        nextPage,
+        previousPage
+    } = useCatalog()
     const {lvl1} = useParams()
     const currentCategory = (categoriesLvl1?.filter((item) => item.Id == lvl1))[0]
 
@@ -31,7 +41,7 @@ const LeftSide = () => {
             </div>
         </div>
         <ProductList/>
-        <Pagination/>
+        <Pagination totalPages={totalPages} page={page} lastPage={lastPage} nextPage={nextPage} previousPage={previousPage}/>
     </div>
     );
 };

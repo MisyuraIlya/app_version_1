@@ -4,18 +4,18 @@ import { useDebounce } from 'use-debounce';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { updateUriFilter } from '../../helpers/updateUri';
 import { decodeUri } from '../../helpers/decodeUri';
+import moment from 'moment';
 const DocsFilter = () => {
     const {
         dateFrom,
         dateTo, 
-        setShowCalendar, 
+        setType, 
         search, 
         setSearch, 
         documentTypes, 
         documentType, 
         setDocumentType, 
         GetDocuments, 
-        urlNav,
         downloadKartesset,
         getCartesset
     } = useDocuments()
@@ -26,11 +26,10 @@ const DocsFilter = () => {
     const isKartessetPage = history.location.pathname?.includes('docsKarteset')
     
     const handleDocument = (event) => {
-        setDocumentType(event.target.value)
-        let decode = decodeUri(history.location.search)
-        let res = updateUriFilter(event.target.value,'filter',decode)
-        GetDocuments(page)
-        history.push(urlNav +1+'/'+'he' + res);
+        const urlSearchParams = new URLSearchParams(history.location.search);
+        urlSearchParams.set('documentType', event.target.value);
+        const updatedUrl = '?' + urlSearchParams.toString();
+        history.push(history.location.pathname + updatedUrl);
     }
 
     const handleCloseSearch = () => {
@@ -70,18 +69,18 @@ const DocsFilter = () => {
                     <div className="cal-cls  right-side-comp">
                         <div className="open-calendar">
                             <p className="inline-cls">מתאריך</p>
-                            <button className="inline-cls" onClick={() => setShowCalendar('from')}>
+                            <button className="inline-cls" onClick={() => setType('from')}>
                             <img src={globalFileServer + 'icons/calendar.svg'} alt=""/>
-                            <span>{dateFrom.toLocaleDateString('he-IL').split('.').join('/')}</span>
+                            {moment(dateFrom).format('DD/MM/YYYY')}
                             </button>
                         </div>
                     </div>
                     <div className="cal-cls  right-side-comp">
                         <div className="open-calendar">
                             <p className="inline-cls">לתאריך</p>
-                            <button className="inline-cls" onClick={() => setShowCalendar('to')}>
+                            <button className="inline-cls" onClick={() => setType('to')}>
                                 <img src={globalFileServer + 'icons/calendar.svg'} alt=""/>
-                                <span>{dateTo.toLocaleDateString('he-IL').split('.').join('/')}</span>
+                                {moment(dateTo).format('DD/MM/YYYY')}
                             </button>
                         </div>
                     </div>
@@ -129,7 +128,7 @@ const DocsFilter = () => {
                                 <select value={documentType} onChange={(e) => handleDocument(e)}>
                                 {documentTypes?.map((ele, ind) => {
                                     return (
-                                    <option key={ind} id={parseInt(ind)} value={ele}>{ele}</option>
+                                    <option key={ind} id={parseInt(ind)} value={ele.ENGLISH}>{ele.HEBREW}</option>
                                     )
                                 })}
                                 </select>

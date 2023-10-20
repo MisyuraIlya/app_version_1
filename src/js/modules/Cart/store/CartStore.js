@@ -1,7 +1,7 @@
 
 import { create } from 'zustand'
 import { getCurrentUserName } from '../../Auth/helpers/getCurrentUserId';
-import { onErrorAlert } from '../../../agents/utils/sweetAlert';
+import { onAsk, onErrorAlert, onSuccessAlert } from '../../../agents/utils/sweetAlert';
 import { getUserFromStorage } from '../../Auth/helpers/auth.helper';
 import { CART_CONFIG } from '../config/custom';
 import { setProductLocalstorage } from '../helpers/localstorage';
@@ -22,40 +22,20 @@ const useCart = create((set, get) => ({
 			return [];
 		}
 	},
-	addToCart: (product, parent = null) => {
+	addToCart: (product) => {
 		const { cart } = get();
-		const existingProduct = cart.find((item) => item.sku === product.sku);
-		if (existingProduct) {
-		  const updatedCart = cart.map((item) =>
-			item.sku === product.sku
-			  ? {
-				  ...item,
-				  quantity: item.quantity + 1,
-				  unitChosen:
-					parseInt(item.product.packQuantity) !== 1 &&
-					item.product.unit === '1'
-					  ? 1
-					  : 0,
-				}
-			  : item
-		  );
-	
-		  set({ cart: updatedCart });
-		} else {
-		  const cartProduct = {
+		const cartProduct = {
 			sku: product.sku,
 			quantity: 1,
 			product: product,
-			selectedProduct: product?.parentId ? parent : product,
-			categoryId: product.sku,
-			unitChosen:
-			  parseInt(product.packQuantity) !== 1 && product.unit === '1' ? 1 : 0,
-		  };
+			stock: product.stock,
+			price: product.finalPrice,
+			discount: product.discount
+		};
 	
-		  set({ cart: [...cart, cartProduct] });
-		  setProductLocalstorage([...cart, cartProduct])
-		}
-	  },
+		set({ cart: [...cart, cartProduct] });
+		setProductLocalstorage([...cart, cartProduct])
+	},
 	increaseCart: (sku) => {
 		const cart = get().cart;
 		const itemIndex = cart.findIndex((item) => item.sku === sku);
@@ -88,7 +68,7 @@ const useCart = create((set, get) => ({
 		const cart = get().cart;
 		const itemIndex = cart.findIndex((item) => item.sku === sku);
 		if (itemIndex !== -1) {
-			cart[itemIndex].quantity = quantity;
+			cart[itemIndex].quantity = +quantity;
 		} else {
 			console.error("Item not found in cart");
 		}
@@ -134,14 +114,21 @@ const useCart = create((set, get) => ({
 
 	// ========== MAIN FUNCTIONS ==========
 
-	sendOrder: () => {
+	sendOrder: async () => {
 		try {
 			set({loading:true})
-			const response = CartServices.CreateOrder(
-					get().cart,
-					get().deliveryPrice,
-					get().comment
-				)
+			const response = await CartServices.CreateOrder(
+				get().cart,
+				get().deliveryPrice,
+				get().comment
+			)
+			if(response?.orderNumber){
+				onSuccessAlert('הזמנה בוצה בהצלחה!',`מספר הזמנה ${response?.orderNumber}`)
+				set({cart:[]})
+				setProductLocalstorage([])
+			} else {
+				onErrorAlert('הזמנה לא בוצעה',response["hydra:description"])
+			}
 		} catch(e) {
 			console.log('error',e)
 		} finally {	

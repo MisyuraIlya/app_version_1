@@ -1,17 +1,20 @@
 import React from 'react';
 import useDocuments from '../../store/DocumentsStore';
-import DocsPagination from '../DocsPagination/DocsPagination';
-import DocsTotal from '../DocsTotal/DocsTotal';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const DocsList = () => {
-    const {showCalendar,searchActive,documents, downloadFile, loading} = useDocuments()
+    const {
+      showCalendar,
+      searchActive,
+      documents, 
+      downloadFile, 
+      loading,
+    } = useDocuments()
     const history = useHistory()
 
     const goToItemFunc = (orderNumber) => {
-      history.push('/docsItemsNew/'+ orderNumber +'/'+ 'he');
+      history.push('/docsItemsNew/'+ orderNumber);
     }
-
     return (
         <div className={showCalendar ? 'doc-container active card' : 'doc-container card'}>
         {!showCalendar?
@@ -21,7 +24,7 @@ const DocsList = () => {
           <h1 className="no-products">לא נמצאו מסמכים בטווח תאריכים</h1>
         :null}
         {searchActive && searchActive.length == 0 ? <h1 className="no-products">לא נמצאו מסמכים בתאריכים אלו</h1> : null}
-        {documents && documents.length ? 
+        {documents.length > 0 ? 
           <div id='lines-main-cont' className="lines-main-cont">
             <table className="lines-sub-cont">
              <tbody>
@@ -50,7 +53,6 @@ const DocsList = () => {
                     </th>
                 </tr>
                 {documents?.map((element, index) => {
-                  let docType = '';
                   let docAllowed = true;
                   if( ( docAllowed == true) ){
                     return(
@@ -100,9 +102,6 @@ const DocsList = () => {
             </table>
           </div>
         :null}
-        {!loading &&
-          <DocsPagination/>      
-        }
         </div>
     );
 };

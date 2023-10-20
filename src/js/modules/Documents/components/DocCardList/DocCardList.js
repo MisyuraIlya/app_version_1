@@ -3,6 +3,7 @@ import useDocuments from '../../store/DocumentsStore';
 import { numberWithCommas } from '../../helpers/numberWithCommas';
 const DocCardList = () => {
     const {showCalendar,DocumentItems,searchItemsValue} = useDocuments()
+    console.log('DocumentItems',DocumentItems)
     return (
         <div className={showCalendar ? 'doc-container active card' : 'doc-container card'}>
             <div id='lines-main-cont' className="lines-main-cont">

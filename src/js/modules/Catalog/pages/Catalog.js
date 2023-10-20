@@ -22,7 +22,7 @@ const Catalog = () => {
 
     },[
         location.pathname, 
-        // location.search
+        location.search
     ])
     return (
         <div className='page-container category-page'>

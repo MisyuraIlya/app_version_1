@@ -201,7 +201,7 @@ const BasicRouter = (prop) => (
 							{localStorage.user ?
 								<Route path="/history" render={(props) => (<History {...props}{...prop}/>)}/> : null}
 							{localStorage.user ? <Route path="/docs/:page" render={(props) => (<Docs {...props}{...prop}/>)}/> : null}
-							{localStorage.user ? <Route path="/docsNew/:page" render={(props) => (<DocumentsModule/>)}/> : null}
+							{localStorage.user ? <Route path="/docsNew" render={(props) => (<DocumentsModule/>)}/> : null}
 							{localStorage.agent ?
 								<Route path="/docsAgent/:page" render={(props) => (<DocsAgent {...props}{...prop}/>)}/> : null}
 

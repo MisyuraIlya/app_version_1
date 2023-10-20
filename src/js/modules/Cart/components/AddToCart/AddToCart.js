@@ -5,7 +5,6 @@ import { useNotificationModal } from '../../../Modals/provider/NotificationModal
 import useSelectedProduct from '../../../Modals/store/SelectedProductStore';
 
 const AddToCart = ({item}) => {
-    console.log('item',item)
     const {cart,addToCart,increaseCart,decreaseCart, deleteFromCart, changeQuantity, avoidNullInCart} = useCart()
     const {selectedProd} = useSelectedProduct()
     const {openStockNotify,openAddToCartTotify} = useNotificationModal()
@@ -20,7 +19,7 @@ const AddToCart = ({item}) => {
     }
 
     const addToCartFunc = () => {
-
+        
         if(parseFloat(item.stock) >= parseFloat(item.packQuantity)) {
             addToCart(item, selectedProd)
             openAddToCartTotify()

@@ -1,46 +1,20 @@
 import { ajax } from "../../../helpers/ajaxFunc"
 import { getCurrentUserId } from "../../Auth/helpers/getCurrentUserId"
-
+import axios from "axios"
 const point = "new_app/index"
 const classPoint = "Documents"
 
 export const DocsService = {
-    async GetDocuments(userExId, id, searchValue, documentType, fromDate, toDate, targetDate, page) {
-        const val = {
-            userExId,
-            id,
-            searchValue,
-            documentType,
-            fromDate,
-            toDate,
-            targetDate, 
-            page
-        }
-        const valAjax = {
-            point,
-            classPoint,
-            funcName: 'GetDocuments',
-            val:val
-          };
-
-        const response = await ajax(valAjax)
-        return response
+    async GetDocuments(userExId, documentType, fromDate, toDate,page) {
+        const response = await axios.get(global.api + `/api/documents?userExId=${userExId}&from=${fromDate}&to=${toDate}&documentType=${documentType}&page=${page}`)
+        return response.data
     }, 
+
     async GetDocumentsItem(documentNumber) {
-        const val = {
-            userExId: getCurrentUserId(),
-            documentNumber
-        }
-        const valAjax = {
-            point,
-            classPoint,
-            funcName: 'GetDocumentItems',
-            val:val
-          };
-
-        const response = await ajax(valAjax)
-        return response
+        const response = await axios.get(global.api + `/api/documents/${documentNumber}`)
+        return response.data
     }, 
+    
     async DownloadXls(documentNumber, documentType) {
         const val = {
             userExId: getCurrentUserId(),

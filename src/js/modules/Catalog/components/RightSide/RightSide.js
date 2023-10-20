@@ -6,6 +6,7 @@ import useCategories from '../../store/CategoriesStore';
 
 const RightSide = () => {
     const {categories} = useCategories()
+    const {setCurrentPage} = useCatalog()
     // const {categoriesLvl1, categoriesLvl2, categoriesLvl3, getCategories} = useCatalog()
     // const [open, setOpen] = useState(false);
     const {lvl1, lvl2, lvl3, page, parent, type } = useParams()
@@ -32,40 +33,38 @@ const RightSide = () => {
                 <div className="category-list-cont">
                   <div className="category-list-subcont"  onClick={()=> setOpen(!open)}>
                     {categories.map((categoryLvl1, index1) => {
-                      return (
-                        <div className="lvl-cont" key={index1}>
-                          <NavLink to={'/catalog/' + categoryLvl1.id + "/0/0" + history.location.search}>
-                            <h3 className={lvl1 == categoryLvl1.id ? 'lvl1 active' : 'lvl1'}>
-                              {categoryLvl1.title}
-                            </h3>
-                          </NavLink>
-                          {/* {categoriesLvl2.map((categoryLvl2, index2) => {
-                            if((categoryLvl1.Id == categoryLvl2.ParentId)){
-                              return (
-                                <div key={index2} className={categoryLvl1.Id == lvl1 ?"col active" : "col"}>
-                                  <NavLink to={'/category/' + type + '/'  + categoryLvl1.Id + "/" + categoryLvl2.Id + "/0/1/0/" + "he" + history.location.search}>
-                                    <h3  className={lvl2 ==  categoryLvl2.Id ? "active" : null} >{categoryLvl2.Title}</h3>
-                                  </NavLink>
-                                  <ul className={categoryLvl2.Id == lvl2 ? "active" : null}>
-                                    {categoriesLvl3.map((categoryLvl3, index3) => {
-                                      if(categoryLvl3.ParentId == categoryLvl2.Id) {
-                                        return (
-                                          <li key={index3}>
-                                            <NavLink className={lvl3 == categoryLvl3.Id ? 'active-a' : null} to={'/category/' + type + '/'  + categoryLvl1.Id + "/" + categoryLvl2.Id + "/" + categoryLvl3.Id + "/1/0/" + "he" + history.location.search}>
-                                              { categoryLvl3.Title}
-                                              </NavLink>
-                                          </li>
-                                        );
-                                      }
-                                    })}
-                                  </ul>
-                                </div>
-                              );
+                      if(categoryLvl1.lvlNumber === 1){
+                        return (
+                          <div className="lvl-cont" key={index1}>
+                            <NavLink onClick={() => setCurrentPage(1)} to={'/catalog/' + categoryLvl1.id + "/0/0?page=1&itemsPerPage=24"}>
+                              <h3 className={lvl1 == categoryLvl1.id ? 'lvl1 active' : 'lvl1'}>
+                                {categoryLvl1.title}
+                              </h3>
+                            </NavLink>
+                            {categoryLvl1?.categories?.map((categoryLvl2, index2) => {
+                                return (
+                                  <div key={index2} className={categoryLvl1.id == lvl1 ?"col active" : "col"}>
+                                    <NavLink onClick={() => setCurrentPage(1)} to={'/catalog/' + categoryLvl1.id + "/" + categoryLvl2.id + "/0?page=1&itemsPerPage=24"}>
+                                      <h3  className={lvl2 ==  categoryLvl2.id ? "active" : null} >{categoryLvl2.title}</h3>
+                                    </NavLink>
+                                    <ul className={categoryLvl2.id == lvl2 ? "active" : null}>
+                                      {categoryLvl2?.categories?.map((categoryLvl3, index3) => {
+                                          return (
+                                            <li key={index3}>
+                                              <NavLink onClick={() => setCurrentPage(1)} className={lvl3 == categoryLvl3.id ? 'active-a' : null} to={'/catalog/' + categoryLvl1.id + "/" + categoryLvl2.id + "/" + categoryLvl3.id +'?page=1&itemsPerPage=24'}>
+                                                { categoryLvl3.title}
+                                                </NavLink>
+                                            </li>
+                                          );
+                                      })}
+                                    </ul>
+                                  </div>
+                                );
                             }
-                          }
-                          )} */}
-                        </div>
-                      )}
+                            )}
+                          </div>
+                        )}
+                      }
                     )}
                   </div>
                 </div>
