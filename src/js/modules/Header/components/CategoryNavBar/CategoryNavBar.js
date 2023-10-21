@@ -21,7 +21,7 @@ const CategoryNavBar = () => {
       <div className="container">
         <ul className="main-menu-ecare">
           {categories?.map((element, index) => {
-            if(element.lvlNumber === 1) {
+            if(element.lvlNumber === 1 && element.isPublished) {
               return (
                 <li key={index} className={active === element.Id ? 'active main-li' : 'main-li'}>
                   <NavLink to={`/catalog/${element.id}/0/0`}>

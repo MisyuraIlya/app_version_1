@@ -12,9 +12,8 @@ const ModalWrapper = ({active,setActive, children}) => {
                     {/* TODO */}
                     <div className={`modal-wrapper animated ${active === 'openCartSettings' ? 'shopCartSpecialSet' : ''}`}>  
                         <div className="close-cont">
-                            <div onClick={() => setActive(!active)}
-                                className="close">
-                                <img src={globalFileServer + 'icons/close.svg'} />
+                            <div onClick={() => setActive(!active)} className="close">
+                                <span class="material-symbols-outlined">close</span>
                             </div>
                         </div>
                         {children}

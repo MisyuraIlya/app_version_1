@@ -13,6 +13,7 @@ import MobileSideBar from '../components/MobileSideBar/MobileSideBar';
 import SideBar from '../components/SideBar/SideBar';
 import AdminRightSideBar from '../components/AdminRightSideBar/AdminRightSideBar';
 import ClientRightSideBar from '../components/ClientRightSideBar/ClientRightSideBar';
+import Gallery from '../components/Galerry/Gallery';
 // Local
 
 // Defines
@@ -40,6 +41,9 @@ const ModalsProvider = ({children}) => {
   const [openSideBar, setOpenSideBar] = useState(false)
   const [adminRightSideBar, setAdminRightSideBar] = useState(false)
   const [clientRightSideBar, setClientRightSideBar] = useState(false)
+
+  //ADMINS 
+  const [gallery, setGallery] = useState(false)
 
   const openStockNotify = () => {
     setStockNotify(true)
@@ -87,7 +91,9 @@ const ModalsProvider = ({children}) => {
     openAuthModal,
     setOpenAuthModal,
     adminRightSideBar,
-    setAdminRightSideBar
+    setAdminRightSideBar,
+    gallery,
+    setGallery,
   };
 
   return (
@@ -114,6 +120,9 @@ const ModalsProvider = ({children}) => {
         {/* SIDEBARDS */}
         <AdminRightSideBar active={adminRightSideBar} setActive={setAdminRightSideBar}/>
         <ClientRightSideBar active={clientRightSideBar} setActive={setClientRightSideBar} />
+
+        {/* ADMINS */}
+        <Gallery active={gallery} setActive={setGallery}/>
         {children}
     </NotificationModalontext.Provider>
     );

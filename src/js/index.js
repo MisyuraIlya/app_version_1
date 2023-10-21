@@ -72,7 +72,8 @@ import Returns from './components/routs/Returns';
 import CategoryEdit from "./modules/Admin/pages/CategoryEdit";
 import BrandsEdit from './components/routs/BrandsEdit';
 
-import ProductsEdit from './components/routs/ProductsEdit';
+// import ProductsEdit from './components/routs/ProductsEdit';
+import ProductsEdit from "./modules/Admin/pages/ProductsEdit";
 import ProductEdit from './components/routs/ProductEdit';
 import ProductParent from './components/routs/ProductParent';
 
@@ -188,7 +189,7 @@ const BasicRouter = (prop) => (
 										render={(props) => (<CategoryEdit {...props}{...prop}/>)}/>
 									<Route path="/brands-edit" render={(props) => (<BrandsEdit {...props}{...prop}/>)}/>
 
-									<Route path="/products-edit/:lvl1id/:lvl2id/:lvl3id"
+									<Route path="/products-edit/:categoryId"
 										render={(props) => (<ProductsEdit key={props.match.params.id} {...props}{...prop}/>)}/>
 									<Route path="/editproduct/:id" render={(props) => (<ProductEdit {...props}{...prop}/>)}/>
 									<Route path="/category-build/:id" render={(props) => (<CategoryBuild {...props}{...prop}/>)}/>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
-const CategoryEditBreadCrumbs = () => {
+const BreadCrumbs = () => {
     const {parentId, subId} = useParams()
     return (
     <div className="breadcrumbs">
@@ -51,4 +51,4 @@ const CategoryEditBreadCrumbs = () => {
     );
 };
 
-export default CategoryEditBreadCrumbs;
+export default BreadCrumbs;

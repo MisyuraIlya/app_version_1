@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import MyCropper from '../../../../components/tools/MyCropper';
-import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
+import { NavLink, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import useCategories from '../../../Catalog/store/CategoriesStore';
 import { AdminCatalogService } from '../../services/catalog.service';
 import { useDebounce } from 'use-debounce';
-
+import { base64ToFile } from '../../../../helpers/base64ToFile';
 const CategoryEditItem = ({element}) => {
-
+    const [loading, setLoading] = useState(false)
     const {categories,getCategories,setCategories} = useCategories()
     const [title, setTitle] = useState(element.title)
     const [valueDebounced] = useDebounce(title, 1000);
-    
+    const {parentId, subId} = useParams()
     const uploadImg = async (img) => {
         const convertFile = base64ToFile(img.img,img.fileName)
         const res = await AdminCatalogService.uploadImage(convertFile, 'category')
@@ -30,6 +30,17 @@ const CategoryEditItem = ({element}) => {
 
     }
 
+    const handleLink = () => {
+        console.log('parentId, subId',parentId, subId)
+        if(parentId != '0' && subId == '0') {
+            return "/category-edit/" + parentId + "/" + element.id
+        } else if(parentId != '0' && subId != '0') {
+            return "/products-edit/" + element.id
+        } else {
+            return "/category-edit/" + element.id + "/0" 
+        }
+    }
+
     useEffect(() => {
         if(valueDebounced){
             AdminCatalogService.updateCategory({id: element.id ,title:valueDebounced})
@@ -40,44 +51,22 @@ const CategoryEditItem = ({element}) => {
     return (
     <div className="flex-container">
         <div className="col-lg-1 enter MyCenetred">
-            {true ?
-                <NavLink to={"/category-edit/" + element.id + "/0" }>
-                    <span class="material-symbols-outlined">move_item</span>
-                </NavLink>
-            :
-            <>
-
-                {id && !subId ?
-                <NavLink to={"/category-edit/" + id + "/" + element.id}>
-                    <span class="material-symbols-outlined">move_item</span>
-                </NavLink>
-                :
-                <NavLink to={ "/products-edit/" + id + "/" + subId + "/" + element.Id}>
-                    <span class="material-symbols-outlined">move_item</span>
-                </NavLink>
-                }
-
-            </>
-            }
+        <NavLink to={handleLink()} onClick={() => handleLink()}>
+            <span class="material-symbols-outlined">move_item</span>
+        </NavLink>
         </div>
         <div className="col-lg-1 sort MyCenetred">
             <span class="material-symbols-outlined">drag_indicator</span>
         </div>
         <div className="col-lg-2 for-img">
             <div
-            // onMouseOver={() => this.state.masc != element.id ? this.setState({masc: element.id}) : null}
-            // onMouseLeave={() => this.setState({masc: false})}
             className={element?.MediaObject?.filePath ? "img-load active" : "img-load"}>
-            {element?.MediaObject?.filePath ?
-                <>
-
+            {element?.MediaObject?.filePath && 
                 <img
                     className="main-img"
                     src={globalFileServer + 'category/' + element?.MediaObject?.filePath}
-                    onLoad={false}
                 />
-                </>
-            : null}
+            }
             <MyCropper
                 aspectRatio={16/16} 
                 itemId={element.id}

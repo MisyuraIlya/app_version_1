@@ -2,16 +2,13 @@ import React, { useState } from 'react';
 import useCategories from '../../../Catalog/store/CategoriesStore';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 // import MyCropper from "../tools/MyCropper";
-import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import CropperComponent from '../../../../SharedComponents/CropperComponent';
-import MyCropper from '../../../../components/tools/MyCropper';
 import { AdminCatalogService } from '../../services/catalog.service';
-import { base64ToFile } from '../../../../helpers/base64ToFile';
 import CategoryEditItem from './CategoryEditItem';
 const CategoriesEditList = () => {
-    const [loading, setLoading] = useState(false)
     const {categories,getCategories,setCategories} = useCategories()
-
+    const {parentId, subId} = useParams()
     const getListStyle = isDraggingOver => ({
         background: isDraggingOver ? "#e5e5e5" : "#ddd",
     });
@@ -32,8 +29,8 @@ const CategoriesEditList = () => {
             result.source.index,
             result.destination.index
         );
-        await AdminCatalogService.updateCategory({id: result.draggableId ,orden: result.destination.index})
         setCategories(categoriesReorder)
+        await AdminCatalogService.updateCategory({id: result.draggableId ,orden: result.destination.index})
 
     
     }
@@ -45,6 +42,18 @@ const CategoriesEditList = () => {
         return result;
     };
 
+    const handleCategries = () => {
+        if(parentId == '0') {
+            return categories.filter((filtered) => filtered.lvlNumber === 1)
+        } else if(parentId && subId == '0') {
+            const lvl2 = categories.filter((filtered) => filtered?.parent?.id == parentId && filtered.lvlNumber === 2)
+            return lvl2
+        } else if(parentId && subId) {
+            const lvl3 = categories.filter((filtered) => filtered?.parent?.id == subId && filtered.lvlNumber === 3)
+
+            return lvl3
+        }
+    }
 
 
     return (
@@ -76,7 +85,7 @@ const CategoriesEditList = () => {
                 <Droppable droppableId="droppable"> 
                     {(provided, snapshot) => (
                         <div className="items" {...provided.innerRef} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
-                            {categories.filter((filtered) => filtered.lvlNumber === 1).map((element, index) => {
+                            {handleCategries().map((element, index) => {
                                 return(
                                     <div key={index} id={"item_" + element.id} className="item">
                                         <Draggable key={element.id} draggableId={element.id + ''} index={index}>

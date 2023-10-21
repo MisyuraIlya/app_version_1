@@ -1,12 +1,11 @@
 import React from 'react';
 import CategoriesEditList from '../components/CategoryEdit/CategoriesEditList';
-import useCategories from '../../Catalog/store/CategoriesStore';
-import CategoryEditBreadCrumbs from '../components/CategoryEdit/CategoryEditBreadCrumbs';
 import CategoryEditFilters from '../components/CategoryEdit/CategoryEditFilters';
+import BreadCrumbs from '../components/BreadCrumbs';
 const CategoryEdit = () => {
     return (
         <div className="category-edit">
-            <CategoryEditBreadCrumbs/>
+            <BreadCrumbs/>
             <div className="container items-container">
                 <CategoryEditFilters/>
                 <CategoriesEditList/>
