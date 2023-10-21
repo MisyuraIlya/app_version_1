@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNotificationModal } from '../../provider/NotificationModalProvider';
+import { useModals } from '../../provider/ModalsProvider';
 import ReactDOM from "react-dom";
 
 

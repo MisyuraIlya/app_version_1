@@ -1,10 +1,10 @@
 import React from 'react';
 import { useAuth } from '../../../../../../Auth/providers/AuthProvider';
-import { useNotificationModal } from '../../../../../../Modals/provider/NotificationModalProvider';
+import { useModals } from '../../../../../../Modals/provider/ModalsProvider';
 
 const BasicInfo = ({product}) => {
     const {user} = useAuth()
-    const {selectProduct} = useNotificationModal()
+    const {selectProduct} = useModals()
     return (
     <div className={'img-text-container'} onClick={() => selectProduct(product)}>
         <div className="img-cont">

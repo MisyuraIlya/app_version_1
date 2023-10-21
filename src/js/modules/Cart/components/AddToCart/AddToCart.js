@@ -1,13 +1,13 @@
 import React, {Fragment} from 'react';
 import useCart from '../../store/CartStore';
 import useModal from '../../../Modals/store/SelectedProductStore';
-import { useNotificationModal } from '../../../Modals/provider/NotificationModalProvider';
+import { useModals } from '../../../Modals/provider/ModalsProvider';
 import useSelectedProduct from '../../../Modals/store/SelectedProductStore';
 
 const AddToCart = ({item}) => {
     const {cart,addToCart,increaseCart,decreaseCart, deleteFromCart, changeQuantity, avoidNullInCart} = useCart()
     const {selectedProd} = useSelectedProduct()
-    const {openStockNotify,openAddToCartTotify} = useNotificationModal()
+    const {openStockNotify,openAddToCartTotify} = useModals()
     const find = cart?.filter((itemCart) => itemCart.sku === item.sku)
     const Quantity = find[0]?.quantity
     const isInCart = find[0]?.sku ? true : false

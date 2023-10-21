@@ -11,21 +11,23 @@ import PayPopUp from '../components/PayPopUp/PayPopUp';
 import AuthPopUp from '../components/AuthPopUp/AuthPopUp';
 import MobileSideBar from '../components/MobileSideBar/MobileSideBar';
 import SideBar from '../components/SideBar/SideBar';
+import AdminRightSideBar from '../components/AdminRightSideBar/AdminRightSideBar';
+import ClientRightSideBar from '../components/ClientRightSideBar/ClientRightSideBar';
 // Local
 
 // Defines
 const NotificationModalontext = createContext();
 
 // React hook
-const useNotificationModal = () => {
+const useModals = () => {
   const context = useContext(NotificationModalontext)
   if (!context) {
-    throw new Error('Can not run without "NotificationModalProvider"');
+    throw new Error('Can not run without "ModalsProvider"');
   }
   return context;
 }
 
-const NotificationModalProvider = ({children}) => {
+const ModalsProvider = ({children}) => {
   const {setSelectedProd, loading, clearSubProducts} = useSelectedProduct()
   const [stockNotify, setStockNotify] = useState(false)
   const [addToCartNotify, setAddToCartNotify] = useState(false)
@@ -36,6 +38,8 @@ const NotificationModalProvider = ({children}) => {
   const [openAuthModal, setOpenAuthModal] = useState(false)
   const [openMobileSideBar, setOpenMobileSideBar] = useState(false)
   const [openSideBar, setOpenSideBar] = useState(false)
+  const [adminRightSideBar, setAdminRightSideBar] = useState(false)
+  const [clientRightSideBar, setClientRightSideBar] = useState(false)
 
   const openStockNotify = () => {
     setStockNotify(true)
@@ -81,7 +85,9 @@ const NotificationModalProvider = ({children}) => {
     openSideBar,
     setOpenSideBar,
     openAuthModal,
-    setOpenAuthModal
+    setOpenAuthModal,
+    adminRightSideBar,
+    setAdminRightSideBar
   };
 
   return (
@@ -104,9 +110,13 @@ const NotificationModalProvider = ({children}) => {
         {openPopUpPay &&
           <PayPopUp active={openPopUpPay} setActive={setOpenPopUpPay} />
         }
+
+        {/* SIDEBARDS */}
+        <AdminRightSideBar active={adminRightSideBar} setActive={setAdminRightSideBar}/>
+        <ClientRightSideBar active={clientRightSideBar} setActive={setClientRightSideBar} />
         {children}
     </NotificationModalontext.Provider>
     );
 };
 
-export { useNotificationModal, NotificationModalProvider };
+export { useModals, ModalsProvider };

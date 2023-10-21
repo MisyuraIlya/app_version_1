@@ -2,7 +2,7 @@ import React from 'react';
 import { useAuth } from '../../../Auth/providers/AuthProvider';
 import useCart from '../../store/CartStore';
 import { CART_CONFIG } from '../../config/custom';
-import { useNotificationModal } from '../../../Modals/provider/NotificationModalProvider';
+import { useModals } from '../../../Modals/provider/ModalsProvider';
 const SendOrderButton = () => {
     const {userType, isUserBlocked} = useAuth()
     const {
@@ -15,7 +15,7 @@ const SendOrderButton = () => {
 
     } = useCart()
 
-    const {openPopUpPay, setOpenPopUpPay} = useNotificationModal()
+    const {openPopUpPay, setOpenPopUpPay} = useModals()
 
     const handlePay = () => {
         setOpenPopUpPay(true)

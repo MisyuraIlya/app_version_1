@@ -22,15 +22,15 @@ export const CatalogServices = {
 
         } 
         if(lvl1 && lvl2 == '0'  && lvl3 == '0') {
-            const response = await axios.get(global.api + `/api/catalog/${lvl1}${searchParams}`)
+            const response = await axios.get(global.api + `/api/catalog/${lvl1}${searchParams}`+'&isPublished=true')
             return response.data
 
         } else if(lvl1 && lvl2  && lvl3 == '0') {
-            const response = await axios.get(global.api + `/api/catalog/lvl1/${lvl2}${searchParams}`)
+            const response = await axios.get(global.api + `/api/catalog/lvl1/${lvl2}${searchParams}`+'&isPublished=true')
             return response.data
 
         } else if(lvl1 && lvl2  && lvl3) {
-            const response = await axios.get(global.api + `/api/catalog/lvl1/lvl2/${lvl3}${searchParams}`)
+            const response = await axios.get(global.api + `/api/catalog/lvl1/lvl2/${lvl3}${searchParams}`+'&isPublished=true')
             return response.data
         }
         

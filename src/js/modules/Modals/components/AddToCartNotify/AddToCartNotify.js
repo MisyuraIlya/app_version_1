@@ -1,7 +1,7 @@
 import React from 'react';
-import { useNotificationModal } from '../../provider/NotificationModalProvider';
+import { useModals } from '../../provider/ModalsProvider';
 const AddToCartNotify = () => {
-    const {addToCartNotify} = useNotificationModal()
+    const {addToCartNotify} = useModals()
 
     return (
         <div className={addToCartNotify ? "header-popup-main-cont active" : "header-popup-main-cont"} style={{display:'fixed'}}>

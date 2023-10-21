@@ -3,12 +3,12 @@ import ModalWrapper from '../ModalWrapper/ModalWrapper';
 import useCart from '../../../Cart/store/CartStore';
 import { useForm } from 'react-hook-form';
 import Calendar from 'react-calendar';
-import { useNotificationModal } from '../../provider/NotificationModalProvider';
+import { useModals } from '../../provider/ModalsProvider';
 const OrderSettings = ({active, setActive}) => {
     const {register, handleSubmit, formState:{errors}} = useForm()
     const [activeCalendar, setActiveCalendar] = useState(false)
     const [value, onChange] = useState(new Date());
-    const {setOpenCartSettings} = useNotificationModal()
+    const {setOpenCartSettings} = useModals()
     const handleClick = (data) => {
         console.log(data)
     }

@@ -69,7 +69,7 @@ import ShoppinglistItems from './components/routs/ShoppinglistItems';
 import Returns from './components/routs/Returns';
 
 
-import CategoryEdit from './components/routs/CategoryEdit';
+import CategoryEdit from "./modules/Admin/pages/CategoryEdit";
 import BrandsEdit from './components/routs/BrandsEdit';
 
 import ProductsEdit from './components/routs/ProductsEdit';
@@ -116,7 +116,7 @@ import DocCard from "./modules/Documents/pages/DocCard/DocCard";
 import CartessetPage from "./modules/Documents/pages/CartessetPage/CartessetPage";
 import CartPage from "./modules/Cart/pages/CartPage";
 import StockNotify from "./modules/Modals/components/StockNotify/StockNotify";
-import { NotificationModalProvider } from "./modules/Modals/provider/NotificationModalProvider";
+import { ModalsProvider } from "./modules/Modals/provider/ModalsProvider";
 import Category from "./modules/Catalog/pages/Catalog";
 import Catalog from "./modules/Catalog/pages/Catalog";
 require('./globals.js');
@@ -133,7 +133,7 @@ const BasicRouter = (prop) => (
 		<AgentReducer>
 		<Fragment>
 		<PushNotificationHandlers/>
-			<NotificationModalProvider>
+			<ModalsProvider>
 				<header id="header">
 					{/* <Route {...prop} render={matchProps => (<Header {...matchProps}{...prop} />)}/> */}
 					<Route {...prop} render={matchProps => (<Header {...matchProps}{...prop} />)}/>
@@ -287,7 +287,7 @@ const BasicRouter = (prop) => (
 
 				{location.href.includes("category") || location.href.includes("cart") || location.href.includes("brands") ? null :
 					<Route {...prop} render={matchProps => (<Footer {...matchProps}{...prop} />)}/>}
-			</NotificationModalProvider>
+			</ModalsProvider>
 
 		</Fragment>
 		</AgentReducer>

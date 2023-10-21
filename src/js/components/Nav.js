@@ -488,7 +488,7 @@ export default class Nav extends Component {
       mismahType = 'ה.מחיר';
     }
 		return (
-			<nav id="main" data-class={lang == 'he' ? 'he' : 'ru'} className={this.props.state.toggleMenu ? 'active' : null}>
+	<nav id="main" data-class={lang == 'he' ? 'he' : 'ru'} className={this.props.state.toggleMenu ? 'active' : null}>
         <div className="nav-cont" onClick={this.props.toggleMenu}></div>
 				{this.state.preload ?
 					<div className="spinner-wrapper">

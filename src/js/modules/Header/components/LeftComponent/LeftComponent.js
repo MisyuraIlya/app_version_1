@@ -4,11 +4,11 @@ import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 import useCart from '../../../Cart/store/CartStore';
 import ProfileMenu from './components/ProfileMenu';
 import NotificationIcon from '../../../PushNotificationModule/components/NotificationIcon/NotificationIcon';
-import { useNotificationModal } from '../../../Modals/provider/NotificationModalProvider';
+import { useModals } from '../../../Modals/provider/ModalsProvider';
 
 const LeftComponent = () => {
   const { user, isAgent } = useAuth();
-  const { setOpenAuthModal } = useNotificationModal();
+  const { setOpenAuthModal } = useModals();
   const [openProfile, setOpenProfile] = useState(false);
   const { cart } = useCart();
 

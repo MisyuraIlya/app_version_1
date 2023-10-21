@@ -3,12 +3,12 @@ import { useAuth } from '../../../Auth/providers/AuthProvider';
 import useSearchStore from '../../store/SearchStore';
 import { useDebounce } from 'use-debounce';
 import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
-import { useNotificationModal } from '../../../Modals/provider/NotificationModalProvider';
+import { useModals } from '../../../Modals/provider/ModalsProvider';
 const CatalogSearch = () => {
     
     const {isAgent, user} = useAuth()
     const {searchValue, setSearchValue, loading, products, findProductsByValue, clearProducts} = useSearchStore()
-    const {selectProduct} = useNotificationModal()
+    const {selectProduct} = useModals()
     const [valueDebounced] = useDebounce(searchValue, 1000);
     useEffect(() => {
         if(valueDebounced) {

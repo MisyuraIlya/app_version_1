@@ -3,7 +3,7 @@ import useCart from '../../store/CartStore';
 import { useAuth } from '../../../Auth/providers/AuthProvider';
 import { getUserFromStorage } from '../../../Auth/helpers/auth.helper';
 import { CART_CONFIG } from '../../config/custom';
-import { useNotificationModal } from '../../../Modals/provider/NotificationModalProvider';
+import { useModals } from '../../../Modals/provider/ModalsProvider';
 const MainSummary = () => {
     const {userType, isUserBlocked} = useAuth()
     const {
@@ -26,7 +26,7 @@ const MainSummary = () => {
         getTotalDiscountPrecet
     } = useCart()
 
-    const {openCartSettings, setOpenCartSettings} = useNotificationModal()
+    const {openCartSettings, setOpenCartSettings} = useModals()
     return (
         
     <>

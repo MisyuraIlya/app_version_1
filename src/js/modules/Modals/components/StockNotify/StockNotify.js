@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import useModal from '../../store/SelectedProductStore';
-import { useNotificationModal } from '../../provider/NotificationModalProvider';
+import { useModals } from '../../provider/ModalsProvider';
 
 const StockNotify = () => {
     // const {stockNotify} = useModal()
-    const {stockNotify} = useNotificationModal()
+    const {stockNotify} = useModals()
 
     return (
         <div className={stockNotify ? "header-popup-main-cont active" : "header-popup-main-cont"}>

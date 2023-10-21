@@ -1,11 +1,11 @@
 import React from 'react';
 import useSelectedProduct from '../../../../../store/SelectedProductStore';
 import { getUserFromStorage } from '../../../../../../Auth/helpers/auth.helper';
-import { useNotificationModal } from '../../../../../provider/NotificationModalProvider';
+import { useModals } from '../../../../../provider/ModalsProvider';
 
 const ProductHistoryPurche = () => {
     const {selectedProd,getPurchesHistory,purchesHistoryData} = useSelectedProduct()
-    const {setActiveTablePopUp} = useNotificationModal()
+    const {setActiveTablePopUp} = useModals()
 
     const handleOpen = () => {
         setActiveTablePopUp(true)

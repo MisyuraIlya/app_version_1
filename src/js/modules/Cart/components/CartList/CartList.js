@@ -5,11 +5,11 @@ import FreeList from '../FreeList/FreeList';
 import { getCurrentUserId } from '../../../Auth/helpers/getCurrentUserId';
 import AddToCart from '../AddToCart/AddToCart';
 import { getPriceByOriginalPrice, getDiscountPrecent, calculatePrice } from '../../helpers/calculations';
-import { useNotificationModal } from '../../../Modals/provider/NotificationModalProvider';
+import { useModals } from '../../../Modals/provider/ModalsProvider';
 import { useAuth } from '../../../Auth/providers/AuthProvider';
 const CartList = () => {
     const {cart, selectedMode, CartTitle, Maam} = useCart()
-    const {selectProduct} = useNotificationModal()
+    const {selectProduct} = useModals()
     const {isAgent} = useAuth()
     return (
         <div>

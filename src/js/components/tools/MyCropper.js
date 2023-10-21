@@ -222,38 +222,38 @@ export default class MyCropper extends Component {
 	render() {
 		return (
 			<div className={this.props.img ? "load-image-wrapper absolute" : "load-image-wrapper"}>
+
 				{!this.props.chat ?
 					<div className="addImg">
 						<ul>
-
-              {!this.props.appId ?
-                <div>
-                  <li>
-    								<img src={globalFileServer + 'icons/add-circular.svg'} />
+							{!this.props.appId ?
+							<div>
+								<li>
+    								<img src={'https://foodappeal-b2b.com/src/img/icons/add-circular.svg'} />
     							</li>
     							<li className="upload">
     								<input id="upload-file" type="file" className="upload" onChange={this._onChange} />
     								<span>הוספת תמונה</span>
     							</li>
-                </div>
-              :
-              <li className="upload" onClick={this.galleryOrCamera}>
-                <div className="selectGalOrCam flex-container">
-  								<div className="col-lg-6">
-  									<div className="btn-cont" onClick={this.uploadImg}>
-  										<img src={globalFileServer + 'icons/photo-camera.svg'} />
-  									</div>
-                    <p>מצלמה</p>
-  								</div>
-  								<div className="btn-cont" className="col-lg-6">
-  									<div onClick={this.openGallery}>
-  										<img src={globalFileServer + 'icons/frame-landscape.svg'} />
-  									</div>
-                    <p>אלבום</p>
-  								</div>
-  							</div>
-							</li>
-              }
+								</div>
+								:
+								<li className="upload" onClick={this.galleryOrCamera}>
+									<div className="selectGalOrCam flex-container">
+													<div className="col-lg-6">
+														<div className="btn-cont" onClick={this.uploadImg}>
+															<img src={globalFileServer + 'icons/photo-camera.svg'} />
+														</div>
+										<p>מצלמה</p>
+													</div>
+													<div className="btn-cont col-lg-6" >
+														<div onClick={this.openGallery}>
+															<img src={globalFileServer + 'icons/frame-landscape.svg'} />
+														</div>
+										<p>אלבום</p>
+													</div>
+												</div>
+								</li>
+							}
 						</ul>
 					</div>
 				:
@@ -262,6 +262,7 @@ export default class MyCropper extends Component {
 					<input id="upload-file" type="file" className="upload" onChange={this._onChange} />
 				</div>
 				}
+				
 				{this.state.croppTool ? ReactDOM.createPortal(
 					<div className="cropp-tool-wrapper">
 						<div className="cropp-tool">

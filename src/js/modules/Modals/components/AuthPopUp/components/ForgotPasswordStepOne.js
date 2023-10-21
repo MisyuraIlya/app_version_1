@@ -2,14 +2,14 @@ import React from 'react';
 import useAuthStore from '../../../store/AuthModalStore';
 import { useAuth } from '../../../../Auth/providers/AuthProvider';
 import { useForm } from "react-hook-form";
-import { useNotificationModal } from '../../../provider/NotificationModalProvider';
+import { useModals } from '../../../provider/ModalsProvider';
 
 const ForgotPasswordStepOne = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const {setAction,setEmail} = useAuthStore()
     const {restorePasswordStepOne} = useAuth()
-    const {setOpenAuthModal} = useNotificationModal()
+    const {setOpenAuthModal} = useModals()
     
     const handleLogin = (data) => {
         restorePasswordStepOne(data.email)

@@ -6,7 +6,7 @@
 
 global.entry = 'https://b2bportal.co.il';
 global.globalServer = 'https://b2bportal.co.il/app/';
-global.globalFileServer = 'https://b2bportal.co.il/src/img/';
+global.globalFileServer = 'http://localhost:8080/media/';
 
 global.api = 'http://localhost:8080'
 
