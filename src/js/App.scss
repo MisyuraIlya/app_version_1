@@ -3668,3 +3668,13 @@ span.edit {
 .swal2-container{
   z-index: 999999;
 }
+
+.googleIconHover{ 
+  &:hover{
+      font-variation-settings:
+      'FILL' 1,
+      'wght' 300,
+      'GRAD' 0,
+      'opsz' 48;
+  }
+}

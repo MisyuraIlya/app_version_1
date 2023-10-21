@@ -52,7 +52,7 @@ const CategoryEditItem = ({element}) => {
     <div className="flex-container">
         <div className="col-lg-1 enter MyCenetred">
         <NavLink to={handleLink()} onClick={() => handleLink()}>
-            <span class="material-symbols-outlined">move_item</span>
+            <span class="material-symbols-outlined googleIconHover">move_item</span>
         </NavLink>
         </div>
         <div className="col-lg-1 sort MyCenetred">

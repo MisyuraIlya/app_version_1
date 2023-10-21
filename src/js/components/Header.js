@@ -1239,12 +1239,10 @@ export default class Header extends Component
 									</div>
 								<>
 									<nav className={this.state.toggleMenu ? "header-right-cont-main-bigRes opened" : "header-right-cont-main-bigRes closed"}>
-										{localStorage.role ?
+										{localStorage.role &&
 											<div onClick={this.props.toggleMenu.bind(this)} className="menu-new">
-												<img src={globalFileServer + 'icons/head_icons/menu_new.svg'}/>
+												<span class="material-symbols-outlined">widgets</span>
 											</div>
-											:
-											null
 										}
 
 										<div className="header-right-cont">

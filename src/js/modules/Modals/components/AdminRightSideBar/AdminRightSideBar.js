@@ -10,13 +10,13 @@ const sidebarAdmin = [
     {
       Title: 'ניהול מוצרים',
       Link: '/category-edit/0/0',
-      Img: 'nav_prod.svg',
+      Img: 'hallway',
       Password: false
     },
       {
           Title: 'לקוחות',
           Link: '/clients',
-          Img: 'clients.svg',
+          Img: 'group',
           Password: false,
       Pop: false
       }/*,
@@ -30,7 +30,7 @@ const sidebarAdmin = [
       {
           Title: 'הודעות פרסומיות',
           Link: '/notification',
-          Img: 'mail.svg',
+          Img: 'sms',
           Password: false,
           Pop: false
       },
@@ -58,7 +58,7 @@ const sidebarAdmin = [
       {
           Title: 'הזמנות',
           Link: '/approveDoc/1',
-          Img: 'cart.svg',
+          Img: 'shopping_cart',
           Password: false,
           Pop: false,
           isLang: true
@@ -86,13 +86,13 @@ const sidebarAdmin = [
           {
                   Title: 'דאשבורד',
                   Link: '/statistics/1',
-                  Img: 'info.svg',
+                  Img: 'trending_up',
                   Password: false
           },
           {
                   Title: 'סטטיסטיקות',
                   Link: '/comprasion',
-                  Img: 'info.svg',
+                  Img: 'leaderboard',
                   Password: false
           }	 /*,
           {
@@ -127,7 +127,7 @@ const AdminRightSideBar = ({active, setActive}) => {
                     return(
                         <li key={index}>
                             <NavLink to={element.Link}>
-                                <img src={globalFileServer + 'icons/menu/' + element.Img} />
+                                <span class="material-symbols-outlined googleIconHover" style={{fontSize:'40px'}}>{element.Img}</span>
                                 <span>{element.Title}</span>
                             </NavLink>
                         </li>
