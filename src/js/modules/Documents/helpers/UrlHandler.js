@@ -42,6 +42,16 @@ export const UrlHandler = {
         } else {
             return false
         }
+    },
+
+    isThereParamsOnlyPage(locationSearch) {
+        const urlSearchParams = new URLSearchParams(locationSearch);
+        const page = urlSearchParams.get('page');
+        if(page) {
+            return true 
+        } else {
+            return false
+        }
     }
 
 }

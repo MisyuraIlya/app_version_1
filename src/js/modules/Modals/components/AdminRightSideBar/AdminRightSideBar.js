@@ -13,13 +13,13 @@ const sidebarAdmin = [
       Img: 'hallway',
       Password: false
     },
-      {
-          Title: 'לקוחות',
-          Link: '/clients',
-          Img: 'group',
-          Password: false,
-      Pop: false
-      }/*,
+    {
+        Title: 'לקוחות',
+        Link: '/clients',
+        Img: 'group',
+        Password: false,
+        Pop: false
+    }/*,
       {
           Title: 'אזורי חלוקה',
           Link: '/gis',
@@ -57,7 +57,7 @@ const sidebarAdmin = [
     },*/
       {
           Title: 'הזמנות',
-          Link: '/approveDoc/1',
+          Link: '/approveDoc',
           Img: 'shopping_cart',
           Password: false,
           Pop: false,

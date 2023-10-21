@@ -14,6 +14,8 @@ import SideBar from '../components/SideBar/SideBar';
 import AdminRightSideBar from '../components/AdminRightSideBar/AdminRightSideBar';
 import ClientRightSideBar from '../components/ClientRightSideBar/ClientRightSideBar';
 import Gallery from '../components/Galerry/Gallery';
+import ClientsInfo from '../components/ClientsInfo/ClientsInfo';
+import ClientOptions from '../components/ClientOptions/ClientOptions';
 // Local
 
 // Defines
@@ -44,6 +46,8 @@ const ModalsProvider = ({children}) => {
 
   //ADMINS 
   const [gallery, setGallery] = useState(false)
+  const [clientsInfo, setClientsInfo] = useState(false) 
+  const [clientOptions, setClientOptions] = useState(false)
 
   const openStockNotify = () => {
     setStockNotify(true)
@@ -94,6 +98,10 @@ const ModalsProvider = ({children}) => {
     setAdminRightSideBar,
     gallery,
     setGallery,
+    clientsInfo,
+    setClientsInfo,
+    clientOptions,
+    setClientOptions
   };
 
   return (
@@ -123,6 +131,8 @@ const ModalsProvider = ({children}) => {
 
         {/* ADMINS */}
         <Gallery active={gallery} setActive={setGallery}/>
+        <ClientsInfo active={clientsInfo} setActive={setClientsInfo}/>
+        <ClientOptions active={clientOptions} setActive={setClientOptions}/>
         {children}
     </NotificationModalontext.Provider>
     );

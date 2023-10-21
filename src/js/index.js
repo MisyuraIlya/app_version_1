@@ -41,7 +41,8 @@ import Footer from './components/Footer';
 import Nav from './components/Nav';
 import NotificationView from './components/NotificationView';
 import Chat from './components/header/LiveChat';
-import Clients from './components/routs/Clients';
+// import Clients from './components/routs/Clients';
+import Clients from "./modules/Admin/pages/Clients";
 import ClientsAgent from './components/routs/ClientsAgent';
 
 import Docs from './components/routs/Docs';
@@ -55,7 +56,8 @@ import DocsHistoryItems from './components/routs/DocsHistoryItems';
 
 
 
-import DocsAgentApproval from './components/routs/DocsAgentApproval';
+// import DocsAgentApproval from './components/routs/DocsAgentApproval';
+import Orders from "./modules/Admin/pages/Orders";
 import DocsItemsAgentApproval from './components/routs/DocsItemsAgentApproval';
 
 import DocsHistoryAgent from './components/routs/DocsHistoryAgent';
@@ -185,12 +187,8 @@ const BasicRouter = (prop) => (
 										<Route path="/admin-info" render={(props) => (<AdminInfo {...props}{...prop}/>)}/> : null}
 
 
-									<Route path="/category-edit/:parentId/:subId"
-										render={(props) => (<CategoryEdit {...props}{...prop}/>)}/>
 									<Route path="/brands-edit" render={(props) => (<BrandsEdit {...props}{...prop}/>)}/>
 
-									<Route path="/products-edit/:categoryId"
-										render={(props) => (<ProductsEdit key={props.match.params.id} {...props}{...prop}/>)}/>
 									<Route path="/editproduct/:id" render={(props) => (<ProductEdit {...props}{...prop}/>)}/>
 									<Route path="/category-build/:id" render={(props) => (<CategoryBuild {...props}{...prop}/>)}/>
 									<Route path="/deptEdit" render={(props) => (<DeptEdit {...props}{...prop}/>)}/>
@@ -251,7 +249,7 @@ const BasicRouter = (prop) => (
 									<Route path="/chat" render={(props) => (<Chat {...props}{...prop}/>)}/>
 									{localStorage.role ?
 										<Route path="/clients" render={(props) => (<Clients {...props}{...prop}/>)}/> : null}
-										{localStorage.agent ? <Route path="/ClientsAgent/:page" render={(props) => (<ClientsAgent {...props}{...prop}/>)} /> : null}
+						{localStorage.agent ? <Route path="/ClientsAgent/:page" render={(props) => (<ClientsAgent {...props}{...prop}/>)} /> : null}
 
 
 
@@ -273,6 +271,13 @@ const BasicRouter = (prop) => (
 							{/*
 		QuestionFormListComplete
 		*/}
+							{/* FIXED ADMIN */}
+							<Route path="/category-edit/:parentId/:subId" render={(props) => (<CategoryEdit {...props}{...prop}/>)}/>
+							<Route path="/products-edit/:categoryId" render={(props) => (<ProductsEdit key={props.match.params.id} {...props}{...prop}/>)}/>
+							<Route path="/clients" render={(props) => (<Clients {...props}{...prop}/>)}/>
+							<Route path="/approveDoc" render={(props) => (<Orders {...props}{...prop}/>)}/>
+
+
 							{/* agenet */}
 							{localStorage.role || localStorage.agent ? <Route path="/agent-statistics/:date" render={(props) => (<AgentStatistics {...props}{...prop}/>)} /> : null}
 							{localStorage.agent || localStorage.role ? <Route path="/objectives/:id" render={(props) => (<Objectives {...props}{...prop}/>)}/> : null}
