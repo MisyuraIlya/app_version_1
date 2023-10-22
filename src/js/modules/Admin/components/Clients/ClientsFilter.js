@@ -7,7 +7,7 @@ const ClientsFilter = () => {
         <div className="filter flex-container">
             <div className="col-lg-2">
                     <p onClick={() => this.updateUserList.bind(this, this.state.activeTab)}>
-                        <img src={globalFileServer + 'icons/back-new.svg'} />
+                        <span className="material-symbols-outlined">arrow_forward</span>
                         <span>חזור</span>
                     </p>
                     <p>{'נמצאו ' + totalClients + ' לקוחות'}</p>

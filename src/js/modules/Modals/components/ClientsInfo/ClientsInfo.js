@@ -11,12 +11,7 @@ const ClientsInfo = ({active, setActive}) => {
                 <div className="popup-contant">
                     <div className="popup-contant-header flex-container">
                         <div className="col-lg-10" >
-                            <p>שינוי סיסמה</p>
-                        </div>
-                        <div className="close-popup col-lg-2">
-                            <div className="close-popup-cont" onClick={() => this.setState({userInfo: null})}>
-                            <img src={globalFileServer + 'icons/close_purple.svg'} />
-                            </div>
+                            <p>מידע לקוח</p>
                         </div>
                     </div>
                     <div className="all-row-cont">

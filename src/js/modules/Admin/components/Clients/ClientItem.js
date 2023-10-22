@@ -27,12 +27,12 @@ const ClientItem = ({element, index}) => {
                 </div>
                 <div className="col-lg-1 info-col">
                     <div className="wrapp info info-icon">
-                        <img className="info-icon-img" onClick={() => {setClientsInfo(true);setSelectedClient(element)}} src={globalFileServer + 'icons/info.svg'} />
+                        <span className="material-symbols-outlined MyCenetred googleIconHover" onClick={() => {setClientsInfo(true);setSelectedClient(element)}} src={globalFileServer + 'icons/info.svg'}>info</span>
                     </div>
                 </div>
                 <div className="col-lg-1 more">
                     <div className="wrapp" >
-                        <img src={globalFileServer + 'icons/more.svg'} onClick={() => {setClientOptions(true);setSelectedClient(element)}}/>
+                        <span className="material-symbols-outlined googleIconHover" onClick={() => {setClientOptions(true);setSelectedClient(element)}}>settings</span>
                     </div>
                 </div>
             </div>
