@@ -37,15 +37,13 @@ const DocumentsModule = () => {
         previousPage,
         setPage
     } = useDocuments()
-    const asd = useParams()
     const history = useHistory()
-
     const handleCalendar = (date) => {
         const urlSearchParams = new URLSearchParams(history.location.search);
         if(type === 'from') {
             urlSearchParams.set('from',moment(date).format('YYYY-MM-DD'));
         } else {
-            urlSearchParams.get('to',moment(date).format('YYYY-MM-DD'));
+            urlSearchParams.set('to',moment(date).format('YYYY-MM-DD'));
         }
         const updatedUrl = '?' + urlSearchParams.toString();
         history.push(history.location.pathname + updatedUrl)

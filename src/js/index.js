@@ -122,6 +122,7 @@ import StockNotify from "./modules/Modals/components/StockNotify/StockNotify";
 import { ModalsProvider } from "./modules/Modals/provider/ModalsProvider";
 import Category from "./modules/Catalog/pages/Catalog";
 import Catalog from "./modules/Catalog/pages/Catalog";
+import OrderItemPage from "./modules/Admin/pages/OrderItemPage";
 require('./globals.js');
 
 if (module.hot) {
@@ -276,7 +277,7 @@ const BasicRouter = (prop) => (
 							<Route path="/products-edit/:categoryId" render={(props) => (<ProductsEdit key={props.match.params.id} {...props}{...prop}/>)}/>
 							<Route path="/clients" render={(props) => (<Clients {...props}{...prop}/>)}/>
 							<Route path="/approveDoc" render={(props) => (<Orders {...props}{...prop}/>)}/>
-
+							<Route path="/approveDocItems/:id" render={(props) => (<OrderItemPage {...props}{...prop}/>)}/>
 
 							{/* agenet */}
 							{localStorage.role || localStorage.agent ? <Route path="/agent-statistics/:date" render={(props) => (<AgentStatistics {...props}{...prop}/>)} /> : null}

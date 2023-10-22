@@ -8,7 +8,6 @@ const useDocuments = create((set, get) => ({
     activeTab: 0,
     setActiveTab: (tab) => set({activeTab: tab}),
     showCalendar: false,
-    type:'',
     setType: (value) => set({type: value, showCalendar:true}),
     setShowCalendar: (value) => set({showCalendar: value}),
     dateFrom: new Date(),
@@ -20,6 +19,8 @@ const useDocuments = create((set, get) => ({
         console.log('value',value)
         set({dateTo: value})
     },
+    dateFrom: new Date(),
+    type:'',
     choosedDate: new Date(),
     handleChangeCalendar: (date) => {
         if(get().type === 'from') {
