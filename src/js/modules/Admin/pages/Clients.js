@@ -21,12 +21,10 @@ const Clients = () => {
         if(!UrlHandler.isThereParamsOnlyPage(history.location.search)) {
             let page = 1
             const url = UrlHandler.createUrl(history.location.search,page)
-            console.log('urlurl',url)
             history.push(history.location.pathname + url);
             setPage(page)
         } else {
             const {page} = UrlHandler.getUrlParams(history.location.search)
-            console.log('pagepage',page)
             const url = UrlHandler.createUrl(history.location.search,page)
             history.push(history.location.pathname + url);
             setPage(page)

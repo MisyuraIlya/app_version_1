@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ModalWrapper from '../ModalWrapper/ModalWrapper';
+import ModalWrapper from '../../components/ModalWrapper/ModalWrapper';
 import useProductsEditStore from '../../../Admin/store/ProductsEditStore';
 import { onAsk } from '../../../../agents/utils/sweetAlert';
 import { AdminProductService } from '../../../Admin/services/products.service';

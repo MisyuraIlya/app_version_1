@@ -3678,3 +3678,32 @@ span.edit {
       'opsz' 48;
   }
 }
+
+.buttonAdminIcon {
+  border-radius: 5px;
+  border: 2px solid $c2;
+  cursor: pointer;
+  margin: 20px;
+  color: $c1;
+  &:hover {
+    background-color: $c2;
+    p{
+      color: white;
+    }
+    span {
+      color: white;
+    }
+  }
+
+}
+
+.buttonGreen {
+  cursor: pointer;
+  color: white;
+  font-size: 19px;
+  background-color:#3bbe3b;
+  transition: all 0.5s;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 20px 5px 20px;
+}

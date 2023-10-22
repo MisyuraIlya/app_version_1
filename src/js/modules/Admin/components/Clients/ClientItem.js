@@ -25,13 +25,13 @@ const ClientItem = ({element, index}) => {
                     {element.isRegistered && !element.isBlocked ? <p className='Active'>פעיל</p>:null}
                     </div>
                 </div>
-                <div className="col-lg-1 info-col">
-                    <div className="wrapp info info-icon">
+                <div className="col-lg-1 info-col MyCenetred"> 
+                    <div className="wrapp" style={{cursor:'pointer'}}>
                         <span className="material-symbols-outlined MyCenetred googleIconHover" onClick={() => {setClientsInfo(true);setSelectedClient(element)}} src={globalFileServer + 'icons/info.svg'}>info</span>
                     </div>
                 </div>
-                <div className="col-lg-1 more">
-                    <div className="wrapp" >
+                <div className="col-lg-1 MyCenetred">
+                    <div className="wrapp" style={{cursor:'pointer'}}>
                         <span className="material-symbols-outlined googleIconHover" onClick={() => {setClientOptions(true);setSelectedClient(element)}}>settings</span>
                     </div>
                 </div>

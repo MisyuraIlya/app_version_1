@@ -19,12 +19,12 @@ const Head = () => {
                         <p>סטאטוס</p>
                     </div>
                 </div>
-                <div className="col-lg-1">
+                <div className="col-lg-1 MyCenetred">
                     <div className="wrapp">
                         <p>מידע</p>
                     </div>
                 </div>
-                <div className="col-lg-1">
+                <div className="col-lg-1 MyCenetred">
                     <div className="wrapp">
                         <p>פעולות</p>
                     </div>

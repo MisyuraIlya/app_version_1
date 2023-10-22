@@ -11,11 +11,13 @@ import PayPopUp from '../components/PayPopUp/PayPopUp';
 import AuthPopUp from '../components/AuthPopUp/AuthPopUp';
 import MobileSideBar from '../components/MobileSideBar/MobileSideBar';
 import SideBar from '../components/SideBar/SideBar';
-import AdminRightSideBar from '../components/AdminRightSideBar/AdminRightSideBar';
-import ClientRightSideBar from '../components/ClientRightSideBar/ClientRightSideBar';
-import Gallery from '../components/Galerry/Gallery';
-import ClientsInfo from '../components/ClientsInfo/ClientsInfo';
-import ClientOptions from '../components/ClientOptions/ClientOptions';
+
+// ADMIN SIDEBARS
+import AdminRightSideBar from '../adminComponents/AdminRightSideBar/AdminRightSideBar';
+import ClientRightSideBar from '../adminComponents/ClientRightSideBar/ClientRightSideBar';
+import Gallery from '../adminComponents/Galerry/Gallery';
+import ClientsInfo from '../adminComponents/ClientsInfo/ClientsInfo';
+import ClientOptions from '../adminComponents/ClientOptions/ClientOptions';
 // Local
 
 // Defines
