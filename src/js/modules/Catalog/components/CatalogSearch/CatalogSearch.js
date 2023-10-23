@@ -52,9 +52,8 @@ const CatalogSearch = () => {
                                 return (
                                     <div key={key} className="searchRes-row flex-container" onClick={() => selectProduct(item)}>
                                         <div className="img-cont col-lg-3">
-                                            <img className="img"
-                                                src={item.ImgPath ? item.ImgPath : globalFileServer + 'products/' + item.Img}
-                                                onError={(e) => e.target.src = globalFileServer + 'placeholder.jpg'}/>
+                                            {/* set IMAGE PLACEHOLDER */}
+                                            <img className="img" src={item.ImgPath ? item.ImgPath : globalFileServer + 'products/' + item.Img}/>
                                         </div>
                                         <div className="content col-lg-9">
                                             <p className="title">{item.Title}</p>
@@ -71,8 +70,8 @@ const CatalogSearch = () => {
                         {products.length > 0 &&
                             <div className="all-res-cont" onClick={() => {setSearchValue('');clearProducts()}}>
                                 <NavLink
-                                    to={'/category/search/0/0/0/1/0/' + 'he' + '?Search=' + searchValue + '%26'}
-                                    onClick={() => searchPhpFunc('', searchMode)}>
+                                    to={'/catalogSearch' + '?search=' + searchValue}
+                                    >
                                         <p>{"מעבר לכל ה (" + products.length + " ) תוצאות"}</p>
                                 </NavLink>
                             </div>

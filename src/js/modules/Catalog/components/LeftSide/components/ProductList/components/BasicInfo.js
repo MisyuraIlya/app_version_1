@@ -8,9 +8,8 @@ const BasicInfo = ({product}) => {
     return (
     <div className={'img-text-container'} onClick={() => selectProduct(product)}>
         <div className="img-cont">
-          <img className="img"
-            src={product.ImgPath ? product.ImgPath : globalFileServer + 'products/' + product.Img}
-            onError={(e) => e.target.src = globalFileServer + 'placeholder.jpg'} />
+            {/* SET PLAVEHOLDER IMAGE */}
+          <img className="img" src={product.ImgPath ? product.ImgPath : globalFileServer + 'products/' + product.Img}/>
         </div>
         <div
           className={user ? "prod-data-cont user" : "prod-data-cont"}>
