@@ -123,6 +123,9 @@ import { ModalsProvider } from "./modules/Modals/provider/ModalsProvider";
 import Category from "./modules/Catalog/pages/Catalog";
 import Catalog from "./modules/Catalog/pages/Catalog";
 import OrderItemPage from "./modules/Admin/pages/OrderItemPage";
+import HomePage from "./modules/Home/pages/HomePage";
+import CategoryViewPage from "./modules/Catalog/pages/CategoryViewPage";
+import ProfilePage from "./modules/Auth/pages/ProfilePage";
 require('./globals.js');
 
 if (module.hot) {
@@ -146,11 +149,7 @@ const BasicRouter = (prop) => (
 				{<Route {...prop} render={matchProps => (<NotificationView {...matchProps}{...prop} />)}/>}
 					<main id={prop.state.toggleMenu ? 'active' : null} className={'he'}>
 						<Switch>
-							{!localStorage.agent  ?
-									<Route path="/" exact render={(props) => (<Home key={props.match.params.lang} {...props}{...prop}/>)} />
-									:
-									<Route path="/" exact render={(props) => (<AgentDashboard key={props.match.params.lang} {...props}{...prop}/>)} />
-							}
+		
 
 											{/*AgentDashboard*/ }
 
@@ -159,14 +158,9 @@ const BasicRouter = (prop) => (
 
 									<Route path="/promotionPage" render={(props) => (<PromotionPage {...props}{...prop}/>)}/>
 
-							{localStorage.role || localStorage.agent || localStorage.user ? 
-							<Route path="/categoryOld/:type/:lvl1/:lvl2/:lvl3/:page/:parent"
-								render={(props) => (<CategoryPage {...props}{...prop}/>)}/>: null}
-							<Route path="/catalog/:lvl1/:lvl2/:lvl3"
-								render={(props) => (<Catalog {...props}{...prop}/>)}/>
+							{localStorage.role || localStorage.agent || localStorage.user ?  <Route path="/categoryOld/:type/:lvl1/:lvl2/:lvl3/:page/:parent" render={(props) => (<CategoryPage {...props}{...prop}/>)}/>: null}
 
-							<Route path="/category-page"
-								render={(props) => (<CategoryView {...props}{...prop}/>)}/>
+							
 							<Route path="/productParent/:lvl1/:lvl2/:lvl3/:id"
 								render={(props) => (<ProductParent {...props}{...prop}/>)}/>
 
@@ -174,12 +168,11 @@ const BasicRouter = (prop) => (
 
 
 									<Route path="/cartOld" render={(props) => (<ShopCart {...props}{...prop}/>)}/>
-									<Route path="/cart" render={(props) => (<CartPage {...props}{...prop}/>)}/>
 									<Route path="/wishList" render={(props) => (<WishList {...props}{...prop}/>)}/>
 
 									<Route path="/sales/:id" render={(props) => (<ForSale {...props}{...prop} />)}/>
 
-									<Route path="/profile" render={(props) => (<Profile {...props}{...prop}/>)}/>
+									
 									{localStorage.role ?
 										<Route path="/admin-history" render={(props) => (<AdminHistory {...props}{...prop}/>)}/> : null}
 									{localStorage.role ?
@@ -201,7 +194,6 @@ const BasicRouter = (prop) => (
 							{localStorage.user ?
 								<Route path="/history" render={(props) => (<History {...props}{...prop}/>)}/> : null}
 							{localStorage.user ? <Route path="/docs/:page" render={(props) => (<Docs {...props}{...prop}/>)}/> : null}
-							{localStorage.user ? <Route path="/docsNew" render={(props) => (<DocumentsModule/>)}/> : null}
 							{localStorage.agent ?
 								<Route path="/docsAgent/:page" render={(props) => (<DocsAgent {...props}{...prop}/>)}/> : null}
 
@@ -227,8 +219,6 @@ const BasicRouter = (prop) => (
 							
 							{localStorage.user ?
 								<Route path="/docsHistory/:page" render={(props) => (<DocsHistory {...props}{...prop}/>)}/> : null}
-							{localStorage.user ?
-								<Route path="/docsKarteset/:page" render={(props) => (<CartessetPage {...props}{...prop}/>)}/> : null}
 
 
 									{localStorage.user ? <Route path="/shoppinglist"
@@ -249,8 +239,8 @@ const BasicRouter = (prop) => (
 										<Route path="/agents" render={(props) => (<AdminAgent {...props}{...prop}/>)}/> : null}
 									<Route path="/chat" render={(props) => (<Chat {...props}{...prop}/>)}/>
 									{localStorage.role ?
-										<Route path="/clients" render={(props) => (<Clients {...props}{...prop}/>)}/> : null}
-						{localStorage.agent ? <Route path="/ClientsAgent/:page" render={(props) => (<ClientsAgent {...props}{...prop}/>)} /> : null}
+									<Route path="/clients" render={(props) => (<Clients {...props}{...prop}/>)}/> : null}
+									{localStorage.agent ? <Route path="/ClientsAgent/:page" render={(props) => (<ClientsAgent {...props}{...prop}/>)} /> : null}
 
 
 
@@ -272,6 +262,20 @@ const BasicRouter = (prop) => (
 							{/*
 		QuestionFormListComplete
 		*/}
+
+							{/* FIXED CLIENT  */}
+							{!localStorage.agent  ?
+									<Route path="/" exact render={(props) => (<HomePage key={props.match.params.lang} {...props}{...prop}/>)} />
+									:
+									<Route path="/" exact render={(props) => (<AgentDashboard key={props.match.params.lang} {...props}{...prop}/>)} />
+							}
+							<Route path="/catalog/:lvl1/:lvl2/:lvl3" render={(props) => (<Catalog {...props}{...prop}/>)}/>
+							<Route path="/cart" render={(props) => (<CartPage {...props}{...prop}/>)}/>
+							{localStorage.user ? <Route path="/docsNew" render={(props) => (<DocumentsModule/>)}/> : null}
+							{localStorage.user ? <Route path="/docsKarteset/:page" render={(props) => (<CartessetPage {...props}{...prop}/>)}/> : null}
+							<Route path="/categoryPage/:lvl1/:lvl2/:lvl3" render={(props) => (<CategoryViewPage {...props}{...prop}/>)}/>
+							<Route path="/profile" render={(props) => (<ProfilePage {...props}{...prop}/>)}/>
+
 							{/* FIXED ADMIN */}
 							<Route path="/category-edit/:parentId/:subId" render={(props) => (<CategoryEdit {...props}{...prop}/>)}/>
 							<Route path="/products-edit/:categoryId" render={(props) => (<ProductsEdit key={props.match.params.id} {...props}{...prop}/>)}/>

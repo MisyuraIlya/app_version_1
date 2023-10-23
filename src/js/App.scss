@@ -111,8 +111,7 @@
 @import '../js/agents/ui/MySelectBoxV2/MySelectBox.styles.scss';
 @import '../js/agents/ui/BigButton/BigButton.styles.scss';
 @import '../js/agents/modules/Objectives/components/EditModal/EditModal.styles.scss';
-
-
+@import '../js/modules/Modals/adminComponents/ClientRightSideBar/ClientRightSideBar.styles.scss';
 
 
 @import 'scss/Mobile.scss';
@@ -3707,3 +3706,4 @@ span.edit {
   border-radius: 5px;
   padding: 5px 20px 5px 20px;
 }
+

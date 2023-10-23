@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SideBar = () => {
+const BreadCrubms = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const SideBar = () => {
     );
 };
 
-export default SideBar;
+export default BreadCrubms;

@@ -10,7 +10,6 @@ import TablePopUp from '../components/TablePopUp/TablePopUp';
 import PayPopUp from '../components/PayPopUp/PayPopUp';
 import AuthPopUp from '../components/AuthPopUp/AuthPopUp';
 import MobileSideBar from '../components/MobileSideBar/MobileSideBar';
-import SideBar from '../components/SideBar/SideBar';
 
 // ADMIN SIDEBARS
 import AdminRightSideBar from '../adminComponents/AdminRightSideBar/AdminRightSideBar';
@@ -45,7 +44,6 @@ const ModalsProvider = ({children}) => {
   const [openSideBar, setOpenSideBar] = useState(false)
   const [adminRightSideBar, setAdminRightSideBar] = useState(false)
   const [clientRightSideBar, setClientRightSideBar] = useState(false)
-
   //ADMINS 
   const [gallery, setGallery] = useState(false)
   const [clientsInfo, setClientsInfo] = useState(false) 
@@ -103,7 +101,9 @@ const ModalsProvider = ({children}) => {
     clientsInfo,
     setClientsInfo,
     clientOptions,
-    setClientOptions
+    setClientOptions,
+    clientRightSideBar,
+    setClientRightSideBar
   };
 
   return (
@@ -119,7 +119,6 @@ const ModalsProvider = ({children}) => {
           <AuthPopUp active={openAuthModal} setActive={setOpenAuthModal}/> 
         }
         <MobileSideBar active={openMobileSideBar} setActive={setOpenMobileSideBar}/>
-        <SideBar active={openSideBar} setActive={setOpenSideBar}/>
         {/* {!loading && */}
           <TablePopUp active={activeTablePopUp} setActive={setActiveTablePopUp}/>       
         {/* } */}

@@ -5,27 +5,26 @@ const GalaxyVideo = () => {
 	let sourceType = window.innerWidth > 1200 ? 'video/mp4' : 'video/webm';
 	return(
 		<div>
-		{/* <div className="pre-showcase" dangerouslySetInnerHTML={{ __html: `
+		<div className="pre-showcase" dangerouslySetInnerHTML={{ __html: `
 		<video
 			id="showcase"
 			preload="preload"
 			loop
-      muted
-      autoplay
-      playsInline
+			muted
+			autoplay
+			playsInline
 			webkit-playsInline
 			x-webkit-airplay="allow"
 			poster="${globalFileServer}poster.jpg"
 			className="video-background">
 			{window.innerWidth > 1200 ?
-				<source src="${globalFileServer + source}" type="video/mp4" /> :
-				<source src="${globalFileServer}video.webm" type="video/webm" />	}
+				<source src="https://digitrade.com.ua/ceremonitea/src/img/video.mp4" type="video/mp4" /> :
+				<source src="https://digitrade.com.ua/ceremonitea/src/img/video.webm" type="video/webm" />	}
 			</video>
 			` }}>
 
 
-		</div> */}
-		<img src={globalFileServer + 'banner.png'} />
+		</div>
 		</div>
 	);
 }

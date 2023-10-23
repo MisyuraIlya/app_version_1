@@ -24,11 +24,12 @@ const RightComponent = () => {
                                     <li>
                                         <div className="img" style={{cursor:'pointer'}}>
                                             <NavLink to={'/'}>
-                                                <img src={globalFileServer + 'logo.png'} alt=""/>
+                                                {/* TODO CHANGE */}
+                                                <img src={'https://digitrade.com.ua/ceremonitea/src/img/logo.png'} alt=""/>
                                             </NavLink>
                                         </div>
                                     </li>
-                                    <li className="about-li-hover">
+                                    <li className="about-li-hover ">
                                         <AgentMenu/>
                                     </li>
                                 </ul>

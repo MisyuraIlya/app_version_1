@@ -1284,9 +1284,10 @@ nav#main {
                     margin: 0 0px;
                     margin-right: 8px;
                     border-radius: 100%;
-                    background: $greyBazar;
+                    // background: $greyBazar;
                     cursor: pointer;
                     .material-symbols-outlined{
+                      border-radius: 50%;
                       padding: 12px;
                       font-size: 30px;
                       color: $almost-black;
@@ -2464,4 +2465,8 @@ nav#cat-nav{
       vertical-align: middle;
     }
   }
+}
+
+.agentBackGround {
+  background: $greyBazar;
 }

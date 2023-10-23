@@ -1,7 +1,7 @@
 import React from 'react';
-import { useAuth } from '../../../../Auth/providers/AuthProvider';
+import { useAuth } from '../../providers/AuthProvider';
 import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
-const profileObj = [
+let profileObj = [
     /*
     {
         Title: 'ראשי',
@@ -121,34 +121,76 @@ const profileObj = [
         notForMisrad:true
     }
 ];
-const AgentMenu = () => {
-    const {isAgent} = useAuth()
+
+const MyProfile = () => {
+    const {user} = useAuth()
     return (
-        <>
-            {true &&
-            <>
-                <div className="img icon">
-                    <span className="material-symbols-outlined agentBackGround">menu</span>
-                </div>
-                <div className="about-cont-main">
-                    <div className="about-sub-cont">
-                        {profileObj?.map((item, key) => {
-                            return (
-                                <div key={key} className="about-row ">
-                                    <NavLink to={item.Link}>
-                                        <span className="material-symbols-outlined ">{item.Img}</span>
-                                        <p>{item.Title}</p>
-                                    </NavLink>
-                                </div>
-                            )
-                        })}
+        <div className="Profilepage-subcont2 flex-container">
+            <div className={"Profile-page-sub col-lg-12"}>
+            <h1>אוזר אישי</h1>
+            <div className={"Profile-page-sub2 flex-container"}>
+                <div className="col-lg-12 flex-container box-cont">
+                    <div className="col-lg-2 col">
+                        <p className="title">{'שם'}</p>
+                        <p className="value">{user?.name}</p>
+                    </div>
+                    <div className="col-lg-2 col">
+                    <p className="title">{'איש קשר'}</p>
+                        <p className="value">{user?.ContactName}</p>
+
+                    </div>
+                    <div className="col-lg-2 col">
+                    <p className="title">{'מייל'}</p>
+                        <p className="value">{user?.mail}</p>
+
+                    </div>
+                    <div className="col-lg-2 col">
+                    <p className="title">{'טלפון'}</p>
+                        <p className="value">{user?.phone}</p>
+
+                    </div>
+                    <div className="col-lg-1 col">
+                    <p className="title">{'עיר'}</p>
+                        <p className="value">{user?.address}</p>
+                    </div>
+                    {user?.Balance &&
+                        <div className="col-lg-1 col">
+                        <p className="title">{'יתרת חוב'}</p>
+                        <p className={parseInt(user?.balance) < parseInt(this.state.userInfo.MaxObligo) ? 'value' : 'value red'}>{this.numberWithCommas(parseInt(this.state.userInfo.Balance))}</p>
+                        </div>
+                    }
+                    {user?.MaxObligo &&
+                        <div className="col-lg-1 col">
+                        <p className="title">{'אובליגו'}</p>
+                        <p className="value">{this.numberWithCommas(parseInt(this.state.userInfo.MaxObligo))}</p>
+                        </div>
+                    }
+                    <div className="col-lg-1 col">
+                        <div className="logOutCont" onClick={()=> this.beforeLogOut()}>
+                        <p>{'התנתק'}</p>
+                        </div>
                     </div>
                 </div>
 
-            </>
-            }
-        </>
+            </div>
+            </div>
+            <div className="Profile-slide-menu-cont col-lg-12 flex-container">
+            {profileObj?.map((item, ind) => {
+                return(
+                    <div key={ind} className="Profile-slide-sub col-lg-4">
+                        <NavLink to={item.Link}>
+                            <div className="Profile-slide-box">
+                                <span className="material-symbols-outlined search-img">{item.Img}</span>
+                                <h2>{item.Title}</h2>
+                            </div>
+                        </NavLink>
+                    </div>
+                )
+            
+            })}
+            </div>
+        </div>
     );
 };
 
-export default AgentMenu;
+export default MyProfile;

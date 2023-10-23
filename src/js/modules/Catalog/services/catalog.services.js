@@ -36,6 +36,16 @@ export const CatalogServices = {
         
     },
 
+    async GetProductsSale()
+    {
+        //TODO implement
+    },
+
+    async GetProductsNew()
+    {
+        //TODO implement
+    },
+
     async GetItemData (catalogNumber) {
         const val = {
             userExId: getCurrentUserId(),
