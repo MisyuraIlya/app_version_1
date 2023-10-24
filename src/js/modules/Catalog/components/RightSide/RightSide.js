@@ -36,7 +36,7 @@ const RightSide = () => {
                       if(categoryLvl1.lvlNumber === 1){
                         return (
                           <div className="lvl-cont" key={index1}>
-                            <NavLink onClick={() => setCurrentPage(1)} to={'/catalog/' + categoryLvl1.id + "/0/0?page=1&itemsPerPage=24"}>
+                            <NavLink  to={'/catalog/' + categoryLvl1.id + "/0/0?page=1&itemsPerPage=24"}>
                               <h3 className={lvl1 == categoryLvl1.id ? 'lvl1 active' : 'lvl1'}>
                                 {categoryLvl1.title}
                               </h3>
@@ -44,14 +44,14 @@ const RightSide = () => {
                             {categoryLvl1?.categories?.map((categoryLvl2, index2) => {
                                 return (
                                   <div key={index2} className={categoryLvl1.id == lvl1 ?"col active" : "col"}>
-                                    <NavLink onClick={() => setCurrentPage(1)} to={'/catalog/' + categoryLvl1.id + "/" + categoryLvl2.id + "/0?page=1&itemsPerPage=24"}>
+                                    <NavLink  to={'/catalog/' + categoryLvl1.id + "/" + categoryLvl2.id + "/0?page=1&itemsPerPage=24"}>
                                       <h3  className={lvl2 ==  categoryLvl2.id ? "active" : null} >{categoryLvl2.title}</h3>
                                     </NavLink>
                                     <ul className={categoryLvl2.id == lvl2 ? "active" : null}>
                                       {categoryLvl2?.categories?.map((categoryLvl3, index3) => {
                                           return (
                                             <li key={index3}>
-                                              <NavLink onClick={() => setCurrentPage(1)} className={lvl3 == categoryLvl3.id ? 'active-a' : null} to={'/catalog/' + categoryLvl1.id + "/" + categoryLvl2.id + "/" + categoryLvl3.id +'?page=1&itemsPerPage=24'}>
+                                              <NavLink className={lvl3 == categoryLvl3.id ? 'active-a' : null} to={'/catalog/' + categoryLvl1.id + "/" + categoryLvl2.id + "/" + categoryLvl3.id +'?page=1&itemsPerPage=24'}>
                                                 { categoryLvl3.title}
                                                 </NavLink>
                                             </li>
