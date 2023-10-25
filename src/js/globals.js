@@ -8,7 +8,7 @@ global.entry = 'https://b2bportal.co.il';
 global.globalServer = 'https://b2bportal.co.il/app/';
 global.globalFileServer = 'http://localhost:8080/media/';
 
-global.api = 'https://digiaws.net/ceremonitea'
+global.api = 'http://localhost:8080'
 
 global.globalSiteName = "";
 global.globalAdminMail = "statosbiz@statos.co";//falkon1@bezeqint.net
