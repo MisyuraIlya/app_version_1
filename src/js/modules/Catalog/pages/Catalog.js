@@ -12,13 +12,14 @@ const Catalog = () => {
     const {lvl1, lvl2, lvl3} = useParams() 
     const asd = useHistory()
     const {location} = useHistory()
-    const {loading, setCatalogParameters, getCatalog,setUrlSearch} = useCatalog()
+    const {loading, setCatalogParameters, getCatalog,setUrlSearch,getAttributes} = useCatalog()
     const {setCart} = useCart()
     useEffect(() => {
         setCatalogParameters(lvl1,lvl2, lvl3, location.search)
         // setUrlSearch(decodeURIComponent(location.search))
         setCart(getProductsLocalStorage())
         getCatalog()
+        getAttributes()
 
     },[
         location.pathname, 

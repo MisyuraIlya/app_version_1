@@ -99,6 +99,21 @@ const useCatalog = create((set, get) => ({
     sortProdSetting: 'שם',
     setSortProdSetting: (value) => (set({sortProdSetting: value})),
 
+    // ATTRIBUTES
+    attributes:[],
+    getAttributes: async () => {
+        try {
+            const response = await CatalogServices.GetAttributes(
+                get().lvl1id,
+                get().lvl2id,
+                get().lvl3id, 
+            )
+            set({attributes:response["hydra:member"]})
+        } catch(e) {
+            console.log('[ERROR] fetch attributes',e)
+        }
+    }
+
 
 
 }))
