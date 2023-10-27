@@ -30,7 +30,8 @@ const Catalog = () => {
             findCategoriesFilter()
             findProductsByValue(lvl1,lvl2, lvl3, location.search)
         }
-        getAttributes()
+        // TODO HANDLE SEARCH VALUE PER SEARCHVALUE
+        getAttributes(searchValue)
  
 
     },[

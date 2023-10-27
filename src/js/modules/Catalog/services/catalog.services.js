@@ -27,9 +27,9 @@ export const CatalogServices = {
     
     },
 
-    async GetAttributes(lvl1, lvl2, lvl3)
+    async GetAttributes(lvl1, lvl2, lvl3,searchValue)
     {
-        const response = await axios.get(global.api + `/api/attribute/${lvl1}/${lvl2}/${lvl3}`)
+        const response = await axios.get(global.api + `/api/attribute/${lvl1}/${lvl2}/${lvl3}?userExtId=${getClientExtId()}&search=${searchValue}`)
         return response.data
     },
 

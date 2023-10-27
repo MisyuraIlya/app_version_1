@@ -99,12 +99,13 @@ const useCatalog = create((set, get) => ({
 
     // ATTRIBUTES
     attributes:[],
-    getAttributes: async () => {
+    getAttributes: async (searchValue) => {
         try {
             const response = await CatalogServices.GetAttributes(
                 get().lvl1id,
                 get().lvl2id,
                 get().lvl3id, 
+                searchValue
             )
             set({attributes:response["hydra:member"]})
         } catch(e) {
