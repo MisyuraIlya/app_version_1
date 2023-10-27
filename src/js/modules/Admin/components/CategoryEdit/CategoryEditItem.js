@@ -5,9 +5,11 @@ import useCategories from '../../../Catalog/store/CategoriesStore';
 import { AdminCatalogService } from '../../services/catalog.service';
 import { useDebounce } from 'use-debounce';
 import { base64ToFile } from '../../../../helpers/base64ToFile';
+import useProductsEditStore from '../../store/ProductsEditStore';
 const CategoryEditItem = ({element}) => {
     const [loading, setLoading] = useState(false)
     const {categories,getCategories,setCategories} = useCategories()
+    const {setLvl1,setLvl2,setLvl3} = useProductsEditStore()
     const [title, setTitle] = useState(element.title)
     const [valueDebounced] = useDebounce(title, 1000);
     const {parentId, subId} = useParams()
@@ -31,7 +33,6 @@ const CategoryEditItem = ({element}) => {
     }
 
     const handleLink = () => {
-        console.log('parentId, subId',parentId, subId)
         if(parentId != '0' && subId == '0') {
             return "/category-edit/" + parentId + "/" + element.id
         } else if(parentId != '0' && subId != '0') {
@@ -75,7 +76,6 @@ const CategoryEditItem = ({element}) => {
                 unsetPreload={() => setLoading(false)}
                 uploadImg={uploadImg}
             />
-            {/* <CropperComponent img={element?.MediaObject?.filePath} chat={true} aspectRatio={16/16}/> */}
             </div>
         </div>
         <div className={"col-lg-1 title"}>

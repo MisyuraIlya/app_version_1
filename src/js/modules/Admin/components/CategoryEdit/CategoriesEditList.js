@@ -7,7 +7,7 @@ import CropperComponent from '../../../../SharedComponents/CropperComponent';
 import { AdminCatalogService } from '../../services/catalog.service';
 import CategoryEditItem from './CategoryEditItem';
 const CategoriesEditList = () => {
-    const {categories,getCategories,setCategories} = useCategories()
+    const {categoriesAll,setCategories} = useCategories()
     const {parentId, subId} = useParams()
     const getListStyle = isDraggingOver => ({
         background: isDraggingOver ? "#e5e5e5" : "#ddd",
@@ -25,7 +25,7 @@ const CategoriesEditList = () => {
         }
 
         const categoriesReorder = reorder(
-            categories.filter((item) => item.lvlNumber === 1),
+            categoriesAll.filter((item) => item.lvlNumber === 1),
             result.source.index,
             result.destination.index
         );
@@ -44,17 +44,16 @@ const CategoriesEditList = () => {
 
     const handleCategries = () => {
         if(parentId == '0') {
-            return categories.filter((filtered) => filtered.lvlNumber === 1)
+            return categoriesAll.filter((filtered) => filtered.lvlNumber === 1)
         } else if(parentId && subId == '0') {
-            const lvl2 = categories.filter((filtered) => filtered?.parent?.id == parentId && filtered.lvlNumber === 2)
+            const lvl2 = categoriesAll.filter((filtered) => filtered?.parent?.id == parentId && filtered.lvlNumber === 2)
             return lvl2
         } else if(parentId && subId) {
-            const lvl3 = categories.filter((filtered) => filtered?.parent?.id == subId && filtered.lvlNumber === 3)
+            const lvl3 = categoriesAll.filter((filtered) => filtered?.parent?.id == subId && filtered.lvlNumber === 3)
 
             return lvl3
         }
     }
-
 
     return (
         <div className="items">

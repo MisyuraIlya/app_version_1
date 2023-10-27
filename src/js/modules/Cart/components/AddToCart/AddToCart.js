@@ -49,8 +49,8 @@ const AddToCart = ({item}) => {
         {parseInt(item.stock) !== 0 ?
         <div className="product-page barcode-pop">
             <div className="wrapp flex-container" onClick={!isInCart ? () =>  addToCartFunc() : null}>
-                <div className="col-lg-4 fx-btn" onClick={() => increaseCartFunc()}>
-                    <img src={globalFileServer + 'icons/plus-clean.svg'}/>
+                <div className="col-lg-4 fx-btn MyCenetred" onClick={() => increaseCartFunc()}>
+                    <span class="material-symbols-outlined" style={{color:'white'}}>add</span>
                 </div>
                 {isInCart ?
                     <Fragment>
@@ -63,10 +63,8 @@ const AddToCart = ({item}) => {
                         onClick={() => selectInput(find)}
                         />
                     </div>
-                    <div className="col-lg-4 fx-btn" onClick={isInCart && Quantity> 1 ? () => decreaseCart(item.sku) : () => deleteFromCart(item.sku)}>
-                        <img
-                        src={globalFileServer + 'icons/cart_minus.svg'}
-                        />
+                    <div className="col-lg-4 fx-btn MyCenetred" onClick={isInCart && Quantity> 1 ? () => decreaseCart(item.sku) : () => deleteFromCart(item.sku)}>
+                        <span class="material-symbols-outlined" style={{color:'white'}}>remove</span>
                     </div>
                     </Fragment>
                 :

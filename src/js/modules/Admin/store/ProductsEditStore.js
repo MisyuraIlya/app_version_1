@@ -6,9 +6,15 @@ const useProductsEditStore = create((set, get) => ({
     products:[],
     setProducts:(arr) => set({products:arr}),
     currentCategoryId:0,
+    lvl1:0,
+    lvl2:0,
+    lvl3:0,
+    setLvl1:(lvl1) => set({lvl1:lvl1}),
+    setLvl2:(lvl2) => set({lvl2}),
+    setLvl3:(lvl3) => set({lvl3}),
     setCurrentCategoryId:(value) => set({currentCategoryId:value}),
-    getProducts: async (categoryId) => {
-        const response = await AdminProductService.GetProducts(categoryId)
+    getProducts: async () => {
+        const response = await AdminProductService.GetProducts(get().lvl1,get().lvl2,get().lvl3)
         set({products:response["hydra:member"]})
     },
     selectedProduct:null,

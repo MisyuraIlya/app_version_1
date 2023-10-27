@@ -47,8 +47,8 @@ const AddToCartCatalog = ({item}) => {
                 {isInCart ?
                     <Fragment>
                         <div className="col-lg-12 flex-container add-to-cont-after">
-                            <div className="col-lg-4 fx-btn" onClick={() => increaseCartFunc()}>
-                                <img src={globalFileServer + 'icons/plus-clean.svg'}/>
+                            <div className="col-lg-4 fx-btn MyCenetred" onClick={() => increaseCartFunc()}>
+                                <span class="material-symbols-outlined">add</span>
                             </div>
                             <div className="col-lg-4 input-cont">
                                 <input id={"input_"+item.sku}
@@ -59,10 +59,8 @@ const AddToCartCatalog = ({item}) => {
                                 onClick={() => selectInput(find)}
                                 />
                             </div>
-                            <div className="col-lg-4 fx-btn" onClick={isInCart && Quantity> 1 ? () => decreaseCart(item.sku) : () => deleteFromCart(item.sku)}>
-                                <img
-                                src={globalFileServer + 'icons/cart_minus.svg'}
-                                />
+                            <div className="col-lg-4 fx-btn MyCenetred" onClick={isInCart && Quantity> 1 ? () => decreaseCart(item.sku) : () => deleteFromCart(item.sku)}>
+                                <span class="material-symbols-outlined">remove</span>
                             </div>
                         </div>
                     </Fragment>

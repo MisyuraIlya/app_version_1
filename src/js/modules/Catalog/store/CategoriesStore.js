@@ -3,6 +3,7 @@ import { CatalogServices } from '../services/catalog.services';
 
 const useCategories = create((set, get) => ({
     loading: false,
+    categoriesAll:[],
     categories:[],
     categoriesLvl1:[],
     categoriesLvl2:[],
@@ -22,6 +23,20 @@ const useCategories = create((set, get) => ({
             set({loading: false})
         }
 
+    },
+
+    getAllCategories: async () => {
+        try {
+            set({loading: true})
+            const response = await CatalogServices.GetCategoriesAll()
+            set({
+                categoriesAll: response,
+            })
+        } catch(e) {
+            console.log('[ERROR]',e)
+        } finally {
+            set({loading: false})
+        }
     }
 
 }))

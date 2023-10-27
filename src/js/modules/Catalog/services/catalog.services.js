@@ -91,6 +91,15 @@ export const CatalogServices = {
         return response.data
     },
 
+    async GetCategoriesAll() {
+        const response = await axios.get(global.api + `/api/categories`,{
+            headers: {
+                'Accept': 'application/json',
+              }
+        })
+        return response.data
+    },
+
     async GetCategoriesFilter(searchValue) {
         const response = await axios.get(global.api + `/api/categoriesApp?userExtId=${getClientExtId()}&search=${searchValue}`,{
             headers: {

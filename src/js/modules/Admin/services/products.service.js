@@ -31,8 +31,8 @@ export const AdminProductService = {
         return response.data
     },
 
-    async GetProducts(categoryId) {
-        const response = await axios.get(global.api + `/api/catalog/lvl1/lvl2/${categoryId}?itemsPerPage=10000`);
+    async GetProducts(lvl1,lvl2,lvl3) {
+        const response = await axios.get(global.api + `/api/catalog/${lvl1}/${lvl2}/${lvl3}?itemsPerPage=10000`);
         return response.data
     },
 }

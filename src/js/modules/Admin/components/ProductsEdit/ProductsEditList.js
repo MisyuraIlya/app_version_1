@@ -28,7 +28,7 @@ const ProductsEditList = () => {
     }
 
     useEffect(() => {
-        getProducts(categoryId)
+        getProducts()
         setCurrentCategoryId(categoryId)
     },[])
     
