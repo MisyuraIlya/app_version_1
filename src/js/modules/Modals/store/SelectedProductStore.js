@@ -34,7 +34,6 @@ const useSelectedProduct = create((set, get) => ({
         set({loading:true,isFetchOnline:true})
         try {
             const data = await CatalogServices.GetItemData(get().selectedProd?.CatalogNumber);
-            console.log('data',data)
             if(data.status === 'success'){
                 let prod = get().selectedProd
                 prod.Price = data.data.price

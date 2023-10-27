@@ -7,19 +7,31 @@ import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min
 import { getProductsLocalStorage } from '../../Cart/helpers/localstorage';
 import useCart from '../../Cart/store/CartStore';
 import { BallClipRotate } from 'react-pure-loaders';
+import useSearchStore from '../store/SearchStore';
 
 const Catalog = () => {
-    const {lvl1, lvl2, lvl3} = useParams() 
+    const {documentType, lvl1, lvl2, lvl3} = useParams() 
     const asd = useHistory()
     const {location} = useHistory()
     const {loading, setCatalogParameters, getCatalog,setUrlSearch,getAttributes} = useCatalog()
+    const {loading:filterLoading, findCategoriesFilter,setSavedValue,searchValue,savedValue,setCategoriesFilter,clearPaginationSearch,findProductsByValue} = useSearchStore()
     const {setCart} = useCart()
+    const isSearchDocument = documentType === 'search'
     useEffect(() => {
         setCatalogParameters(lvl1,lvl2, lvl3, location.search)
-        // setUrlSearch(decodeURIComponent(location.search))
         setCart(getProductsLocalStorage())
-        getCatalog()
+        if(!isSearchDocument) {
+            setSavedValue('')
+            setCategoriesFilter([])
+            clearPaginationSearch()
+            getCatalog()
+        } 
+        if(isSearchDocument) {
+            findCategoriesFilter()
+            findProductsByValue(lvl1,lvl2, lvl3, location.search)
+        }
         getAttributes()
+ 
 
     },[
         location.pathname, 
@@ -29,7 +41,7 @@ const Catalog = () => {
         <div className='page-container category-page'>
             <div className='category-page-subcont'>
                 <div className='category-page-subcont2 flex-container'>
-                    {loading ?
+                    {(loading || filterLoading)  ?
 						<div className="spinner-wrapper">
 							<div className="spinner">
 								<div className="bounce1"></div>

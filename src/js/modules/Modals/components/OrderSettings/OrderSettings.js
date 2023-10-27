@@ -10,7 +10,6 @@ const OrderSettings = ({active, setActive}) => {
     const [value, onChange] = useState(new Date());
     const {setOpenCartSettings} = useModals()
     const handleClick = (data) => {
-        console.log(data)
     }
     
     return (

@@ -21,8 +21,6 @@ const useCatalog = create((set, get) => ({
         })
     },
 
-    // FILTERS 
-
     activeProdsPerPage: false,
     setActiveProdsPerPage: (value) => (set({activeProdsPerPage: value})),
     activeSortPerPage:false,
@@ -114,6 +112,7 @@ const useCatalog = create((set, get) => ({
         }
     }
 
+    
 
 
 }))

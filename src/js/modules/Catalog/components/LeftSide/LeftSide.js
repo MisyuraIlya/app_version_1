@@ -6,6 +6,7 @@ import FiltersBlock from './components/FiltersBlock/FiltersBlock';
 import Pagination from '../../../../SharedComponents/Pagination';
 import {Helmet} from "react-helmet";
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import useSearchStore from '../../store/SearchStore';
 
 const LeftSide = () => {
     const {
@@ -18,9 +19,16 @@ const LeftSide = () => {
         nextPage,
         previousPage
     } = useCatalog()
-    const {lvl1} = useParams()
+    const {
+        totalPages: filterTotalPages, 
+        page: filterPage, 
+        lastPage: filterLastPage, 
+        nextPage: filterNextPage,
+        previousPage: filterPreviousPage
+    } = useSearchStore()
+    const {documentType,lvl1} = useParams()
     const currentCategory = (categoriesLvl1?.filter((item) => item.Id == lvl1))[0]
-
+    const isSearchDocument = documentType === 'search'
     return (
     <div className={"category-page-sub2"}>
         {currentCategory?.Id &&
@@ -41,7 +49,13 @@ const LeftSide = () => {
             </div>
         </div>
         <ProductList/>
-        <Pagination totalPages={totalPages} page={page} lastPage={lastPage} nextPage={nextPage} previousPage={previousPage}/>
+        <Pagination 
+            totalPages={(filterTotalPages && isSearchDocument) ? filterTotalPages :totalPages} 
+            page={(filterPage && isSearchDocument)? filterPage :page} 
+            lastPage={(filterLastPage && isSearchDocument) ? filterLastPage : lastPage} 
+            nextPage={(filterNextPage && isSearchDocument) ? filterNextPage : nextPage} 
+            previousPage={(previousPage && isSearchDocument)? previousPage : previousPage}
+        />
     </div>
     );
 };

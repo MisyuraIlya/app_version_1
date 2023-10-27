@@ -126,7 +126,6 @@ import OrderItemPage from "./modules/Admin/pages/OrderItemPage";
 import HomePage from "./modules/Home/pages/HomePage";
 import CategoryViewPage from "./modules/Catalog/pages/CategoryViewPage";
 import ProfilePage from "./modules/Auth/pages/ProfilePage";
-import CatalogSearchPage from "./modules/Catalog/pages/CatalogSearchPage";
 require('./globals.js');
 
 if (module.hot) {
@@ -270,8 +269,8 @@ const BasicRouter = (prop) => (
 									:
 									<Route path="/" exact render={(props) => (<AgentDashboard key={props.match.params.lang} {...props}{...prop}/>)} />
 							}
-							<Route path="/catalog/:lvl1/:lvl2/:lvl3" render={(props) => (<Catalog {...props}{...prop}/>)}/>
-							<Route path="/catalogSearch" render={(props) => (<CatalogSearchPage {...props}{...prop}/>)}/>
+							<Route path="/:documentType/:lvl1/:lvl2/:lvl3" render={(props) => (<Catalog {...props}{...prop}/>)}/>
+							{/* <Route path="/catalogSearch/:lvl1/:lvl2/:lvl3" render={(props) => (<CatalogSearchPage {...props}{...prop}/>)}/> */}
 							<Route path="/cart" render={(props) => (<CartPage {...props}{...prop}/>)}/>
 							{localStorage.user ? <Route path="/docsNew" render={(props) => (<DocumentsModule/>)}/> : null}
 							{localStorage.user ? <Route path="/docsKarteset/:page" render={(props) => (<CartessetPage {...props}{...prop}/>)}/> : null}

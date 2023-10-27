@@ -38,9 +38,7 @@ const NotificationsProvider = ({children}) => {
     const [alreadyRegistered, setAlreadyRegistered] = useState(false)
     const [appId, setAppId] = useState('')
     const onHandleTag = (tag) => {
-      console.log('Tagging')
       OneSignal.sendTag('tech',tag).then(() => {
-        console.log('Tagged')
       })
     }
     

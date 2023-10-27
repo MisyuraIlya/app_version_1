@@ -57,3 +57,19 @@ export const getCurrentUserType = () => {
         return null;
     }
 }
+
+
+export const getClientExtId= () => {
+    const tokensData = getPayloadToken()
+    //console.log('tokensData',tokensData)
+    // if(tokensData?.type === 'admin') {
+    //     return tokensData.id
+    // }  else if (tokensData?.type === 'agent') {
+    //     return tokensData.id
+    // } else if(tokensData?.type === 'user') {
+        const userExId = localStorage.user ? JSON.parse(localStorage.user).extId : null
+        return userExId
+    // } else {
+        // return null;
+    // }
+}

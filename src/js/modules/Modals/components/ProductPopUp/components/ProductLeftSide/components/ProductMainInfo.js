@@ -3,7 +3,6 @@ import useSelectedProduct from '../../../../../store/SelectedProductStore';
 
 const ProductMainInfo = () => {
     const {selectedProd} = useSelectedProduct()
-    console.log('selectedProd',selectedProd)
     return (
         <>
         <h2>{selectedProd?.title}</h2>

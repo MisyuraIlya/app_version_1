@@ -3,7 +3,7 @@ import { getCurrentUserId } from "../../Auth/helpers/getCurrentUserId"
 import axios from "axios"
 const point = "new_app/index"
 const classPoint = "Catalog"
-
+import { getClientExtId } from "../../Auth/helpers/getCurrentUserId"
 export const CatalogServices = {
 
     async GetCatalog(lvl1, lvl2, lvl3, searchParams){
@@ -59,21 +59,10 @@ export const CatalogServices = {
         return response
     },
 
-    async ProductSearch(searchValue){
-        let val = {
-            searchValue,
-            userExtId:getCurrentUserId(),
-        }
-        const valAjax = {
-            point,
-            classPoint,
-            funcName: 'ProductSearch',
-            val:val
-          };
-
-          const response = await ajax(valAjax)
-          return response
-    },
+    // async ProductSearch(searchValue){
+    //     const response = await axios.get(global.api + `/api/catalog/0/0/0?search=${searchValue}`)
+    //     return response.data
+    // },
 
     async PurchaseHistoryPerUser(userExId, catalogNumber) {
         const val = {
@@ -94,7 +83,16 @@ export const CatalogServices = {
     //NEW API
 
     async GetCategories() {
-        const response = await axios.get(global.api + '/api/categories',{
+        const response = await axios.get(global.api + `/api/categoriesApp?userExtId=${getClientExtId()}`,{
+            headers: {
+                'Accept': 'application/json',
+              }
+        })
+        return response.data
+    },
+
+    async GetCategoriesFilter(searchValue) {
+        const response = await axios.get(global.api + `/api/categoriesApp?userExtId=${getClientExtId()}&search=${searchValue}`,{
             headers: {
                 'Accept': 'application/json',
               }
