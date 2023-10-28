@@ -13,7 +13,9 @@ const LoginForm = () => {
 
     return (
         <form className="login" onSubmit={handleSubmit(handleLogin)}>
-            <img className="user_icon" src={globalFileServer + 'user_icon.png'} />
+            <div>
+                <span className="material-symbols-outlined" style={{fontSize:'50px'}}>person</span>
+            </div>
             <h3>{"כניסה"}</h3>
             <div className="input-cont">
                 <p>{"מייל"}</p>

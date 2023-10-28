@@ -50,7 +50,7 @@ const AddToCart = ({item}) => {
         <div className="product-page barcode-pop">
             <div className="wrapp flex-container" onClick={!isInCart ? () =>  addToCartFunc() : null}>
                 <div className="col-lg-4 fx-btn MyCenetred" onClick={() => increaseCartFunc()}>
-                    <span class="material-symbols-outlined" style={{color:'white'}}>add</span>
+                    <span className="material-symbols-outlined" style={{color:'white'}}>add</span>
                 </div>
                 {isInCart ?
                     <Fragment>
@@ -64,7 +64,7 @@ const AddToCart = ({item}) => {
                         />
                     </div>
                     <div className="col-lg-4 fx-btn MyCenetred" onClick={isInCart && Quantity> 1 ? () => decreaseCart(item.sku) : () => deleteFromCart(item.sku)}>
-                        <span class="material-symbols-outlined" style={{color:'white'}}>remove</span>
+                        <span className="material-symbols-outlined" style={{color:'white'}}>remove</span>
                     </div>
                     </Fragment>
                 :

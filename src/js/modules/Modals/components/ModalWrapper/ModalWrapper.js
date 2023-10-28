@@ -13,7 +13,7 @@ const ModalWrapper = ({active,setActive, children, height, width}) => {
                     <div className={`modal-wrapper animated ${active === 'openCartSettings' ? 'shopCartSpecialSet' : ''}`} style={{width:width+'%',height:height+'%'}}>  
                         <div className="close-cont">
                             <div onClick={() => setActive(!active)} className="close">
-                                <span class="material-symbols-outlined">close</span>
+                                <span className="material-symbols-outlined">close</span>
                             </div>
                         </div>
                         {children}

@@ -38,9 +38,9 @@ const ClientOptions = ({active, setActive}) => {
                     <div className='buttonAdminIcon flex-container MyCenetred' onClick={() => handleBlocked()}>
                         <div className="col-lg-4 MyCenetred">
                             {selectedClient?.isBlocked ?
-                                <span class="material-symbols-outlined">person_off</span>
+                                <span className="material-symbols-outlined">person_off</span>
                             :
-                                <span class="material-symbols-outlined">person</span>
+                                <span className="material-symbols-outlined">person</span>
                             }
                         </div>
                         <div className="col-lg-8">
@@ -55,7 +55,7 @@ const ClientOptions = ({active, setActive}) => {
                 <div className="col-lg-6" >
                     <div className='buttonAdminIcon flex-container MyCenetred' onClick={() => handleNewPassword()}>
                         <div className="col-lg-4 MyCenetred">
-                            <span class="material-symbols-outlined">lock_open</span>
+                            <span className="material-symbols-outlined">lock_open</span>
                         </div>
                         <div className="col-lg-8">
                             <p>איפוס לקוח</p>
@@ -72,7 +72,7 @@ const ClientOptions = ({active, setActive}) => {
                             </div>
                             <div className="close-popup col-lg-2">
                                 <div onClick={() => this.setState({generatePassword: null})}>
-                                    <span class="material-symbols-outlined googleIconHover">password</span>
+                                    <span className="material-symbols-outlined googleIconHover">password</span>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +99,7 @@ const ClientOptions = ({active, setActive}) => {
                             </div>
                             <div className="close-popup col-lg-2">
                                 <div  onClick={() => this.setState({setupUser: null})}>
-                                    <span class="material-symbols-outlined googleIconHover">settings_accessibility</span>
+                                    <span className="material-symbols-outlined googleIconHover">settings_accessibility</span>
                                 </div>
                             </div>
                         </div>

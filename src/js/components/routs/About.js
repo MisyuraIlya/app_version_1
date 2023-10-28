@@ -15,23 +15,23 @@ const Heb1 = `
 <p>
 החברה מתמקדת בשלושה פלחי שוק עיקריים:
 </p>
-<p class="bullet">
+<p className="bullet">
 התחום ההומאני
 </p>
-<p class="bullet">
+<p className="bullet">
 התחום הווטרינרי
 </p>
-<p class="bullet">
+<p className="bullet">
 תיירות מרפא
 </p>
 
 `;
 
 const Heb2 = `
-<p class="bullet">
+<p className="bullet">
 מייצגים מעל 60 יצרני תרופות בעולם
 </p>
-<p class="bullet">
+<p className="bullet">
 עשרות תרופות רשומות ועשרות בהליכי רישום
 </p>
 `;
@@ -45,12 +45,12 @@ const Heb3 = `
 `;
 
 const Heb4= `
-<p class="bullet">
+<p className="bullet">
 כמעט כל המוצרים מיובאים ישירות מהיצרנים
 בעולם כדי להבטיח מחירים מעולים ואיכות
 ללא פשרה.
 </p>
-<p class="bullet">
+<p className="bullet">
 שיווק, אכסון והפצה - הכל תחת קורת גג אחת
 כדי שתוכלו להנות מהמחירים הטובים בארץ
 וללא דמי תיווך.

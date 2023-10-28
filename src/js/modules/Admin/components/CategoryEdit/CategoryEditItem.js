@@ -53,11 +53,11 @@ const CategoryEditItem = ({element}) => {
     <div className="flex-container">
         <div className="col-lg-1 enter MyCenetred">
         <NavLink to={handleLink()} >
-            <span class="material-symbols-outlined googleIconHover">move_item</span>
+            <span className="material-symbols-outlined googleIconHover">move_item</span>
         </NavLink>
         </div>
         <div className="col-lg-1 sort MyCenetred">
-            <span class="material-symbols-outlined">drag_indicator</span>
+            <span className="material-symbols-outlined">drag_indicator</span>
         </div>
         <div className="col-lg-2 for-img">
             <div
@@ -93,11 +93,11 @@ const CategoryEditItem = ({element}) => {
         <div className="col-lg-1 status">
             {!element.isPublished ?
                 <div onClick={() => unpublishHandle(element.id,true)} className="input active">
-                    <span class="material-symbols-outlined" style={{color:'white',height:'100%',width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>done</span>
+                    <span className="material-symbols-outlined" style={{color:'white',height:'100%',width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>done</span>
                 </div>
             :
             <div onClick={() => unpublishHandle(element.id,false)} className="input MyCentered">
-                <span class="material-symbols-outlined" style={{color:'white',height:'100%',width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>close</span>
+                <span className="material-symbols-outlined" style={{color:'white',height:'100%',width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>close</span>
             </div>
             }
         </div>

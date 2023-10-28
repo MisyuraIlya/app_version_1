@@ -6,7 +6,7 @@ const VideoSection = () => {
     <section id="page1-my" className="section entry-section">
         <GalaxyVideo /> 
         <div className="scroll-down-cont">
-            <span class="material-symbols-outlined">mouse</span>
+            <span className="material-symbols-outlined">mouse</span>
         </div>
         <div className={true? "showcase animated fadeInDown" : "showcase"}>
             <h1 className="h1-2">{'חליטות תה מיוחדות ומוצרי ומארזי חליטות תה מהודרים לקהל הפרטי והעסקי'}</h1>

@@ -18,7 +18,9 @@ const NewB2bForm = () => {
 
     return (
         <form className="connect-b2b-form" onSubmit={handleSubmit(onSubmit)}>
-            {/* <img className="user_icon" src={globalFileServer + 'user_icon.png'} /> */}
+            <div>
+                <span className="material-symbols-outlined" style={{fontSize:'50px'}}>person</span>
+            </div>
             <h3>{"הרשמה לקוח חדש"}</h3>
             <AuthInput
                 title={'שם העסק'}

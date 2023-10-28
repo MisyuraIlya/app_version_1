@@ -127,7 +127,7 @@ const AdminRightSideBar = ({active, setActive}) => {
                     return(
                         <li key={index}>
                             <NavLink to={element.Link}>
-                                <span class="material-symbols-outlined googleIconHover" style={{fontSize:'40px'}}>{element.Img}</span>
+                                <span className="material-symbols-outlined googleIconHover" style={{fontSize:'40px'}}>{element.Img}</span>
                                 <span>{element.Title}</span>
                             </NavLink>
                         </li>

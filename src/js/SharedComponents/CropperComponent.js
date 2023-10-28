@@ -53,7 +53,7 @@ const CropperComponent = ({img, chat, appId, aspectRatio}) => {
                         {!appId ?
                         <div>
                             <li>
-                                <span class="material-symbols-outlined" style={{width:'100%',height:'100%', fontSize:'55px'}}>add_circle</span>
+                                <span className="material-symbols-outlined" style={{width:'100%',height:'100%', fontSize:'55px'}}>add_circle</span>
                             </li>
                             <li className="upload">
                                 <input id="upload-file" type="file" className="upload" 

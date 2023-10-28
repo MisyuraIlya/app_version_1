@@ -17,7 +17,9 @@ const ValidationForm = () => {
     return (
         <form className="register" onSubmit={handleSubmit(handleLogin)}>
             <div className="connect-b2b-form">
-                <img className="user_icon" src={globalFileServer + 'user_icon.png'} />
+                <div>
+                    <span className="material-symbols-outlined" style={{fontSize:'50px'}}>person</span>
+                </div>
                 <h3>{"הרשמה"}</h3>
 
                 <div className="input-cont">

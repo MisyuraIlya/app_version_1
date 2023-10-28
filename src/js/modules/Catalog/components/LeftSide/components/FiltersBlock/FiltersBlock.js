@@ -150,10 +150,10 @@ const FiltersBlock = () => {
           <div className="block check-box-sub-cont check-row view-main">
             <p>{'תצוגה:'}</p>
             <div className={!listView ? "view-img-cont actice" : "view-img-cont  not-active"} onClick={()=> setListView(false)}>
-              <span class="material-symbols-outlined googleIconHover" style={{fontSize:'30px'}}>grid_view</span>
+              <span className="material-symbols-outlined googleIconHover" style={{fontSize:'30px'}}>grid_view</span>
             </div>
             <div className={listView ? "view-img-cont actice" : "view-img-cont not-active"} onClick={()=> setListView(true)}>
-              <span class="material-symbols-outlined googleIconHover" style={{fontSize:'30px'}}>list</span>
+              <span className="material-symbols-outlined googleIconHover" style={{fontSize:'30px'}}>list</span>
             </div>
           </div>
         </div>

@@ -67,7 +67,6 @@ const CartList = () => {
                                         <th className="col-cont">
                                             <img className="img"
                                                 src={element.product?.ImgPath ? element.product?.ImgPath : globalFileServer + 'products/' + element?.product?.Img }
-                                                onError={(e) => e.target.src = globalFileServer + 'placeholder.jpg'}
                                                 onClick={() => selectProduct(element.SelectedProduct)} 
                                             />
                                         </th>

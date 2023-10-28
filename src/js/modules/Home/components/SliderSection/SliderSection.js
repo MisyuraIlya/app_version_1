@@ -83,7 +83,7 @@ const SliderSection = ({title, array, toShow = 5, column = 1}) => {
                         onClick={goPrev}
                         data-disabled={activeIndex == 0 ? true : false}
                     >
-                    <span class="material-symbols-outlined">arrow_forward_ios</span>
+                    <span className="material-symbols-outlined">arrow_forward_ios</span>
                     </button>
                     <button
                         className="swiper-nav next"
@@ -92,7 +92,7 @@ const SliderSection = ({title, array, toShow = 5, column = 1}) => {
                             activeIndex == array.length - (toShow * column) - 2 ? true : false
                         }
                     >
-                        <span class="material-symbols-outlined">arrow_back_ios</span>
+                        <span className="material-symbols-outlined">arrow_back_ios</span>
                     </button>
                 </div>
                 )}

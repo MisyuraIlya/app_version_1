@@ -52,7 +52,7 @@ const ProductsEditItem = ({element, index}) => {
                 >
                 <div className="flex-container">
                     <div className="col-lg-1 sort MyCenetred">
-                        <span class="material-symbols-outlined">drag_indicator</span>
+                        <span className="material-symbols-outlined">drag_indicator</span>
                     </div>
                     <div className="col-lg-1 for-img">
                         <div className={element?.imagePath?.imagePath ? "img-load active" : "img-load"}>
@@ -70,7 +70,7 @@ const ProductsEditItem = ({element, index}) => {
                         </div>
                     </div>
                     <div className="col-lg-1 MyCenetred" style={{cursor:'pointer'}} onClick={() => {setGallery(true);setSelectedProduct(element)}}>
-                        <span class="material-symbols-outlined">imagesmode</span>
+                        <span className="material-symbols-outlined">imagesmode</span>
                     </div>
                     <div className="col-lg-3 title">
                         <p>{element?.title}</p>
@@ -92,11 +92,11 @@ const ProductsEditItem = ({element, index}) => {
                             <div className="col-lg-3 status">
                                 {!element?.isPublished ?
                                     <div onClick={(e) => unpublishHandle(element.id, true)} className="input active">
-                                        <span class="material-symbols-outlined" style={{color:'white',height:'100%',width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>done</span>
+                                        <span className="material-symbols-outlined" style={{color:'white',height:'100%',width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>done</span>
                                     </div>
                                 :
                                 <div onClick={(e) => unpublishHandle(element.id, false)} className="input">
-                                    <span class="material-symbols-outlined" style={{color:'white',height:'100%',width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>close</span>
+                                    <span className="material-symbols-outlined" style={{color:'white',height:'100%',width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>close</span>
                                 </div>
                                 }
                             </div>

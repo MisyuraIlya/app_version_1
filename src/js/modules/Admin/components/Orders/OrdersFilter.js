@@ -19,7 +19,7 @@ const OrdersFilter = () => {
                         <div className="open-calendar">
                             <p className="inline-cls">מתאריך</p>
                             <button className="inline-cls" onClick={() => setType('from')}>
-                                    <span class="material-symbols-outlined googleHoverIcon" style={{fontSize:'30px'}}>calendar_month</span>
+                                    <span className="material-symbols-outlined googleHoverIcon" style={{fontSize:'30px'}}>calendar_month</span>
                                     {moment(dateFrom).format('DD/MM/YYYY')}
                             </button>
                         </div>
@@ -28,7 +28,7 @@ const OrdersFilter = () => {
                         <div className="open-calendar">
                             <p className="inline-cls">לתאריך</p>
                             <button className="inline-cls" onClick={() => setType('to')}>
-                                <span class="material-symbols-outlined googleHoverIcon" style={{fontSize:'30px'}}>calendar_month</span>
+                                <span className="material-symbols-outlined googleHoverIcon" style={{fontSize:'30px'}}>calendar_month</span>
                                 {moment(dateTo).format('DD/MM/YYYY')}
                             </button>
                         </div>

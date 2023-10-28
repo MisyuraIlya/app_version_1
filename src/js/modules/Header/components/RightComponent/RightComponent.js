@@ -13,7 +13,7 @@ const RightComponent = () => {
             <nav className={openSideBar ? "header-right-cont-main-bigRes opened" : "header-right-cont-main-bigRes closed"}>
                 {isAdmin &&
                     <div onClick={() => setAdminRightSideBar(!adminRightSideBar)} className="menu-new">
-                        <span class="material-symbols-outlined googleIconHover" style={{fontSize:'30px'}}>widgets</span>
+                        <span className="material-symbols-outlined googleIconHover" style={{fontSize:'30px'}}>widgets</span>
                     </div>
                 }
                 <div className="header-right-cont">

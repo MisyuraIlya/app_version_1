@@ -5,7 +5,7 @@ import React,{ createContext, useState, useContext, useEffect } from 'react';
 import { ajax } from '../../../helpers/ajaxFunc';
 import { useHistory } from 'react-router-dom';
 import { AuthService } from '../services/auth.service';
-import { getRefreshToken, getUserFromStorage, removeFromStorage, saveToStorage, saveTokensStorage, updateAccessToken } from '../helpers/auth.helper';
+import { getRefreshToken, getRole, getUserFromStorage, removeFromStorage, saveToStorage, saveTokensStorage, updateAccessToken } from '../helpers/auth.helper';
 import { onErrorAlert, onSuccessAlert } from '../../../agents/utils/sweetAlert';
 import { getPayloadToken } from '../helpers/auth.helper';
 // Defines
@@ -28,17 +28,18 @@ const AuthProvider = (props) => {
   const userType = getUserFromStorage()?.Type;
   const isUserBlocked = getUserFromStorage()?.Blocked;
   const user = getUserFromStorage();
-  const isAdmin = false
-  const isAgent = getPayloadToken()?.type === 'agent'
-  const isSuperAgent = getPayloadToken()?.type === 'agentSuper'
+  const isUser = getRole() === 'USER';
+  const isAdmin = getRole() === 'ADMIN';
+  const isAgent = getRole() === 'AGENT';
+  const isSuperAgent = getRole() === 'SUPER_AGENT';
   // Helpers
   const login = async (username, password) => {
     try {
       setLoading(true)
       const response = await AuthService.login(username, password)
-      console.log('response',response)
       if(response.status === 'success') {
         saveToStorage(response)
+        getRole()
         onSuccessAlert('ברוכים הבאים',response.message)
         setTimeout(() => {
           location.reload();
@@ -114,12 +115,13 @@ const AuthProvider = (props) => {
     try {
       setLoading(true)
       const response = await AuthService.registration(userExId,username, password)
+      console.log('response',response)
       if(response.status === 'success') {
-        login(data.email,data.password)
+        login(username,password)
       } else {
         onErrorAlert('שגיאה', response.message)
       }
-    } catch(e) {
+    } catch(error) {
       console.error('[AuthProvider] error registration', error)
     } finally {
       setLoading(false)
@@ -190,7 +192,8 @@ const AuthProvider = (props) => {
     isAdmin,
     restorePasswordStepOne,
     restorePasswordStepTwo,
-    logOut
+    logOut,
+    isUser
 
   };
 
