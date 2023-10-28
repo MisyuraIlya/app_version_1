@@ -7,6 +7,7 @@ import ForgotPasswordStepOne from './components/ForgotPasswordStepOne';
 import ForgotPasswordStepTwo from './components/ForgotPasswordStepTwo';
 import ValidationForm from './components/ValidationForm';
 import useAuthStore from '../../store/AuthModalStore'
+import NewB2bForm from '../../../Auth/components/NewB2bForm/NewB2bForm';
 const AuthPopUp = ({active, setActive}) => {
     const {action} = useAuthStore()
     const {loading, login,registration,validation} = useAuth()
@@ -42,6 +43,9 @@ const AuthPopUp = ({active, setActive}) => {
                             }
                             {action === 'validation' &&
                                 <ValidationForm/>
+                            }
+                            {action === 'registerNewClient' &&
+                                <NewB2bForm/>
                             }
                         </div>
                     </div>

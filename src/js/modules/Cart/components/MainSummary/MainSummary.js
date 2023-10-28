@@ -36,50 +36,42 @@ const MainSummary = () => {
                 <span className="price hidePrice">{cart.length}</span>
             </li>
             
-            {userType == 1 &&
-                <li>
-                    <span
-                        className="title">{'סה״כ לפני מע״מ'}</span>
-                    <span className="price">{(priceBeforeTax()).toFixed(1)}</span>
-                </li>
-            }
-            {userType == 2 &&
-                <li>
-                    <span className="title">{'סה״כ'}</span>
-                    <span className="price">{(priceBeforeTax()).toFixed(1)}</span>
-                </li>
-            }
+            <li>
+                <span
+                    className="title">{'סה״כ לפני מע״מ'}</span>
+                <span className="price">{(priceBeforeTax()).toFixed(1)}</span>
+            </li>
+            <li>
+                <span className="title">{'סה״כ'}</span>
+                <span className="price">{(priceBeforeTax()).toFixed(1)}</span>
+            </li>
             {calucalteDiscountTotal() !== 0 &&
             <div>
-                {userType == 1 &&
-                    <li className="">
-                        <span className="title">{"הנחה כללית: " + getTotalDiscountPrecet() + "%"}</span>
-                        <span className="price">{calucalteDiscountTotal().toFixed(1)}</span>
-                    </li>
-                }
+                <li className="">
+                    <span className="title">{"הנחה כללית: " + getTotalDiscountPrecet() + "%"}</span>
+                    <span className="price">{calucalteDiscountTotal().toFixed(1)}</span>
+                </li>
             </div>
             }
 
 
-            {userType == 1  && calucalteDiscountTotal() !== 0  &&
+            {calucalteDiscountTotal() !== 0  &&
                 <li>
                     <span className="title">{'סה״כ אחרי הנחה'}</span>
                     <span className="price">{(calculatePriceAfterDiscount()).toFixed(1)}</span>
                 </li>
             }
             
-                <li>
-                    <span className="title">דמי משלוח</span>
-                    <span className="price">{deliveryPrice}</span>
-                </li>
+            <li>
+                <span className="title">דמי משלוח</span>
+                <span className="price">{deliveryPrice}</span>
+            </li>
 
-            {userType == 1 ?
-                <li>
-                    <span className="title">{'מע״מ'}</span>
-                    <span
-                        className="price">{calculateTax().toFixed(1)}</span>
-                </li>
-                : null}
+            <li>
+                <span className="title">{'מע״מ'}</span>
+                <span
+                    className="price">{calculateTax().toFixed(1)}</span>
+            </li>
 
         </ul>
 

@@ -174,13 +174,13 @@ const ProfileMenu = () => {
                 </div>
 
                 <div className="userDet-sub-cont">
-                    { user ? 
+                    { isAgent &&
                         <div className="btn-cont col">
                             <div className="logOutCont agent-actions" onClick={() => closeAndOpenActions()}>
                                 <p>{'פעולות'}</p>
                             </div>
                         </div>
-                    :null}
+                    }
                     <div className="btn-cont col">
                         <div className="logOutCont" onClick={() => beforeLogOut()}>
                             <p>{isAgent ? 'התנתק מלקוח' : 'התנתק'}</p>

@@ -33,6 +33,11 @@ const ValidationForm = () => {
                 <div className="accept">
                     <button type='submit'>{ "בדיקה"}</button>
                 </div>
+                <div className="actions">
+                    <div className="send btn-cont">
+                        <button onClick={() => setAction("registerNewClient")} type='button'>הרשמת לקוח חדש</button>
+                    </div>
+                </div>
             </div>
         </form>
     );

@@ -17,10 +17,10 @@ const Header = () => {
                     <MobileHeader/>
                     <RightComponent/>
                 </div>
-                <div className={true ? "search-li col-lg-4 hide-mob" : "search-li show-mob"}>
+                <div className={true ? "search-li col-lg-5 hide-mob" : "search-li show-mob"}>
                     <CenterComponent/>
                 </div>
-                <div className="actions col-lg-4">
+                <div className="actions col-lg-3">
                     <LeftComponent/>
                 </div>
             </div>

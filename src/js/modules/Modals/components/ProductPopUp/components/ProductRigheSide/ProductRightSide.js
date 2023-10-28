@@ -13,7 +13,6 @@ const ProductRightSide = () => {
             :null}
             <img className="img  col-lg-12" 
                 src={selectedProd.ImgPath ? selectedProd.ImgPath : globalFileServer + 'products/' + selectedProd.Img}
-                onError={(e) => e.target.src = globalFileServer + 'logo.png'}
                 onClick={()=> this.setState({imageModal: this.state.chosenImg})}
             />
             <div className="additional-img-cont col-lg-11">

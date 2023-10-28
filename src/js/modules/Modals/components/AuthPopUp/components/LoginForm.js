@@ -35,6 +35,10 @@ const LoginForm = () => {
                 <p className="new-cust-title">{"טרם נרשמת?"}</p>
                 <p onClick={() => setAction("validation")} className="new-cust-button">{"לחץ כאן להרשמה"}</p>
             </div>
+            <div className="new-cust-cont" style={{marginTop:'0px'}}>
+                <p onClick={() => setAction("registerNewClient")} className="new-cust-button">{"לקוח חדש?"}</p>
+            </div>
+
         </form>
     );
 };

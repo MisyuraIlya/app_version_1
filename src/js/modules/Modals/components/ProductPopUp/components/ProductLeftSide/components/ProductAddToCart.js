@@ -3,32 +3,33 @@ import useSelectedProduct from '../../../../../store/SelectedProductStore';
 import useCart from '../../../../../../Cart/store/CartStore';
 import { getUserFromStorage } from '../../../../../../Auth/helpers/auth.helper';
 import AddToCart from '../../../../../../Cart/components/AddToCart/AddToCart';
+import { useAuth } from '../../../../../../Auth/providers/AuthProvider';
 
 const ProductAddToCart = () => {
     const {selectedProd, isFetchOnline, loading} = useSelectedProduct()
+    const {isUser} = useAuth()
     const {selectedMode, getCartItem, Maam} = useCart()
     const cartItem = getCartItem(selectedProd)
-
     return (
     <div className="flex-container bottom-flex">
         {(!isFetchOnline || !loading) &&
             <>
-        {selectedProd.Price ? (
+        {selectedProd.finalPrice ? (
             <div className="price-cont col-lg-8"></div>
         ) : null}
-
+        
         <div className="add-cont col-lg-4">
-            {selectedProd.Price &&
+            {selectedProd.finalPrice &&
             selectedMode &&
-            (getUserFromStorage()) ? (
+            (isUser) ? (
                 <div className="actions flex-container">
-                    {cartItem?.Id && (
+                    {cartItem?.sku && (
                         <div className="added">
-                            <img src={globalFileServer + 'icons/in_cart.png'} />
+                            <span class="material-symbols-outlined">done</span>
                             <p>{'נוסף לסל'}</p>
                         </div>
                     )}
-                    {parseInt(selectedProd.OnHand) !== 0 ? (
+                    {selectedProd?.stock > 0 ? (
                         <>
                             <div className={cartItem.length ? "add-to-cart" : "add-to-cart not-in-cart"}>
                                 <AddToCart item={selectedProd}/>
@@ -37,24 +38,20 @@ const ProductAddToCart = () => {
                             <div className="sum-cont">
                                 <h3 className="h3-1">{"סה״כ: "}</h3>
                                 {(
-                                    (cartItem.length && (("UnitChosen" in cartItem && (cartItem.UnitChosen === 0 || cartItem.UnitChosen === 2)) || (!("UnitChosen" in cartItem)))) ||
-                                    (cartItem.length === 0)
+                                    (cartItem.length)
                                 ) ? (
                                     <h3 className="h3-2">
-                                        {cartItem?.Id
-                                            ? ((parseFloat(selectedProd.Products.Price)) *
-                                                cartItem.Quantity)
+                                        {cartItem?.sku
+                                            ? ((parseFloat(selectedProd.finalPrice)) *
+                                                cartItem.quantity)
                                                 .toFixed(1)
                                             : "0"}
                                     </h3>
                                 ) : (
                                     <h3 className="h3-2">
-                                        {cartItem?.Id  
+                                        {cartItem?.sku  
                                             ? (
-                                                  (parseFloat(selectedProd.Price)) *
-                                                  cartItem.Quantity *
-                                                  parseFloat(selectedProd.PackQuan)
-                                                  .toFixed(1)
+                                            selectedProd.finalPrice * cartItem.quantity * selectedProd.packQuantity 
                                               ).toFixed(1)
                                             : "0"}
                                     </h3>

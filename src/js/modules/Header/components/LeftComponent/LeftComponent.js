@@ -5,12 +5,14 @@ import useCart from '../../../Cart/store/CartStore';
 import ProfileMenu from './components/ProfileMenu';
 import NotificationIcon from '../../../PushNotificationModule/components/NotificationIcon/NotificationIcon';
 import { useModals } from '../../../Modals/provider/ModalsProvider';
+import useAuthStore from '../../../Modals/store/AuthModalStore';
 
 const LeftComponent = () => {
   const { user, isAgent } = useAuth();
   const { setOpenAuthModal } = useModals();
   const [openProfile, setOpenProfile] = useState(false);
   const { cart } = useCart();
+  const {setAction} = useAuthStore()
 
   return (
     <>
@@ -20,7 +22,7 @@ const LeftComponent = () => {
           className={!openProfile ? "my-profile-cont close" : "my-profile-cont open"}
           onMouseEnter={window.innerWidth > 1150 ? () => setOpenProfile(true) : null}
           onMouseLeave={() => setOpenProfile(false)}
-          onClick={() => setOpenProfile(!openProfile)}
+          onClick={() => {setOpenProfile(!openProfile);setAction('login')}}
         >
           {user ? (
             <>
