@@ -54,26 +54,26 @@ const ProfileMenu = () => {
             OnlyAgent: false
         },*/
         
-        {
-            Title: 'מסמכים לאישור',
-            TitleEng: 'Approve Docs',
-            Link: '/approveDoc/1/',
-            Img: 'checklist_rtl',
-            OnlyAgent: true,
-            OnlyAgentSuper: true,
-            OnlyDesktop:false,
-            notForMisrad:true
-        },
-        {
-            Title: 'מסמכים',
-            TitleEng: 'Shopping List',
-            Link: '/docsAgent/1/',
-            Img: 'article',
-            OnlyAgent: true,
-            OnlyAgentSuper: false,
-            OnlyDesktop:false,
-            notForMisrad:false
-        },
+        // {
+        //     Title: 'מסמכים לאישור',
+        //     TitleEng: 'Approve Docs',
+        //     Link: '/approveDoc/1/',
+        //     Img: 'checklist_rtl',
+        //     OnlyAgent: true,
+        //     OnlyAgentSuper: true,
+        //     OnlyDesktop:false,
+        //     notForMisrad:true
+        // },
+        // {
+        //     Title: 'מסמכים',
+        //     TitleEng: 'Shopping List',
+        //     Link: '/docsAgent/1/',
+        //     Img: 'article',
+        //     OnlyAgent: true,
+        //     OnlyAgentSuper: false,
+        //     OnlyDesktop:false,
+        //     notForMisrad:false
+        // },
         /*{
             Title: 'טיוטות',
             TitleEng: 'Shopping List',
@@ -83,16 +83,16 @@ const ProfileMenu = () => {
             OnlyAgentSuper: false,
             OnlyDesktop:false
         },*/
-        {
-            Title: 'טיוטות/הזמנות',
-            TitleEng: 'Shopping List',
-            Link: '/DocsHistoryAgent/1/',
-            Img: 'article',
-            OnlyAgent: true,
-            OnlyAgentSuper: false,
-            OnlyDesktop:false,
-            notForMisrad:false
-        },
+        // {
+        //     Title: 'טיוטות/הזמנות',
+        //     TitleEng: 'Shopping List',
+        //     Link: '/DocsHistoryAgent/1/',
+        //     Img: 'article',
+        //     OnlyAgent: true,
+        //     OnlyAgentSuper: false,
+        //     OnlyDesktop:false,
+        //     notForMisrad:false
+        // },
         /*{
             Title: 'גביה',
             TitleEng: 'Shopping List',
@@ -102,27 +102,27 @@ const ProfileMenu = () => {
             OnlyAgentSuper: false,
             OnlyDesktop:false
         },*/
-        {
-            Title: 'אחרונים במלאי',
-            TitleEng: 'Shopping List',
-            Link: '/category/lastOnHand/0/0/0/1/0/',
-            Img: 'inventory_2',
-            OnlyAgent: true,
-            OnlyAgentSuper: false,
-            OnlyDesktop:false,
-            notForMisrad:false
-        },
+        // {
+        //     Title: 'אחרונים במלאי',
+        //     TitleEng: 'Shopping List',
+        //     Link: '/category/lastOnHand/0/0/0/1/0/',
+        //     Img: 'inventory_2',
+        //     OnlyAgent: true,
+        //     OnlyAgentSuper: false,
+        //     OnlyDesktop:false,
+        //     notForMisrad:false
+        // },
         
-        {
-            Title: 'ביצועי סוכנים',
-            TitleEng: 'Shopping List',
-            Link: '/agent-statistics/1/',
-            Img: 'support_agent',
-            OnlyAgent: true,
-            OnlyAgentSuper: true,
-            OnlyDesktop:false,
-            notForMisrad:true
-        }
+        // {
+        //     Title: 'ביצועי סוכנים',
+        //     TitleEng: 'Shopping List',
+        //     Link: '/agent-statistics/1/',
+        //     Img: 'support_agent',
+        //     OnlyAgent: true,
+        //     OnlyAgentSuper: true,
+        //     OnlyDesktop:false,
+        //     notForMisrad:true
+        // }
     ];
 
     const beforeLogOut = async () => {

@@ -9,13 +9,13 @@ const sidebarAdmin = [
     },*/
     {
       Title: 'ניהול מוצרים',
-      Link: '/category-edit/0/0',
+      Link: '/admin/category-edit/0/0/0',
       Img: 'hallway',
       Password: false
     },
     {
         Title: 'לקוחות',
-        Link: '/clients',
+        Link: '/admin/clients',
         Img: 'group',
         Password: false,
         Pop: false
@@ -29,7 +29,7 @@ const sidebarAdmin = [
       }*/,
       {
           Title: 'הודעות פרסומיות',
-          Link: '/notification',
+          Link: '/admin/notification',
           Img: 'sms',
           Password: false,
           Pop: false
@@ -57,7 +57,7 @@ const sidebarAdmin = [
     },*/
       {
           Title: 'הזמנות',
-          Link: '/approveDoc',
+          Link: '/admin/approveDoc',
           Img: 'shopping_cart',
           Password: false,
           Pop: false,
@@ -85,13 +85,13 @@ const sidebarAdmin = [
   // 	 },
           {
                   Title: 'דאשבורד',
-                  Link: '/statistics/1',
+                  Link: '/admin/statistics/1',
                   Img: 'trending_up',
                   Password: false
           },
           {
                   Title: 'סטטיסטיקות',
-                  Link: '/comprasion',
+                  Link: '/admin/comprasion',
                   Img: 'leaderboard',
                   Password: false
           }	 /*,

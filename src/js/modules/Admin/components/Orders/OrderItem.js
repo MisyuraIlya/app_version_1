@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 const OrderItem = ({element,index}) => {
     const history = useHistory()
     return (
-        <tr key={index} className={"item"} id={'docRow_' + element?.id} onClick={()=> history.push(`/approveDocItems/${element.id}`)}>
+        <tr key={index} className={"item"} id={'docRow_' + element?.id} onClick={()=> history.push(`/admin/approveDocItems/${element.id}`)}>
             <th className="col-cont sticky-col">
                 <p className='AccountKey no-margin'>{'#' + element?.orderExtId}</p>
                 <p className='AccountName  no-margin'>{element?.user?.name}</p>                      

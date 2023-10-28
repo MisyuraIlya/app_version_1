@@ -24,7 +24,7 @@ const CategoryNavBar = () => {
             if(element.lvlNumber === 1 && element.isPublished) {
               return (
                 <li key={index} className={active === element.Id ? 'active main-li' : 'main-li'}>
-                  <NavLink to={`/catalog/${element.id}/0/0`}>
+                  <NavLink to={`/client/catalog/${element.id}/0/0`}>
                     <p>{element.title}</p>
                   </NavLink>
   
@@ -40,7 +40,7 @@ const CategoryNavBar = () => {
                             return (
                               <div key={ind} className="item">
                                 <NavLink
-                                  to={`/catalog/${element.id}/${elem.id}/0`}
+                                  to={`/client/catalog/${element.id}/${elem.id}/0`}
                                 >
                                   <h2>{elem.title}</h2>
                                 </NavLink>
@@ -50,7 +50,7 @@ const CategoryNavBar = () => {
                                       return (
                                         <li key={i}>
                                           <NavLink
-                                            to={`/catalog/${element.id}/${elem.id}/${e.id}`}
+                                            to={`/client/catalog/${element.id}/${elem.id}/${e.id}`}
                                           >
                                             { e.title}
                                           </NavLink>

@@ -38,7 +38,7 @@ const RightSide = () => {
                       if(categoryLvl1.lvlNumber === 1){
                         return (
                           <div className="lvl-cont" key={index1}>
-                            <NavLink  to={`/${documentType}/${categoryLvl1.id}/0/0${location.search}`}>
+                            <NavLink  to={`/client/${documentType}/${categoryLvl1.id}/0/0${location.search}`}>
                               <h3 className={lvl1 == categoryLvl1.id ? 'lvl1 active' : 'lvl1'}>
                                 {categoryLvl1.title}
                               </h3>
@@ -46,14 +46,14 @@ const RightSide = () => {
                             {categoryLvl1?.categories?.map((categoryLvl2, index2) => {
                                 return (
                                   <div key={index2} className={categoryLvl1.id == lvl1 ?"col active" : "col"}>
-                                    <NavLink  to={`/${documentType}/${categoryLvl1.id}/${categoryLvl2.id}/0${location.search}`}>
+                                    <NavLink  to={`/client/${documentType}/${categoryLvl1.id}/${categoryLvl2.id}/0${location.search}`}>
                                       <h3  className={lvl2 ==  categoryLvl2.id ? "active" : null} >{categoryLvl2.title}</h3>
                                     </NavLink>
                                     <ul className={categoryLvl2.id == lvl2 ? "active" : null}>
                                       {categoryLvl2?.categories?.map((categoryLvl3, index3) => {
                                           return (
                                             <li key={index3}>
-                                              <NavLink className={lvl3 == categoryLvl3.id ? 'active-a' : null} to={`/${documentType}/${categoryLvl1.id}/${categoryLvl2.id}/${categoryLvl3.id}${location.search}`}>
+                                              <NavLink className={lvl3 == categoryLvl3.id ? 'active-a' : null} to={`/client/${documentType}/${categoryLvl1.id}/${categoryLvl2.id}/${categoryLvl3.id}${location.search}`}>
                                                 { categoryLvl3.title}
                                                 </NavLink>
                                             </li>

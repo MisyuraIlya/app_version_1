@@ -8,7 +8,7 @@ import { AdminCatalogService } from '../../services/catalog.service';
 import CategoryEditItem from './CategoryEditItem';
 const CategoriesEditList = () => {
     const {categoriesAll,setCategories} = useCategories()
-    const {parentId, subId} = useParams()
+    const {lvl1, lvl2} = useParams()
     const getListStyle = isDraggingOver => ({
         background: isDraggingOver ? "#e5e5e5" : "#ddd",
     });
@@ -43,13 +43,13 @@ const CategoriesEditList = () => {
     };
 
     const handleCategries = () => {
-        if(parentId == '0') {
+        if(lvl1 == '0') {
             return categoriesAll.filter((filtered) => filtered.lvlNumber === 1)
-        } else if(parentId && subId == '0') {
-            const lvl2 = categoriesAll.filter((filtered) => filtered?.parent?.id == parentId && filtered.lvlNumber === 2)
+        } else if(lvl1 && lvl2 == '0') {
+            const lvl2 = categoriesAll.filter((filtered) => filtered?.parent?.id == lvl1 && filtered.lvlNumber === 2)
             return lvl2
-        } else if(parentId && subId) {
-            const lvl3 = categoriesAll.filter((filtered) => filtered?.parent?.id == subId && filtered.lvlNumber === 3)
+        } else if(lvl1 && lvl2) {
+            const lvl3 = categoriesAll.filter((filtered) => filtered?.parent?.id == lvl2 && filtered.lvlNumber === 3)
 
             return lvl3
         }

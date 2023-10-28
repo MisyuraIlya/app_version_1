@@ -82,7 +82,7 @@ const CatalogSearch = () => {
 
                         {totalFound > 0 &&
                             <div className="all-res-cont" onClick={() => {setSearchValue('');clearProducts()}}>
-                                <NavLink to={'/search/0/0/0' + '?page=1&search=' + searchValue}>
+                                <NavLink to={'/client/search/0/0/0' + '?page=1&search=' + searchValue}>
                                         <p>{"מעבר לכל ה (" + totalFound + " ) תוצאות"}</p>
                                 </NavLink>
                             </div>

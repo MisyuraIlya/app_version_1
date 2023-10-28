@@ -28,7 +28,7 @@ const AuthProvider = (props) => {
   const userType = getUserFromStorage()?.Type;
   const isUserBlocked = getUserFromStorage()?.Blocked;
   const user = getUserFromStorage();
-  const isAdmin = true
+  const isAdmin = false
   const isAgent = getPayloadToken()?.type === 'agent'
   const isSuperAgent = getPayloadToken()?.type === 'agentSuper'
   // Helpers

@@ -12,7 +12,7 @@ const CategoryEditItem = ({element}) => {
     const {setLvl1,setLvl2,setLvl3} = useProductsEditStore()
     const [title, setTitle] = useState(element.title)
     const [valueDebounced] = useDebounce(title, 1000);
-    const {parentId, subId} = useParams()
+    const {lvl1, lvl2, lvl3} = useParams()
     const uploadImg = async (img) => {
         const convertFile = base64ToFile(img.img,img.fileName)
         const res = await AdminCatalogService.uploadImage(convertFile, 'category')
@@ -33,12 +33,12 @@ const CategoryEditItem = ({element}) => {
     }
 
     const handleLink = () => {
-        if(parentId != '0' && subId == '0') {
-            return "/category-edit/" + parentId + "/" + element.id
-        } else if(parentId != '0' && subId != '0') {
-            return "/products-edit/" + element.id
+        if(lvl1 != '0' && lvl2 == '0') {
+            return `/admin/category-edit/${lvl1}/${element.id}/0`
+        } else if(lvl1 != '0' && lvl2 != '0') {
+            return `/admin/products-edit/${lvl1}/${lvl2}/${element.id}`
         } else {
-            return "/category-edit/" + element.id + "/0" 
+            return `/admin/category-edit/${element.id}/0/0`
         }
     }
 
@@ -52,7 +52,7 @@ const CategoryEditItem = ({element}) => {
     return (
     <div className="flex-container">
         <div className="col-lg-1 enter MyCenetred">
-        <NavLink to={handleLink()} onClick={() => handleLink()}>
+        <NavLink to={handleLink()} >
             <span class="material-symbols-outlined googleIconHover">move_item</span>
         </NavLink>
         </div>

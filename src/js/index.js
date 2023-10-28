@@ -269,7 +269,7 @@ const BasicRouter = (prop) => (
 									:
 									<Route path="/" exact render={(props) => (<AgentDashboard key={props.match.params.lang} {...props}{...prop}/>)} />
 							}
-							<Route path="/:documentType/:lvl1/:lvl2/:lvl3" render={(props) => (<Catalog {...props}{...prop}/>)}/>
+							<Route path="/client/:documentType/:lvl1/:lvl2/:lvl3" render={(props) => (<Catalog {...props}{...prop}/>)}/>
 							{/* <Route path="/catalogSearch/:lvl1/:lvl2/:lvl3" render={(props) => (<CatalogSearchPage {...props}{...prop}/>)}/> */}
 							<Route path="/cart" render={(props) => (<CartPage {...props}{...prop}/>)}/>
 							{localStorage.user ? <Route path="/docsNew" render={(props) => (<DocumentsModule/>)}/> : null}
@@ -278,11 +278,11 @@ const BasicRouter = (prop) => (
 							<Route path="/profile" render={(props) => (<ProfilePage {...props}{...prop}/>)}/>
 
 							{/* FIXED ADMIN */}
-							<Route path="/category-edit/:parentId/:subId" render={(props) => (<CategoryEdit {...props}{...prop}/>)}/>
-							<Route path="/products-edit/:categoryId" render={(props) => (<ProductsEdit key={props.match.params.id} {...props}{...prop}/>)}/>
-							<Route path="/clients" render={(props) => (<Clients {...props}{...prop}/>)}/>
-							<Route path="/approveDoc" render={(props) => (<Orders {...props}{...prop}/>)}/>
-							<Route path="/approveDocItems/:id" render={(props) => (<OrderItemPage {...props}{...prop}/>)}/>
+							<Route path="/admin/category-edit/:lvl1/:lvl2/:lvl3" render={(props) => (<CategoryEdit {...props}{...prop}/>)}/>
+							<Route path="/admin/products-edit/:lvl1/:lvl2/:lvl3" render={(props) => (<ProductsEdit key={props.match.params.id} {...props}{...prop}/>)}/>
+							<Route path="/admin/clients" render={(props) => (<Clients {...props}{...prop}/>)}/>
+							<Route path="/admin/approveDoc" render={(props) => (<Orders {...props}{...prop}/>)}/>
+							<Route path="/admin/approveDocItems/:id" render={(props) => (<OrderItemPage {...props}{...prop}/>)}/>
 
 							{/* agenet */}
 							{localStorage.role || localStorage.agent ? <Route path="/agent-statistics/:date" render={(props) => (<AgentStatistics {...props}{...prop}/>)} /> : null}

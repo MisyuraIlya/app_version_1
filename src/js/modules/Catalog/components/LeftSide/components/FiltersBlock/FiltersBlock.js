@@ -60,9 +60,9 @@ const FiltersBlock = () => {
       const urlSearchParams = new URLSearchParams(history.location.search);
       urlSearchParams.set('page', 1);
       if(value) {
-        urlSearchParams.set('title', value);
+        urlSearchParams.set('search', value);
       } else {
-        urlSearchParams.delete('title');
+        urlSearchParams.delete('search');
         setSearchParam('')
       }
       const updatedUrl = '?' + urlSearchParams.toString();

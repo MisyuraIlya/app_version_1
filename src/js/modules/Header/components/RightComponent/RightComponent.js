@@ -5,13 +5,13 @@ import { getCurrentUserId } from '../../../Auth/helpers/getCurrentUserId';
 import { useModals } from '../../../Modals/provider/ModalsProvider';
 import AgentMenu from './components/AgentMenu';
 const RightComponent = () => {
-    const {user, isAgent} = useAuth()
+    const {user, isAgent, isAdmin} = useAuth()
     const {openSideBar, setOpenSideBar, adminRightSideBar, setAdminRightSideBar} = useModals()
 
     return (
         <>
             <nav className={openSideBar ? "header-right-cont-main-bigRes opened" : "header-right-cont-main-bigRes closed"}>
-                {user &&
+                {isAdmin &&
                     <div onClick={() => setAdminRightSideBar(!adminRightSideBar)} className="menu-new">
                         <span class="material-symbols-outlined googleIconHover" style={{fontSize:'30px'}}>widgets</span>
                     </div>
@@ -29,9 +29,12 @@ const RightComponent = () => {
                                             </NavLink>
                                         </div>
                                     </li>
+                                    {isAgent &&
                                     <li className="about-li-hover ">
                                         <AgentMenu/>
                                     </li>
+                                    }
+                
                                 </ul>
                             </div>
                         </div>

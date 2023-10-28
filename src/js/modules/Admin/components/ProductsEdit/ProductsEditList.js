@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import ProductsEditItem from './ProductsEditItem';
-import useCatalog from '../../../Catalog/store/CatalogStore';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import useProductsEditStore from '../../store/ProductsEditStore';
 import { AdminProductService } from '../../services/products.service';
 const ProductsEditList = () => {
 
-    const {products,setProducts,getProducts,setCurrentCategoryId} = useProductsEditStore()
-    const {categoryId} = useParams()
+    const {products,setProducts,getProducts} = useProductsEditStore()
+    const {lvl1,lvl2,lvl3} = useParams()
 
     const getListStyle = isDraggingOver => ({
         background: isDraggingOver ? "#e5e5e5" : "#ddd",
@@ -28,8 +27,7 @@ const ProductsEditList = () => {
     }
 
     useEffect(() => {
-        getProducts()
-        setCurrentCategoryId(categoryId)
+        getProducts(lvl1,lvl2,lvl3)
     },[])
     
     const  reorder = (list, startIndex, endIndex) => {
