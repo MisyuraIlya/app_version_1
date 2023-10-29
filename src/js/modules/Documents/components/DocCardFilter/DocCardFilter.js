@@ -11,7 +11,7 @@ const DocCardFilter = () => {
     const res = await createNewCart(id)
     localStorage.setItem('products', JSON.stringify(res.data.products));
     history.push('/cart/he')
-    location.reload() // TODO fix
+    location.reload() 
   }
   
   return (

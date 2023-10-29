@@ -64,20 +64,9 @@ export const CatalogServices = {
     //     return response.data
     // },
 
-    async PurchaseHistoryPerUser(userExId, catalogNumber) {
-        const val = {
-            userExId,
-            catalogNumber,
-        }
-        const valAjax = {
-            point,
-            classPoint,
-            funcName: 'PurchaseHistoryPerUser',
-            val:val
-          };
-
-        const response = await ajax(valAjax)
-        return response
+    async GetPurchaseHistory(userExId, sku) {
+        const response = await axios.get(global.api + `/api/purchaseHistory/${userExId}/${sku}`)
+        return response.data
     }, 
 
     //NEW API

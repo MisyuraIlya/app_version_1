@@ -64,42 +64,17 @@ export const DocsService = {
         return response
     },
     async GetCartesset(userExId, fromDate, toDate){
-        const val = {
-            userExId,
-            fromDate,
-            toDate
-        }
-        const valAjax = {
-            point,
-            classPoint,
-            funcName: 'GetCartesset',
-            val:val
-          };
-
-        const response = await ajax(valAjax)
-        return response 
+        const response = await axios.get(global.api + `/api/cartessets/${userExId}?from=${fromDate}&to=${toDate}`)
+        return response.data
     },
 
-    async GetLocalDocuments(userExId, id, searchValue, documentType, fromDate, toDate, targetDate, page) {
-        const val = {
-            userExId,
-            id,
-            searchValue,
-            documentType,
-            fromDate,
-            toDate,
-            targetDate, 
-            page
-        }
-        const valAjax = {
-            point,
-            classPoint,
-            funcName: 'GetLocalDocuments',
-            val:val
-          };
-
-        const response = await ajax(valAjax)
-        return response
+    async GetHistory(userExId, fromDate, toDate) {
+        const response = await axios.get(global.api + `/api/histories?createdAt[before]=${toDate}&createdAt[after]=${fromDate}&user.extId=${userExId}`)
+        return response.data
+    }, 
+    async GetHistoryItem(documentId) {
+        const response = await axios.get(global.api + `/api/histories/${documentId}`)
+        return response.data
     }, 
 
 }

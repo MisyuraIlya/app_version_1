@@ -147,10 +147,8 @@ const useDocuments = create((set, get) => ({
     getCartesset: async () => {
         set({loading: true})
         try {
-            const response = await DocsService.GetCartesset(getCurrentUserId(), moment(get().dateFrom).format('DD/MM/YYYY'),moment(get().dateTo).format('DD/MM/YYYY'))
-            if(response.status === 'success') {
-                set({kartessetItems:response.data.lines})
-            }
+            const response = await DocsService.GetCartesset(getCurrentUserId(), moment(get().dateFrom).format('YYYY-MM-DD'),moment(get().dateTo).format('YYYY-MM-DD'))
+            set({kartessetItems:response?.lines["hydra:member"]})
         } catch(e) {
             console.error("[Documents] Error fetch" , e)
         } finally {
@@ -182,7 +180,35 @@ const useDocuments = create((set, get) => ({
     },
     searchItemsValue: '',
     setSearchItemsValue: (value) => {set({searchItemsValue:value})},
-    
+
+    // GET HISTORY 
+    historyItems:[],
+    getHistory: async () => {
+        set({loading: true})
+        try {
+            const response = await DocsService.GetHistory(getCurrentUserId(), moment(get().dateFrom).format('YYYY-MM-DD'),moment(get().dateTo).format('YYYY-MM-DD'))
+            set({
+                historyItems:response["hydra:member"],
+            })
+        } catch(e) {
+            console.error("[Documents] Error fetch" , e)
+        } finally {
+            set({loading: false})
+        }
+    },
+    historyCardItems:[],
+    GetHistoryItem: async (documentId) => {
+        set({loading: true})
+        try {
+            const response = await DocsService.GetHistoryItem(documentId)
+            console.log('response',response)
+            set({historyCardItems:response})
+        } catch(e) {
+            console.error("[Documents] Error fetch" , e)
+        } finally {
+            set({loading: false})
+        }
+    },
 
 }))
 

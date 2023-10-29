@@ -5,6 +5,7 @@ import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min
 import { updateUriFilter } from '../../helpers/updateUri';
 import { decodeUri } from '../../helpers/decodeUri';
 import moment from 'moment';
+
 const DocsFilter = () => {
     const {
         dateFrom,
@@ -17,14 +18,16 @@ const DocsFilter = () => {
         setDocumentType, 
         GetDocuments, 
         downloadKartesset,
-        getCartesset
+        getCartesset,
+        getHistory
     } = useDocuments()
 
     const [valueDebounced] = useDebounce(search, 2000);
     const {page} = useParams()
     const history = useHistory()
     const isKartessetPage = history.location.pathname?.includes('docsKarteset')
-    
+    const isDocsHistory = history.location.pathname?.includes('docsHistory')
+    const isDocumentsPage = history.location.pathname?.includes('docsNew')
     const handleDocument = (event) => {
         const urlSearchParams = new URLSearchParams(history.location.search);
         urlSearchParams.set('documentType', event.target.value);
@@ -43,7 +46,9 @@ const DocsFilter = () => {
     const handleSearchClick = () => {
         if(isKartessetPage) {
             getCartesset()
-        } else {
+        } else if(isDocsHistory) {
+            getHistory()
+        }else {
             GetDocuments(1)
             history.push(urlNav +1+'/'+'he' + history.location.search)
         }
@@ -124,6 +129,7 @@ const DocsFilter = () => {
                                 }
                                 </div>
                             </div> */}
+                            {isDocumentsPage &&
                             <div className="select-cont">
                                 <select value={documentType} onChange={(e) => handleDocument(e)}>
                                 {documentTypes?.map((ele, ind) => {
@@ -133,6 +139,8 @@ const DocsFilter = () => {
                                 })}
                                 </select>
                             </div>
+                            }
+
                             </>
                         }
 

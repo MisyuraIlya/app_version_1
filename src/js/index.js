@@ -126,6 +126,8 @@ import OrderItemPage from "./modules/Admin/pages/OrderItemPage";
 import HomePage from "./modules/Home/pages/HomePage";
 import CategoryViewPage from "./modules/Catalog/pages/CategoryViewPage";
 import ProfilePage from "./modules/Auth/pages/ProfilePage";
+import HistoryPage from "./modules/Documents/pages/HistoryPage/HistoryPage";
+import HistoryItemPage from "./modules/Documents/pages/HistoryItemPage/HistoryItemPage";
 require('./globals.js');
 
 if (module.hot) {
@@ -206,7 +208,7 @@ const BasicRouter = (prop) => (
 							<Route path="/docsItems/:id" render={(props) => (<DocsAgentItems {...props}{...prop}/>)}/>
 							<Route path="/docsItemsNew/:id" render={(props) => (<DocCard {...props}{...prop}/>)}/>
 							
-								<Route path="/docsHistoryItems/:id" render={(props) => (<DocsHistoryItems {...props}{...prop}/>)}/> 
+								<Route path="/docsHistoryItems/:id" render={(props) => (<HistoryItemPage {...props}{...prop}/>)}/> 
 
 						
 
@@ -218,7 +220,7 @@ const BasicRouter = (prop) => (
 
 							
 							{localStorage.user ?
-								<Route path="/docsHistory/:page" render={(props) => (<DocsHistory {...props}{...prop}/>)}/> : null}
+								<Route path="/docsHistory" render={(props) => (<HistoryPage {...props}{...prop}/>)}/> : null}
 
 
 									{localStorage.user ? <Route path="/shoppinglist"

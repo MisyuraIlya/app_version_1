@@ -1,7 +1,7 @@
 
 import { create } from 'zustand'
 import { CatalogServices } from '../../Catalog/services/catalog.services'
-import { getCurrentUserId } from '../../Auth/helpers/getCurrentUserId'
+import { getClientExtId } from '../../Auth/helpers/getCurrentUserId'
 const useSelectedProduct = create((set, get) => ({
     loading:false,
     selectedProd: {},
@@ -14,13 +14,13 @@ const useSelectedProduct = create((set, get) => ({
     },
     chosenImg: '',
     allImages: [],
-    purchesHistoryData:{},
+    purchesHistoryData:[],
     setPurchesHistory: (data) => {set({purchesHistory:data})},
     getPurchesHistory: async () => {
         set({loading:true})
         try {
-            const data = await CatalogServices.PurchaseHistoryPerUser(getCurrentUserId(), get().selectedProd?.CatalogNumber);
-            set({purchesHistoryData: data.data})
+            const data = await CatalogServices.GetPurchaseHistory(getClientExtId(), get().selectedProd?.sku);
+            set({purchesHistoryData: data["hydra:member"]})
         } catch(e) {
             console.log('[selectedProd', e)
         } finally {
@@ -47,7 +47,8 @@ const useSelectedProduct = create((set, get) => ({
         } finally {
             set({loading:false,isFetchOnline:false})
         }
-    }
+    },
+    
 }))
 
 export default useSelectedProduct;

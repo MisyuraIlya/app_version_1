@@ -4,7 +4,6 @@ import useDocuments from '../../store/DocumentsStore';
 const KartessetList = () => {
 
     const {kartessetItems,loading} = useDocuments()
-
     return (
         <div id='lines-main-cont' className="lines-main-cont">
             <table className="lines-sub-cont">

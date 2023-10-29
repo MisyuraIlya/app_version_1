@@ -9,7 +9,6 @@ const ModalWrapper = ({active,setActive, children, height, width}) => {
         { active &&
             ReactDOM.createPortal(
                 <div className="my-modal prod-info">
-                    {/* TODO */}
                     <div className={`modal-wrapper animated ${active === 'openCartSettings' ? 'shopCartSpecialSet' : ''}`} style={{width:width+'%',height:height+'%'}}>  
                         <div className="close-cont">
                             <div onClick={() => setActive(!active)} className="close">

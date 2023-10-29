@@ -1,30 +1,28 @@
 import React from 'react';
 import useDocuments from '../../store/DocumentsStore';
+import moment from 'moment';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-
-const DocsList = () => {
+const HistoryList = () => {
     const {
-      showCalendar,
-      searchActive,
-      documents, 
-      downloadFile, 
-      loading,
+        historyItems,
+        showCalendar,
+        searchActive,
+        documents, 
+        downloadFile, 
+        loading,
     } = useDocuments()
-    const history = useHistory()
 
-    const goToItemFunc = (orderNumber) => {
-      history.push('/docsItemsNew/'+ orderNumber);
-    }
+    const {push} = useHistory()
     return (
         <div className={showCalendar ? 'doc-container active card' : 'doc-container card'}>
         {!showCalendar?
           <h1 className="no-products">בחר טווח תאריכים ובצע חיפוש</h1>
         :null}
-        {(documents.length === 0 && !loading)?
+        {(historyItems.length === 0 && !loading)?
           <h1 className="no-products">לא נמצאו מסמכים בטווח תאריכים</h1>
         :null}
         {searchActive && searchActive.length == 0 ? <h1 className="no-products">לא נמצאו מסמכים בתאריכים אלו</h1> : null}
-        {documents.length > 0 ? 
+        {historyItems.length > 0 ? 
           <div id='lines-main-cont' className="lines-main-cont">
             <table className="lines-sub-cont">
              <tbody>
@@ -52,46 +50,37 @@ const DocsList = () => {
                       <p>סטאטוס</p>
                     </th>
                 </tr>
-                {documents?.map((element, index) => {
+                {historyItems?.map((element, index) => {
                   let docAllowed = true;
                   if( ( docAllowed == true) ){
                     return(
-                        <tr key={index} className={"item"} id={'docRow_' + element.Id} onClick={()=> goToItemFunc(element.document_number)}>
+                        <tr key={index} className={"item"} id={'docRow_' + element.Id} onClick={() => push(`/docsHistoryItems/${element.id}`)}>
                             <th className="col-cont sticky-col">
-                              <p className='AccountKey no-margin'>{'#' + element.document_number}</p>
+                              <p className='AccountKey no-margin'>{'#' + element?.orderExtId}</p>
                             </th>
                             <th className="col-cont sticky-col">
-                              <p className='AccountKey no-margin'>{'#' + element.userExId}</p>
-                              <p className='AccountName  no-margin'>{element.user_name}</p>      
+                              <p className='AccountKey no-margin'>{'#' + element?.user?.extId}</p>
+                              <p className='AccountName  no-margin'>{element?.user?.name}</p>      
                             </th>
                             <th className="col-cont">
-                              <p>{element.type}</p>
+                              <p>{element?.documentType}</p>
                             </th>
                             <th className="col-cont">
-                              <p>{element.date}</p>
+                              <p>{moment(element?.createdAt).format('DD-MM-YYYY')}</p>
                             </th>
                             <th className="col-cont">
-                              <p>{element.date_payed}</p>
+                              <p>{moment(element?.updatedAt).format('DD-MM-YYYY')}</p>
                             </th>
                             <th className="col-cont">
-                              <p>{parseFloat(element.total).toFixed(1)}</p>
+                              <p>{parseFloat(element?.total).toFixed(1)}</p>
                             </th>
                             <th className="col-cont col-approved">
-                              {element.status ?
-                                <p className='Active'>{element.status ? element.status : 'אושר'}</p>
+                              {element?.orderStatus ?
+                                <p className='Active'>{element?.orderStatus ? element?.orderStatus : 'אושר'}</p>
                                 :
                                 <p className='NotActive'>ממתין</p>
                               }
                             </th>
-                
-                            <th className="col-cont">
-                              {element.DocumentID != '31' && element.DocumentID != '3' ?
-                                <div className="file-cont" onClick={()=> downloadFile(element, 'pdf')}>
-                                  <span className="material-symbols-outlined">picture_as_pdf</span>
-                                </div>
-                              :null}
-                            </th>
-                           
                         </tr>
                     );
                   }
@@ -105,4 +94,4 @@ const DocsList = () => {
     );
 };
 
-export default DocsList;
+export default HistoryList;
