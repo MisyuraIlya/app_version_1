@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
-import useDocuments from '../../store/DocumentsStore';
-import { numberWithCommas } from '../../helpers/numberWithCommas';
-const DocCardList = () => {
-    const {historyCardItems,GetHistoryItem,showCalendar} = useDocuments()
+import React from 'react';
+import { numberWithCommas } from '../../Documents/helpers/numberWithCommas';
+import useDocuments from '../store/DocumentsStore';
+const DocumentCardList = () => {
 
-    useEffect(() => {
-        GetHistoryItem()
-    },[])
+    const {orderItems,showCalendar} = useDocuments()
+    
     return (
         <div className={showCalendar ? 'doc-container active card' : 'doc-container card'}>
             <div id='lines-main-cont' className="lines-main-cont">
@@ -29,7 +27,7 @@ const DocCardList = () => {
                             <p>סה״כ</p>
                             </th>
                         </tr>
-                        {historyCardItems?.map((element, index) => {
+                        {orderItems?.map((element, index) => {
                         return(
                             <tr key={index} className={"item"} id={'docRow_' + index}>
                                 <th className="col-cont sticky-col">
@@ -58,4 +56,4 @@ const DocCardList = () => {
     );
 };
 
-export default DocCardList;
+export default DocumentCardList;

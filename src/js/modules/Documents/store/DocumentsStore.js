@@ -35,7 +35,7 @@ const useDocuments = create((set, get) => ({
     setSearch: (value) => set({search: value}),
     filter:'הכל',
     setFilter: (value) => set({filter:value}),
-    documentTypes:[],
+
     documentType:'',
     setDocumentType: (type) => set({documentType: type}),
     searchActive:false,

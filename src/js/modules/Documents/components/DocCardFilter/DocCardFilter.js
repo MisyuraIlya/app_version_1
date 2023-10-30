@@ -16,8 +16,6 @@ const DocCardFilter = () => {
   
   return (
         <>
-        {/* <BreadCrumbs breadCrumbsNav={breadCrumbsNav} title={''} searchQuery={''} lang={this.props.state.lang}/> */}
-          {/* {this.state.orderObject && Object.keys(this.state.orderObject).length && !this.state.orderObject.OrdExtId ?  */}
             <div className="for-calendar flex-container card">
               <div className="flex-container right-side-header col-lg-7">
                

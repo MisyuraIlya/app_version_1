@@ -3,7 +3,6 @@ import useDocuments from '../../store/DocumentsStore';
 
 const HistoryCardList = () => {
     const {showCalendar,DocumentItems,searchItemsValue} = useDocuments()
-    console.log('DocumentItems',DocumentItems)
     return (
         <div className={showCalendar ? 'doc-container active card' : 'doc-container card'}>
             <div id='lines-main-cont' className="lines-main-cont">

@@ -19,7 +19,7 @@ const DocsFilter = () => {
         GetDocuments, 
         downloadKartesset,
         getCartesset,
-        getHistory
+        getHistory,
     } = useDocuments()
 
     const [valueDebounced] = useDebounce(search, 2000);

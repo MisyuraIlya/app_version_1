@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
-const Pagination = ({totalPages, page, lastPage, nextPage, previousPage}) => {
+const Pagination = ({totalPages, page, lastPage, nextPage, previousPage,}) => {
 
     const {location, push} = useHistory()
     const handleGoToPage = (page) => {
