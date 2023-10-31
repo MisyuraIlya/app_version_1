@@ -7,7 +7,8 @@ const DocumentList = () => {
         showCalendar,
         items,
         searchValue,
-        loading
+        loading,
+        clerOrderItems
       } = useDocuments()
       const {push} = useHistory()
 
@@ -52,7 +53,7 @@ const DocumentList = () => {
                   let docAllowed = true;
                   if( ( docAllowed == true) ){
                     return(
-                        <tr key={index} className={"item"} id={'docRow_' + element?.Id} onClick={()=> push(`/documentPageItem/${element?.document_number}`)}>
+                        <tr key={index} className={"item"} id={'docRow_' + element?.Id} onClick={()=> {push(`/documentItemPage/${element?.document_number}`);clerOrderItems()}}>
                             <th className="col-cont sticky-col">
                               <p className='AccountKey no-margin'>{'#' + element?.document_number}</p>
                             </th>

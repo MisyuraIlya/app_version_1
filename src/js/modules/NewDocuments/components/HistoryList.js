@@ -1,6 +1,7 @@
 import React from 'react';
 import useDocuments from '../store/DocumentsStore';
 import moment from 'moment';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const HistoryList = () => {
 
@@ -9,7 +10,9 @@ const HistoryList = () => {
         showCalendar,
         searchActive,
         loading,
+        clerOrderItems,
     } = useDocuments()
+    const {push} = useHistory()
     return (
         <div className={showCalendar ? 'doc-container active card' : 'doc-container card'}>
         {!showCalendar && items.length === 0?
@@ -51,7 +54,7 @@ const HistoryList = () => {
                   let docAllowed = true;
                   if( ( docAllowed == true) ){
                     return(
-                        <tr key={index} className={"item"} id={'docRow_' + element.id} onClick={() => push(`/docsHistoryItems/${element.id}`)}>
+                        <tr key={index} className={"item"} id={'docRow_' + element.id} onClick={()=> {push(`/historyItemPage/${element?.id}`);clerOrderItems()}}>
                             <th className="col-cont sticky-col">
                               <p className='AccountKey no-margin'>{'#' + element?.id}</p>
                             </th>

@@ -1,8 +1,8 @@
 import React from 'react';
-import useDocuments from '../../store/DocumentsStore';
-
+import useDocuments from '../store/DocumentsStore';
+import { numberWithCommas } from '../../Documents/helpers/numberWithCommas';
 const HistoryCardList = () => {
-    const {showCalendar,DocumentItems,searchItemsValue} = useDocuments()
+    const {showCalendar,orderItems,searchItemsValue} = useDocuments()
     return (
         <div className={showCalendar ? 'doc-container active card' : 'doc-container card'}>
             <div id='lines-main-cont' className="lines-main-cont">
@@ -25,21 +25,21 @@ const HistoryCardList = () => {
                             <p>סה״כ</p>
                             </th>
                         </tr>
-                        {DocumentItems?.map((element, index) => {
+                        {orderItems?.map((element, index) => {
                         let docAllowed = true;
                         if( ( docAllowed == true) ){
                             if(searchItemsValue && !element.title.includes(searchItemsValue)) return
                             return(
                                 <tr key={index} className={"item"} id={'docRow_' + index}>
                                     <th className="col-cont sticky-col">
-                                    <p className='AccountKey  no-margin'>{'#' + element?.sku}</p>
-                                    <p className='AccountName  no-margin'>{element?.title}</p>
+                                    <p className='AccountKey  no-margin'>{'#' + element?.product?.sku}</p>
+                                    <p className='AccountName  no-margin'>{element?.product?.title}</p>
                                     </th>
                                     <th className="col-cont">
                                     <p>{element?.quantity}</p>
                                     </th>
                                     <th className="col-cont">
-                                    <p>{numberWithCommas(parseFloat(element?.priceByOne).toFixed(1))}</p>
+                                    <p>{numberWithCommas(parseFloat(element?.singlePrice).toFixed(1))}</p>
                                     </th>
                                     <th className="col-cont">
                                     <p>{parseFloat(element?.discount).toFixed(1)  + '%'}</p>

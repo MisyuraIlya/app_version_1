@@ -1,8 +1,8 @@
 import React from 'react';
-import { numberWithCommas } from '../../helpers/numberWithCommas';
-import useDocuments from '../../store/DocumentsStore';
+import useDocuments from '../store/DocumentsStore';
+import { numberWithCommas } from '../../Documents/helpers/numberWithCommas';
 const DocsTotal = () => {
-    const {documentsItemsLength,documentsItemsSum,documentsItemsDiscount,documentsItemsPriceAfterDiscount,documentsItemsTax,documentsItemsTotalAfter} = useDocuments()
+    const {totalTax,totalPriceAfterTax,totalAfterDiscount,totalPrecent,itemsLength} = useDocuments()
     return (
         <div className='cartTotalSuperAgent-main-cls'>
             <div className='cartTotalSuperAgent-sub-cls'>
@@ -14,7 +14,7 @@ const DocsTotal = () => {
                                 <p>כמות שורות</p>
                             </div>
                             <div className='value-cls col-lg-4'>
-                            <p>{documentsItemsLength}</p>
+                            <p>{itemsLength}</p>
                             </div>
                         </li>
                         <li className='row-cls flex-container'>
@@ -22,7 +22,7 @@ const DocsTotal = () => {
                                 <p>סה״כ</p>
                             </div>
                             <div className='value-cls col-lg-4'>
-                            <p>{numberWithCommas(parseFloat(documentsItemsSum).toFixed(1)) + ' ₪'}</p>
+                            <p>{numberWithCommas(parseFloat(totalPriceAfterTax).toFixed(1)) + ' ₪'}</p>
                             </div>
                         </li>
                         <li className='row-cls flex-container'>
@@ -30,7 +30,7 @@ const DocsTotal = () => {
                                 <p>הנחה כללית</p>
                             </div>
                             <div className='value-cls col-lg-4'>
-                            <p>{parseFloat(documentsItemsDiscount).toFixed(1)+ '%'}</p>
+                            <p>{parseFloat(totalPrecent).toFixed(1)+ '%'}</p>
                             </div>
                         </li>
                     
@@ -39,7 +39,7 @@ const DocsTotal = () => {
                                 <p>אחרי הנחה</p>
                             </div>
                             <div className='value-cls col-lg-4'>
-                            <p>{numberWithCommas(parseFloat(documentsItemsPriceAfterDiscount).toFixed(1)) +  ' ₪'}</p>
+                            <p>{numberWithCommas(parseFloat(totalAfterDiscount).toFixed(1)) +  ' ₪'}</p>
                             </div>
                         </li>
                         <li className='row-cls flex-container'>
@@ -47,7 +47,7 @@ const DocsTotal = () => {
                                 <p>מע״מ</p>
                             </div>
                             <div className='value-cls col-lg-4'>
-                            <p>{numberWithCommas(parseFloat(documentsItemsTax).toFixed(1)) + ' ₪'}</p>
+                            <p>{numberWithCommas(parseFloat(totalTax).toFixed(1)) + ' ₪'}</p>
                             </div>
                         </li>
                         <li className='row-cls flex-container'>
@@ -55,7 +55,7 @@ const DocsTotal = () => {
                                 <p>לתשלום</p>
                             </div>
                             <div className='value-cls col-lg-4'>
-                            <p>{numberWithCommas(parseFloat(documentsItemsTotalAfter).toFixed(1)) + ' ₪'}</p>
+                            <p>{numberWithCommas(parseFloat(totalPriceAfterTax).toFixed(1)) + ' ₪'}</p>
                             </div>
                         </li>
                     

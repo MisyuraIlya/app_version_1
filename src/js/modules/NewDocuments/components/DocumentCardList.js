@@ -4,7 +4,6 @@ import useDocuments from '../store/DocumentsStore';
 const DocumentCardList = () => {
 
     const {orderItems,showCalendar} = useDocuments()
-    
     return (
         <div className={showCalendar ? 'doc-container active card' : 'doc-container card'}>
             <div id='lines-main-cont' className="lines-main-cont">

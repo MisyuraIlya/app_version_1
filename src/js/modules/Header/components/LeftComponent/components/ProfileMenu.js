@@ -2,8 +2,12 @@ import React from 'react';
 import { useAuth } from '../../../../Auth/providers/AuthProvider';
 import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 import { onAsk } from '../../../../../agents/utils/sweetAlert';
+import moment from 'moment';
 const ProfileMenu = () => {
     const {isAgent, user, isAdmin, logOut} = useAuth()
+    let from= moment().subtract(1, 'months').format('YYYY-MM-DD');
+    let to =  moment().format('YYYY-MM-DD');
+
     let profileObj = [
         /*
         {
@@ -19,7 +23,7 @@ const ProfileMenu = () => {
         {
             Title: 'מסמכי לקוח',
             TitleEng: 'My Orders',
-            Link: '/docsNew/1/',
+            Link: `/documentPage?page=1&from=${from}&to=${to}`,
             Img: 'storefront',
             OnlyAgent: false,
             OnlyAgentSuper: false,

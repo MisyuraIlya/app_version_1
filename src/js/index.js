@@ -127,11 +127,11 @@ import HomePage from "./modules/Home/pages/HomePage";
 import CategoryViewPage from "./modules/Catalog/pages/CategoryViewPage";
 import ProfilePage from "./modules/Auth/pages/ProfilePage";
 import HistoryPage from "./modules/NewDocuments/pages/HistoryPage";
-import HistoryItemPage from "./modules/Documents/pages/HistoryItemPage/HistoryItemPage";
 import DocumentsPage from "./modules/NewDocuments/pages/DocumentsPage";
 import KartessetPage from "./modules/NewDocuments/pages/KartessetPage";
 import { DocumentsProvider } from "./modules/NewDocuments/provider/DocumentsProvider";
 import DocumentsItemPage from "./modules/NewDocuments/pages/DocumentsItemPage";
+import HistoryItemPage from './modules/NewDocuments/pages/HistoryItemPage';
 require('./globals.js');
 
 if (module.hot) {
@@ -212,7 +212,6 @@ const BasicRouter = (prop) => (
 							<Route path="/docsItems/:id" render={(props) => (<DocsAgentItems {...props}{...prop}/>)}/>
 							<Route path="/docsItemsNew/:id" render={(props) => (<DocCard {...props}{...prop}/>)}/>
 							
-								<Route path="/docsHistoryItems/:id" render={(props) => (<HistoryItemPage {...props}{...prop}/>)}/> 
 
 						
 
@@ -281,13 +280,16 @@ const BasicRouter = (prop) => (
 
 							<Route path="/categoryPage/:lvl1/:lvl2/:lvl3" render={(props) => (<CategoryViewPage {...props}{...prop}/>)}/>
 							<Route path="/profile" render={(props) => (<ProfilePage {...props}{...prop}/>)}/>
+
+
 							{/* DOCUMENTS */}
+							<Route path="/historyItemPage/:id" render={(props) => (<HistoryItemPage {...props}{...prop}/>)}/> 
+							<Route path="/documentItemPage/:id" render={(props) => (<DocumentsItemPage {...props}{...prop}/>)}/>
 							<DocumentsProvider>
 								{localStorage.user ? <Route path="/documentPage" render={(props) => (<DocumentsPage/>)}/> : null}
 								{localStorage.user ? <Route path="/kartessetPage" render={(props) => (<KartessetPage {...props}{...prop}/>)}/> : null}
 								{localStorage.user ? <Route path="/historyPage" render={(props) => (<HistoryPage {...props}{...prop}/>)}/> : null}
 							</DocumentsProvider>
-							<Route path="/documentItem/:id" render={(props) => (<DocumentsItemPage {...props}{...prop}/>)}/>
 
 							{/* FIXED ADMIN */}
 							<Route path="/admin/category-edit/:lvl1/:lvl2/:lvl3" render={(props) => (<CategoryEdit {...props}{...prop}/>)}/>

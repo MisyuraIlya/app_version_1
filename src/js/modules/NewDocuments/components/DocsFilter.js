@@ -2,6 +2,7 @@ import React from 'react';
 import useDocuments from '../store/DocumentsStore';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import moment from 'moment';
+import useCart from '../../Cart/store/CartStore';
 
 const DocsFilter = () => {
     const {
@@ -22,32 +23,47 @@ const DocsFilter = () => {
     const isDocumentPage = location.pathname.includes('documentPage')
     const isKartessetPage = location.pathname.includes('kartessetPage')
     const isHistoryPage = location.pathname.includes('historyPage')
+    const isDocumentItemPage = location.pathname.includes('documentItemPage')
+    const isHistoryItemPage = location.pathname.includes('historyItemPage')
+    const {id} = useParams()
+    const {addToCart} = useCart()
 
+    const handleResoreCart = async () => {
+        const res = await handleRestoreCartFunction(id)
+        res.map((item) => {
+            addToCart(item)
+        })
+        push('/cart')
+    }
     return (
     <div className="for-calendar flex-container card">
         <div className="flex-container right-side-header col-lg-7">
             <div className={"flex-container col-lg-12 docs-agent-header-cls"}>
-                <div className="cal-cls  right-side-comp">
-                    <div className="open-calendar">
-                        <p className="inline-cls">מתאריך</p>
-                        <button className="inline-cls" onClick={() => setType('from')}>
-                        <span className="material-symbols-outlined googleHoverIcon" style={{fontSize:'30px'}}>calendar_month</span>
-                        {moment(dateFrom).format('DD/MM/YYYY')}
-                        </button>
-                    </div>
-                </div>
-                <div className="cal-cls  right-side-comp">
-                    <div className="open-calendar">
-                        <p className="inline-cls">לתאריך</p>
-                        <button className="inline-cls" onClick={() => setType('to')}>
+                {(!isHistoryItemPage && !isDocumentItemPage)  &&
+                <>
+                    <div className="cal-cls  right-side-comp">
+                        <div className="open-calendar">
+                            <p className="inline-cls">מתאריך</p>
+                            <button className="inline-cls" onClick={() => setType('from')}>
                             <span className="material-symbols-outlined googleHoverIcon" style={{fontSize:'30px'}}>calendar_month</span>
-                            {moment(dateTo).format('DD/MM/YYYY')}
-                        </button>
+                            {moment(dateFrom).format('DD/MM/YYYY')}
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div onClick={()=> getItems()} className="cal-cls searchBtn-cont">
-                    <p>חפש</p>
-                </div>
+                    <div className="cal-cls  right-side-comp">
+                        <div className="open-calendar">
+                            <p className="inline-cls">לתאריך</p>
+                            <button className="inline-cls" onClick={() => setType('to')}>
+                                <span className="material-symbols-outlined googleHoverIcon" style={{fontSize:'30px'}}>calendar_month</span>
+                                {moment(dateTo).format('DD/MM/YYYY')}
+                            </button>
+                        </div>
+                    </div>
+                    <div onClick={()=> getItems()} className="cal-cls searchBtn-cont">
+                        <p>חפש</p>
+                    </div>
+                </>
+                }
             </div>
         </div>
         <div className="flex-container left-side-header col-lg-5">
@@ -84,7 +100,7 @@ const DocsFilter = () => {
                         </select>
                     </div>
                     }
-                    {!isHistoryPage &&
+                    {(isDocumentItemPage || isHistoryItemPage) &&
                         <>
                         <div className="select-cont first">
                             <div className="file-cont" onClick={()=>downloadDocument(id, 'pdf')}>
@@ -97,7 +113,7 @@ const DocsFilter = () => {
                             </div>
                         </div>
                         <div className="select-cont">
-                            <div className="file-cont" onClick={()=> handleRestoreCartFunction()}>
+                            <div className="file-cont" onClick={()=> handleResoreCart()}>
                                 <span className="material-symbols-outlined">cloud_sync</span>
                             </div>
                         </div>

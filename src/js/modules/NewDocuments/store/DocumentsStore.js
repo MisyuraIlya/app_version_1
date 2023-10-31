@@ -54,7 +54,26 @@ const useDocuments = create((set, get) => ({
     downloadDocument: (id,value) => {
 
     },
-    handleRestoreCartFunction: () => {
+    handleRestoreCartFunction: async (documentNumber) => {
+        try {
+            set({loading:true})
+            let response = null
+            if(get().documentType == 'document' || get().documentType == 'documentItem') {
+                console.log('here')
+    
+                response = await DocumentsService.RestoreCart('online',getClientExtId(),documentNumber)
+            }
+    
+            if(get().documentType == 'history' || get().documentType == 'historyItem') {
+                response = await DocumentsService.RestoreCart('history',getClientExtId(),documentNumber)
+            }
+    
+            return response["hydra:member"];
+        } catch(e) {
+            console.error('[ERROR] fetch restored cart',e)
+        } finally {
+            set({loading:false})
+        }
 
     },
     //========================================
@@ -94,18 +113,40 @@ const useDocuments = create((set, get) => ({
         }
     },
 
+    //===============================
+
+
+    //========== ITEM DATA ===============
     orderItems:[],
+    clerOrderItems:() => set({orderItems:[]}),
+    totalTax:0,
+    totalPriceAfterTax:0,
+    totalAfterDiscount:0,
+    totalPrecent:0,
+    itemsLength:0,
     getOrderItems: async (id) => {
         set({loading:true})
         try {
             let response = null
-            console.log('get().documentType',get().documentType)
             if(get().documentType === 'documentItem') {
                  response = await DocumentsService.GetDocumentsItem(id)
-                 set({orderItems:response})
-            } else if(get().documentType === 'history') {
+                 set({orderItems:response.products["hydra:member"],itemsLength:response.products["hydra:totalItems"]})
+                 set({
+                    totalTax:response.totalTax,
+                    totalPriceAfterTax:response.totalPriceAfterTax,
+                    totalAfterDiscount:response.totalAfterDiscount,
+                    totalPrecent:response.totalPrecent,
+                 })
+            } else if(get().documentType === 'historyItem') {
                  response = await DocumentsService.GetHistoryItem(id)
-                 set({orderItems:response})
+                 set({orderItems:response.historyDetaileds})
+                 set({
+                    totalTax: response?.total * 0.17,
+                    itemsLength: response.historyDetaileds.length,
+                    totalPriceAfterTax: response?.total,
+                    totalAfterDiscount: response?.total,
+                    totalPrecent: response?.discount ? response?.discount : 0,
+                 })
             } 
 
         } catch(e) {
@@ -117,6 +158,10 @@ const useDocuments = create((set, get) => ({
 
 
     //===============================
+
+
+
+
 
 }))
 

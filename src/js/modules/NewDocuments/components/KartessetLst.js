@@ -1,6 +1,6 @@
 import React from 'react';
 import useDocuments from '../store/DocumentsStore';
-
+import moment from 'moment';
 const KartessetLst = () => {
     const {items,loading} = useDocuments()
     return (
@@ -72,10 +72,10 @@ const KartessetLst = () => {
                                 <p>{element?.TransCredID}</p>
                             </th>
                             <th className="col-cont">
-                                <p>{element?.ValueDate}</p>
+                                <p>{moment(element?.ValueDate).format('DD-MM-YYYY')}</p>
                             </th>
                             <th className="col-cont">
-                                <p>{element?.DueDate}</p>
+                                <p>{moment(element?.DueDate).format('DD-MM-YYYY')}</p>
                             </th>
                             <th className="col-cont">
                                 <p>{element?.Referance}</p>
