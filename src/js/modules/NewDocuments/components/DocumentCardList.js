@@ -1,6 +1,7 @@
 import React from 'react';
-import { numberWithCommas } from '../../Documents/helpers/numberWithCommas';
 import useDocuments from '../store/DocumentsStore';
+import { numberWithCommas } from '../../../helpers/numberWithCommas';
+
 const DocumentCardList = () => {
 
     const {orderItems,showCalendar} = useDocuments()

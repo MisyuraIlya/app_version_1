@@ -12,9 +12,8 @@ import BreadCrumbs from "../tools/BreadCrumbs";
 import ClientPagination from "../tools/ClientPagination";
 import DocsTabs from "../tools/DocsTabs";
 import KartesetTotals from './shopCart/KartesetTotals';
-import { DocsService } from "../../modules/Documents/services/docs.services";
 import { getCurrentUserId } from "../../modules/Auth/helpers/getCurrentUserId";
-
+import { DocumentsService } from "../../modules/NewDocuments/services/document.service";
 
 let timeoutId;
 

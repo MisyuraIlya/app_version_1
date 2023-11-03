@@ -6,7 +6,6 @@ import useAdminOrders from '../store/OrdersStore';
 import Calendar from 'react-calendar';
 import moment from 'moment-timezone';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { UrlHandler } from '../../Documents/helpers/UrlHandler';
 const Orders = () => {
     const {
         getOrders,
@@ -35,29 +34,29 @@ const Orders = () => {
     }
 
     useEffect(() => {
-        if(!UrlHandler.isThereParams(history.location.search)) {
-            let from= moment().subtract(1, 'months').format('YYYY-MM-DD');
-            let to =  moment().format('YYYY-MM-DD');
-            let search= '';
-            let documentType = 'all'
-            let page = 1
-            const url = UrlHandler.createUrl(history.location.search,page,from,to,documentType,search)
-            history.push(history.location.pathname + url);
-            setDateFrom(from)
-            setDateTo(to)
-            setSearch(search)
-            setDocumentType(documentType)
-            setPage(page)
-        } else {
-            const {page, from, to, documentType, search} = UrlHandler.getUrlParams(history.location.search)
-            const url = UrlHandler.createUrl(history.location.search,page,from,to,documentType,search)
-            history.push(history.location.pathname + url);
-            setDateFrom(from)
-            setDateTo(to)
-            setSearch(search)
-            setDocumentType(documentType)
-            setPage(page)
-        }
+        // if(!UrlHandler.isThereParams(history.location.search)) {
+        //     let from= moment().subtract(1, 'months').format('YYYY-MM-DD');
+        //     let to =  moment().format('YYYY-MM-DD');
+        //     let search= '';
+        //     let documentType = 'all'
+        //     let page = 1
+        //     const url = UrlHandler.createUrl(history.location.search,page,from,to,documentType,search)
+        //     history.push(history.location.pathname + url);
+        //     setDateFrom(from)
+        //     setDateTo(to)
+        //     setSearch(search)
+        //     setDocumentType(documentType)
+        //     setPage(page)
+        // } else {
+        //     const {page, from, to, documentType, search} = UrlHandler.getUrlParams(history.location.search)
+        //     const url = UrlHandler.createUrl(history.location.search,page,from,to,documentType,search)
+        //     history.push(history.location.pathname + url);
+        //     setDateFrom(from)
+        //     setDateTo(to)
+        //     setSearch(search)
+        //     setDocumentType(documentType)
+        //     setPage(page)
+        // }
         getOrders()
     },[history.location.search])
     return (

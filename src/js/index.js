@@ -114,9 +114,6 @@ import { AuthProvider } from "./modules/Auth/providers/AuthProvider";
 import { NotificationsProvider } from "./modules/PushNotificationModule/provider/PushNotification";
 import { getPayloadToken } from "./modules/Auth/helpers/auth.helper";
 import PushNotificationHandlers from "./modules/PushNotificationModule/components/PushNotificationHandlers";
-import DocumentsModule from "./modules/Documents/pages/DocumentsPage/DocumentsPage";
-import DocCard from "./modules/Documents/pages/DocCard/DocCard";
-import CartessetPage from "./modules/Documents/pages/CartessetPage/CartessetPage";
 import CartPage from "./modules/Cart/pages/CartPage";
 import StockNotify from "./modules/Modals/components/StockNotify/StockNotify";
 import { ModalsProvider } from "./modules/Modals/provider/ModalsProvider";
@@ -210,7 +207,6 @@ const BasicRouter = (prop) => (
 								<Route path="/approveDocItems/:id" render={(props) => (<DocsItemsAgentApproval {...props}{...prop}/>)}/> : null}
 
 							<Route path="/docsItems/:id" render={(props) => (<DocsAgentItems {...props}{...prop}/>)}/>
-							<Route path="/docsItemsNew/:id" render={(props) => (<DocCard {...props}{...prop}/>)}/>
 							
 
 						
