@@ -18,17 +18,11 @@ const Clients = () => {
     } = useClientStore()
     const history = useHistory()
     useEffect(() => {
-        // if(!UrlHandler.isThereParamsOnlyPage(history.location.search)) {
-        //     let page = 1
-        //     const url = UrlHandler.createUrl(history.location.search,page)
-        //     history.push(history.location.pathname + url);
-        //     setPage(page)
-        // } else {
-        //     const {page} = UrlHandler.getUrlParams(history.location.search)
-        //     const url = UrlHandler.createUrl(history.location.search,page)
-        //     history.push(history.location.pathname + url);
-        //     setPage(page)
-        // }
+        const urlSearchParams = new URLSearchParams(history.location.search);
+        const page = urlSearchParams.get('page');
+        const updatedUrl = '?' + urlSearchParams.toString();
+        setPage(page)
+        history.push(history.location.pathname + updatedUrl);
         getClients()
     },[history.location.search])
     return (

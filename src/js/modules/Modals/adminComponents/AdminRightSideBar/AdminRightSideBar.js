@@ -15,7 +15,7 @@ const sidebarAdmin = [
     },
     {
         Title: 'לקוחות',
-        Link: '/admin/clients',
+        Link: '/admin/clients?page=1',
         Img: 'group',
         Password: false,
         Pop: false
