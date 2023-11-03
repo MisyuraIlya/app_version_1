@@ -7,9 +7,11 @@ import BasicInfo from './components/BasicInfo';
 import Tags from './components/Tags';
 import useSearchStore from '../../../../store/SearchStore';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const ProductList = () => {
-  const { products, toShow, listView } = useCatalog();
+  const { products, toShow, listView, loading } = useCatalog();
   const {documentType} = useParams()
   const {productsFilter} = useSearchStore()
   const { getCartItem } = useCart();
@@ -26,7 +28,15 @@ const ProductList = () => {
                 <div className={!product.ActualQuan ? "wrapper main-product-wrapper" : "wrapper main-product-wrapper disable"}>
                     <Tags product={product}/>
                     <BasicInfo product={product}/>
-                    <PriceBlock product={product}/>
+
+                    {loading ? 
+                      <Skeleton style={{height:'120px'}} />
+                    :
+                      <>
+                        <PriceBlock product={product}/>
+                      </>
+                    }
+        
                 </div>
               </div>
             );
