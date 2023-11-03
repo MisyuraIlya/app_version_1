@@ -1176,9 +1176,7 @@ body::-webkit-scrollbar-thumb {
       opacity: 0.8;
       cursor:pointer;
       padding:8px;
-      &:hover{
-        background:$greyBazar;
-      }
+
     }
     button.prev {
       right: 16px;

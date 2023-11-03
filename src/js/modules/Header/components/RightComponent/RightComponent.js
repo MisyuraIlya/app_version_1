@@ -15,7 +15,7 @@ const RightComponent = () => {
                     <div onClick={() => setAdminRightSideBar(!adminRightSideBar)} className="menu-new">
                         <span className="material-symbols-outlined googleIconHover" style={{fontSize:'30px'}}>widgets</span>
                     </div>
-                }
+                } 
                 <div className="header-right-cont">
                     <nav className={false ? "site-nav active" : "site-nav"}>
                         <div className="flex-container">

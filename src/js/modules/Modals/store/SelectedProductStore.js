@@ -5,6 +5,11 @@ import { getClientExtId } from '../../Auth/helpers/getCurrentUserId'
 const useSelectedProduct = create((set, get) => ({
     loading:false,
     selectedProd: {},
+    changeDefaultImage: (imagePath) => {
+        const prod = get().selectedProd
+        prod.defaultImagePath = imagePath
+        set({selectedProd:prod})
+    },
     setSelectedProd: (element) => {
         set({selectedProd: element})
         if(element.SubProductss){
@@ -12,8 +17,6 @@ const useSelectedProduct = create((set, get) => ({
         }
     
     },
-    chosenImg: '',
-    allImages: [],
     purchesHistoryData:[],
     setPurchesHistory: (data) => {set({purchesHistory:data})},
     getPurchesHistory: async () => {

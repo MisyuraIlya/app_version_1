@@ -281,22 +281,21 @@ const BasicRouter = (prop) => (
 							<Route path="/categoryPage/:lvl1/:lvl2/:lvl3" render={(props) => (<CategoryViewPage {...props}{...prop}/>)}/>
 							<Route path="/profile" render={(props) => (<ProfilePage {...props}{...prop}/>)}/>
 
-
-							{/* DOCUMENTS */}
-							<Route path="/historyItemPage/:id" render={(props) => (<HistoryItemPage {...props}{...prop}/>)}/> 
-							<Route path="/documentItemPage/:id" render={(props) => (<DocumentsItemPage {...props}{...prop}/>)}/>
-							<DocumentsProvider>
-								{localStorage.user ? <Route path="/documentPage" render={(props) => (<DocumentsPage/>)}/> : null}
-								{localStorage.user ? <Route path="/kartessetPage" render={(props) => (<KartessetPage {...props}{...prop}/>)}/> : null}
-								{localStorage.user ? <Route path="/historyPage" render={(props) => (<HistoryPage {...props}{...prop}/>)}/> : null}
-							</DocumentsProvider>
-
 							{/* FIXED ADMIN */}
 							<Route path="/admin/category-edit/:lvl1/:lvl2/:lvl3" render={(props) => (<CategoryEdit {...props}{...prop}/>)}/>
 							<Route path="/admin/products-edit/:lvl1/:lvl2/:lvl3" render={(props) => (<ProductsEdit key={props.match.params.id} {...props}{...prop}/>)}/>
 							<Route path="/admin/clients" render={(props) => (<Clients {...props}{...prop}/>)}/>
 							<Route path="/admin/approveDoc" render={(props) => (<Orders {...props}{...prop}/>)}/>
 							<Route path="/admin/approveDocItems/:id" render={(props) => (<OrderItemPage {...props}{...prop}/>)}/>
+
+							{/* DOCUMENTS */}
+							<Route path="/historyItemPage/:id" render={(props) => (<HistoryItemPage {...props}{...prop}/>)}/> 
+							<Route path="/documentItemPage/:id" render={(props) => (<DocumentsItemPage {...props}{...prop}/>)}/>
+							<DocumentsProvider>
+								{localStorage.user ? <Route path="/documentPage" render={(props) => (<DocumentsPage {...props}{...prop}/>)}/> : null}
+								{localStorage.user ? <Route path="/kartessetPage" render={(props) => (<KartessetPage {...props}{...prop}/>)}/> : null}
+								{localStorage.user ? <Route path="/historyPage" render={(props) => (<HistoryPage {...props}{...prop}/>)}/> : null}
+							</DocumentsProvider>
 
 							{/* agenet */}
 							{localStorage.role || localStorage.agent ? <Route path="/agent-statistics/:date" render={(props) => (<AgentStatistics {...props}{...prop}/>)} /> : null}
@@ -308,6 +307,12 @@ const BasicRouter = (prop) => (
 							{localStorage.agent || localStorage.role ? <Route path="/QuestionFormCompelte" render={(props) => (<QuestionFormCompelte {...props}{...prop}/>)}/> : null}
 							{/* ------- */}
 							<Route render={(props) => (<NotFound {...props}{...prop}/>)}/>
+							
+
+
+
+
+
 						</Switch>
 					</main>
 

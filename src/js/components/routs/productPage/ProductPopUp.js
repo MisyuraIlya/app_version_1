@@ -87,7 +87,7 @@ const AdditionalImg = res => {
 								<div className={"wrapper sliderImg-main-cont"} onClick={()=> res.setChosenImg(element)}>
                 	<div className="img-cont">
 										<img className="img" src={element ? globalFileServer + 'products/' + element : globalFileServer + 'placeholder.jpg'}
-                    																		     onError={(e) => e.target.src = globalFileServer + 'placeholder.jpg'}/>
+                    onError={(e) => e.target.src = globalFileServer + 'placeholder.jpg'}/>
                                                         
 									</div>
 								</div>

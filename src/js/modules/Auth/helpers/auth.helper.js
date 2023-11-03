@@ -76,15 +76,14 @@ export const getPayloadToken = () => {
 
 export const getRole = () => {
     const res = getPayloadToken()
-
-    if(res?.roles.includes("ROLE_USER")) {
-        return 'USER'
-    } else if(res?.roles.includes("ROLE_ADMIN")){
+    if(res?.roles.includes("ROLE_ADMIN")) {
         return 'ADMIN'
+    } else if(res?.roles.includes("ROLE_SUPER_AGENT")){
+        return 'SUPER_AGENT'
     } else if(res?.roles.includes("ROLE_AGENT")) {
         return 'AGENT'
-    } else if(res?.roles.includes("ROLE_SUPER_AGENT")) {
-       return 'SUPER_AGENT'
+    } else if( res?.roles.includes("ROLE_USER") ) {
+       return 'USER'
     } else {
         return null;
     }

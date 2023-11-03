@@ -9,7 +9,7 @@ const BasicInfo = ({product}) => {
     <div className={'img-text-container'} onClick={() => selectProduct(product)}>
         <div className="img-cont">
             {/* SET PLAVEHOLDER IMAGE */}
-          <img className="img" src={product.ImgPath ? product.ImgPath : globalFileServer + 'products/' + product.Img}/>
+          <img className="img" src={product.ImgPath ? product.defaultImagePath : globalFileServer + 'product/' + product.defaultImagePath}/>
         </div>
         <div
           className={user ? "prod-data-cont user" : "prod-data-cont"}>
