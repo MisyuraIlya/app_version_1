@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import useProductsEditStore from '../../store/ProductsEditStore';
 import { AdminProductService } from '../../services/products.service';
 import { useModals } from '../../../Modals/provider/ModalsProvider';
+import { MediaObjectService } from '../../services/mediaObject.service';
 const ProductsEditItem = ({element, index}) => {
 
     const [loading, setLoading] = useState(false)
@@ -21,8 +22,9 @@ const ProductsEditItem = ({element, index}) => {
 
     const uploadImg = async (img) => {
         const convertFile = base64ToFile(img.img,img.fileName)
-        const res = await AdminProductService.uploadImage(convertFile, 'product')
+        const res = await MediaObjectService.uploadImage(convertFile, 'product')
         const res2 = await AdminProductService.createNewImage({product: element["@id"] ,mediaObject: res['@id']})
+        await MediaObjectService.ftpUploader(res2.mediaObject.filePath,'src/img/products','product')
         await getProducts(categoryId)
     }
 

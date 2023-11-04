@@ -23,7 +23,11 @@ const ProductRightSide = () => {
         <>
             <span className="material-symbols-outlined span1" onClick={()=> shareImage()}>share</span>
             <span className="material-symbols-outlined span2" onClick={()=> openLink()}>link</span>
-            <img className="img  col-lg-12" src={globalFileServer + 'products/' + selectedProd.defaultImagePath}/>
+            {selectedProd.defaultImagePath ?
+                <img className="img  col-lg-12" src={globalFileServer + 'products/' + selectedProd.defaultImagePath}/>
+            :
+            <img className="img" src={globalFileServer + 'placeholder.jpg'}/>
+            }
             <div className="additional-img-cont col-lg-11">
                 {selectedProd?.imagePath.length > 1 &&
                 <AdditionalImages/>

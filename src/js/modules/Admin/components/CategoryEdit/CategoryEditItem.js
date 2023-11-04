@@ -6,18 +6,20 @@ import { AdminCatalogService } from '../../services/catalog.service';
 import { useDebounce } from 'use-debounce';
 import { base64ToFile } from '../../../../helpers/base64ToFile';
 import useProductsEditStore from '../../store/ProductsEditStore';
+import { MediaObjectService } from '../../services/mediaObject.service';
 const CategoryEditItem = ({element}) => {
     const [loading, setLoading] = useState(false)
-    const {categories,getCategories,setCategories} = useCategories()
+    const {categories,getAllCategories,setCategories} = useCategories()
     const {setLvl1,setLvl2,setLvl3} = useProductsEditStore()
     const [title, setTitle] = useState(element.title)
     const [valueDebounced] = useDebounce(title, 1000);
     const {lvl1, lvl2, lvl3} = useParams()
     const uploadImg = async (img) => {
         const convertFile = base64ToFile(img.img,img.fileName)
-        const res = await AdminCatalogService.uploadImage(convertFile, 'category')
+        const res = await MediaObjectService.uploadImage(convertFile, 'category')
         const res2 = await AdminCatalogService.updateCategory({id: element.id ,MediaObject: res['@id']})
-        await getCategories()
+        await MediaObjectService.ftpUploader(res2.MediaObject.filePath,'src/img/categories','category')
+        await getAllCategories()
     }
 
     const unpublishHandle = async (categoryId, isPublished) => {
@@ -65,7 +67,7 @@ const CategoryEditItem = ({element}) => {
             {element?.MediaObject?.filePath && 
                 <img
                     className="main-img"
-                    src={globalFileServer + 'category/' + element?.MediaObject?.filePath}
+                    src={globalFileServer + 'categories/' + element?.MediaObject?.filePath}
                 />
             }
             <MyCropper

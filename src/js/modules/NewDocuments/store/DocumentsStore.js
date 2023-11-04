@@ -59,8 +59,6 @@ const useDocuments = create((set, get) => ({
             set({loading:true})
             let response = null
             if(get().documentType == 'document' || get().documentType == 'documentItem') {
-                console.log('here')
-    
                 response = await DocumentsService.RestoreCart('online',getClientExtId(),documentNumber)
             }
     

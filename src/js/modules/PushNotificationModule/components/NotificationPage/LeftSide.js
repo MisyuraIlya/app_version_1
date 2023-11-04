@@ -20,7 +20,8 @@ const LeftSide = () => {
     const uploadImg = async (img) => {
         const convertFile = base64ToFile(img.img,img.fileName)
         const res = await MediaObjectService.uploadImage(convertFile, 'notifications')
-        await updateItem({id: choosedItem?.id ,image: res['@id']})
+        const res2 = await updateItem({id: choosedItem?.id ,image: res['@id']})
+        await MediaObjectService.ftpUploader(res2.image.filePath,'src/img/notifications','notifications')
         fetchItems()
 s    }
 

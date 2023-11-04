@@ -25,7 +25,7 @@ const useProductsEditStore = create((set, get) => ({
             set({selectedProduct:res})
         } catch(e) {
             console.log('error',e)
-        }
+        } 
     }
 }))
 

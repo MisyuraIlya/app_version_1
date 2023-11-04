@@ -83,18 +83,19 @@ const sidebarAdmin = [
   // 	 	Img: 'agent.svg',
   // 	 	Password: false
   // 	 },
-          {
-                  Title: 'דאשבורד',
-                  Link: '/admin/statistics/1',
-                  Img: 'trending_up',
-                  Password: false
-          },
-          {
-                  Title: 'סטטיסטיקות',
-                  Link: '/admin/comprasion',
-                  Img: 'leaderboard',
-                  Password: false
-          }	 /*,
+        //   {
+        //           Title: 'דאשבורד',
+        //           Link: '/admin/statistics/1',
+        //           Img: 'trending_up',
+        //           Password: false
+        //   },
+        //   {
+        //           Title: 'סטטיסטיקות',
+        //           Link: '/admin/comprasion',
+        //           Img: 'leaderboard',
+        //           Password: false
+        //   }	
+           /*,
           {
                   Title: 'סטטיסטיקות סוכנים',
                   Link: '/agent-statistics/1',

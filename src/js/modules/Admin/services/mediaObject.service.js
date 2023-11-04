@@ -9,4 +9,14 @@ export const MediaObjectService = {
         return response.data; 
     },
 
+    async ftpUploader(fileName,sourceVps1,sourceVps3) {
+        let obj = {
+            fileName,
+            sourceVps1,
+            sourceVps3
+        }
+        const response = await axios.post(global.api + '/ftpFileUploader',obj)
+        return response.data
+    }
+
 }

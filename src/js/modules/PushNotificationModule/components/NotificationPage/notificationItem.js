@@ -10,8 +10,8 @@ const NotificationItem = ({element,index}) => {
             <div className="flex-container">
                 <div className="col-lg-1 img">
                     <div className="wr">
-                        {element?.Img ?
-                            <img src={globalFileServer + 'notifications/' + element?.Img} />
+                        {element?.image?.filePath ?
+                            <img src={globalFileServer + 'notifications/' + element?.image?.filePath} />
                             :
                             <img src={globalFileServer + 'placeholder.jpg'} />
                         }

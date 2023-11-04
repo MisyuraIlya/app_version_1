@@ -66,6 +66,7 @@ const useNotificationStore = create((set, get) => ({
             const response = await NotificationsServices.updateItem(item)
             set({choosedItem:response})
             get().fetchItems()
+            return response
         } catch(e) {
 
         } finally {

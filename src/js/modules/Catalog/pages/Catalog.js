@@ -17,6 +17,7 @@ const Catalog = () => {
     const {loading:filterLoading, findCategoriesFilter,setSavedValue,searchValue,savedValue,setCategoriesFilter,clearPaginationSearch,findProductsByValue} = useSearchStore()
     const {setCart} = useCart()
     const isSearchDocument = documentType === 'search'
+
     useEffect(() => {
         setCatalogParameters(lvl1,lvl2, lvl3, location.search)
         setCart(getProductsLocalStorage())
@@ -30,7 +31,6 @@ const Catalog = () => {
             findCategoriesFilter()
             findProductsByValue(lvl1,lvl2, lvl3, location.search)
         }
-        // TODO HANDLE SEARCH VALUE PER SEARCHVALUE
         getAttributes(searchValue)
  
 

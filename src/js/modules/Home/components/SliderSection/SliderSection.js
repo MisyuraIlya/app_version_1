@@ -65,7 +65,7 @@ const SliderSection = ({title, array, toShow = 5, column = 1}) => {
                                 <NavLink to={'/categoryPage/' + element?.id + '/0/0'}>
                                     <div className="img-cont">.
                                         {/* IMPLEMENT IMAGE PATH */}
-                                        <img className="img" src={element?.Img ? globalFileServer + "categories/" + element?.Img : globalFileServer + 'placeholder.jpg'} />
+                                        <img className="img" src={element?.MediaObject?.filePath ? globalFileServer + "categories/" + element?.MediaObject?.filePath : globalFileServer + 'placeholder.jpg'} />
                                     </div>
                                     <div className="prod-data-cont">
                                         <h3 className="p-title">{element?.title}</h3>

@@ -57,7 +57,6 @@ const CartList = () => {
                                 let price = calculatePrice(element.product, element.quantity, element.UnitChosen); // 37 * 15.5 = 5812.5
                                 let discount = getDiscountPrecent(element);
                                 let priceByOriginal = getPriceByOriginalPrice(element);
-                                console.log('element',element)
                                 return (
                                     <tr key={index} className={"item"} id={'docRow_' + element.Id} >
 

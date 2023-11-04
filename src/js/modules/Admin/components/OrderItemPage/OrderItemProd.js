@@ -1,7 +1,6 @@
 import React from 'react';
 
 const OrderItemProd = ({element,index}) => {
-    console.log('element',element)
     return (
         <tr key={index} className={!element.IsChangedAgent ? "item" : 'item alert'} id={'docRow_' + element.Id}>
             <th className="col-cont sticky-col" onClick={()=>this.setProdPopUp(element)}>

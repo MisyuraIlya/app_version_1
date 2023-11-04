@@ -16,7 +16,10 @@ const BasicInfo = ({product}) => {
             {loading ?
                 <Skeleton style={{height:'120px'}} />
             :
+            product.defaultImagePath ?
                 <img className="img" src={product.ImgPath ? product.defaultImagePath : globalFileServer + 'products/' + product.defaultImagePath}/>
+            :
+                <img className="img" src={globalFileServer + 'placeholder2.jpg'}/>
             }
         </div>
         {loading ?
