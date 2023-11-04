@@ -123,8 +123,8 @@ export default class ProductPage extends Component {
 									<title>{element.Title}</title>
 									<meta name="description" content={element.Description} />
 									<meta name="keywords" content={element.Title} />
-									<link rel="canonical" href={entry + '/product/' + element.Id} />
-									<link rel="alternate" href={entry + '/product/' + element.Id} hreflang="he-il" />
+									<link rel="canonical" href={entry + '/products/' + element.Id} />
+									<link rel="alternate" href={entry + '/products/' + element.Id} hreflang="he-il" />
 								</Helmet>
 								<div className="col-lg-6 info-p">
 									<div className="product-details">

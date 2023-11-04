@@ -36,7 +36,7 @@ const Gallery = ({active, setActive}) => {
                                         }
                                     </div>
                                 </div>  
-                                <img className="main-img" src={globalFileServer + 'product/' + item?.mediaObject?.filePath}/>
+                                <img className="main-img" src={globalFileServer + 'products/' + item?.mediaObject?.filePath}/>
                             </div>    
                         </div>
                     )

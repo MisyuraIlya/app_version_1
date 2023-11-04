@@ -1,6 +1,6 @@
 
 import { create } from 'zustand'
-import { getCurrentUserName } from '../../Auth/helpers/getCurrentUserId';
+import { getAgentExtId, getClientExtId, getCurrentUserName } from '../../Auth/helpers/getCurrentUserId';
 import { onAsk, onErrorAlert, onSuccessAlert } from '../../../agents/utils/sweetAlert';
 import { getUserFromStorage } from '../../Auth/helpers/auth.helper';
 import { CART_CONFIG } from '../config/custom';
@@ -30,7 +30,8 @@ const useCart = create((set, get) => ({
 			product: product,
 			stock: product.stock,
 			price: product.finalPrice,
-			discount: product.discount
+			discount: product.discount,
+			total: 1 * product.finalPrice,
 		};
 	
 		set({ cart: [...cart, cartProduct] });
@@ -41,6 +42,7 @@ const useCart = create((set, get) => ({
 		const itemIndex = cart.findIndex((item) => item.sku === sku);
 		if (itemIndex !== -1) {
 			cart[itemIndex].quantity += 1;
+			cart[itemIndex].total = cart[itemIndex].quantity * cart[itemIndex].price;
 		} else {
 			console.error("Item not found in cart");
 		}
@@ -52,6 +54,7 @@ const useCart = create((set, get) => ({
 		const itemIndex = cart.findIndex((item) => item.sku === sku);
 		if (itemIndex !== -1) {
 			cart[itemIndex].quantity -= 1;
+			cart[itemIndex].total = cart[itemIndex].quantity * cart[itemIndex].price;
 		} else {
 			console.error("Item not found in cart");
 		}
@@ -69,6 +72,7 @@ const useCart = create((set, get) => ({
 		const itemIndex = cart.findIndex((item) => item.sku === sku);
 		if (itemIndex !== -1) {
 			cart[itemIndex].quantity = +quantity;
+			cart[itemIndex].total = +quantity * cart[itemIndex].price;
 		} else {
 			console.error("Item not found in cart");
 		}
@@ -84,7 +88,7 @@ const useCart = create((set, get) => ({
 
 	},
 
-    selectedMode: 1, // 1 - order | 2 - Request | 3 - Return
+    selectedMode: 'order', // 1 - order | 2 - Request | 3 - Return
     CartTitle: () => {
         let totalTitle = 'סיכום';
 		if(get().selectedMode == '1'){
@@ -100,7 +104,8 @@ const useCart = create((set, get) => ({
     saveAsDraft: () => {},
     goToDrafts: () => {},
     priceBefore: 0,
-    deliveryPrice: 0,
+    deliveryPrice: 250,
+	deliveryDate:'2023-11-21', //TODO
     discount: 0,
     Maam: 17,
     totalBasket: 0,
@@ -118,9 +123,16 @@ const useCart = create((set, get) => ({
 		try {
 			set({loading:true})
 			const response = await CartServices.CreateOrder(
-				get().cart,
+				get().comment,
+				getClientExtId(),
+				get().calculateFinalPrice(),
+				getAgentExtId() ? true : false,
+				false,
+				get().discount,
+				get().selectedMode,
 				get().deliveryPrice,
-				get().comment
+				get().deliveryDate,
+				get().cart,
 			)
 			if(response?.orderNumber){
 				onSuccessAlert('הזמנה בוצה בהצלחה!',`מספר הזמנה ${response?.orderNumber}`)
@@ -194,7 +206,7 @@ const useCart = create((set, get) => ({
 	},
 
 	calculateFinalPrice: () => {
-		return get().calculatePriceAfterDiscount() + get().calculateTax()
+		return get().calculatePriceAfterDiscount() + get().calculateTax() + get().deliveryPrice
 	}
 	
 

@@ -57,7 +57,7 @@ const ProductsEditItem = ({element, index}) => {
                     <div className="col-lg-1 for-img">
                         <div className={element?.imagePath?.imagePath ? "img-load active" : "img-load"}>
                             {element?.defaultImagePath && 
-                                <img className="main-img" src={globalFileServer + 'product/' + element?.defaultImagePath}/>
+                                <img className="main-img" src={globalFileServer + 'products/' + element?.defaultImagePath}/>
                             }
                             <MyCropper
                                 aspectRatio={16/16} 

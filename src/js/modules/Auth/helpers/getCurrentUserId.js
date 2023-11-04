@@ -59,6 +59,11 @@ export const getCurrentUserType = () => {
 }
 
 
+export const getAgentExtId = () => {
+    const agentExtId = localStorage.agent ? JSON.parse(localStorage.agent).extId : null
+    return agentExtId
+}
+
 export const getClientExtId= () => {
     const tokensData = getPayloadToken()
     //console.log('tokensData',tokensData)

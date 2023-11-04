@@ -1,16 +1,23 @@
 import axios from "axios"
 import { ajax } from "../../../helpers/ajaxFunc"
-import { getCurrentUserId } from "../../Auth/helpers/getCurrentUserId"
+import { getClientExtId, getCurrentUserId } from "../../Auth/helpers/getCurrentUserId"
 
 const point = "new_app/index"
 const classPoint = "Orders"
 
 const CartServices = {
-    async CreateOrder(Order,DeliveryPrice, OrdComment) {
+    async CreateOrder(comment,userExtId,total,isAgentOrder,isBuyByCreditCard,discount,documentType,deliveryPrice,deliveryDate,products) {
         const obj = {
-            comment: OrdComment,
-            userExtId: getCurrentUserId(),
-            products: Order
+            comment,
+            userExtId,
+            total,
+            isAgentOrder,
+            isBuyByCreditCard,
+            discount,
+            documentType,
+            deliveryPrice,
+            deliveryDate,
+            products
         }
         const response = await axios.post(global.api + '/api/send_orders',obj)
         return response.data

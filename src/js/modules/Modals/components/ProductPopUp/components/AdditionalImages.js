@@ -64,7 +64,7 @@ const AdditionalImages = () => {
                 <SwiperSlide key={index} className="product-item">
                     <div className={"wrapper sliderImg-main-cont"} onClick={()=> changeDefaultImage(element?.mediaObject?.filePath)}>
                         <div className="img-cont">
-                            <img className="img" src={globalFileServer + 'product/' + element?.mediaObject?.filePath }/>
+                            <img className="img" src={globalFileServer + 'products/' + element?.mediaObject?.filePath }/>
                         </div>
                     </div>
                 </SwiperSlide>

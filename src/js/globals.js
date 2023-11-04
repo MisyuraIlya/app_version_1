@@ -4,12 +4,13 @@
 // global.globalFileServer = 'https://foodappeal-b2b.com/src/img/';
 
 
-global.entry = 'https://b2bportal.co.il';
-global.globalServer = 'https://b2bportal.co.il/app/';
-global.globalFileServer = 'http://localhost:8080/media/';
+global.entry = 'https://ctb2b.co.il';
+global.globalServer = 'https://ctb2b.co.il/app/';
+global.globalFileServer = 'https://ctb2b.co.il/src/img/';
+// global.globalFileServer = 'http://localhost:8080/media/';
 
-global.api = 'http://localhost:8080'
-// global.api = 'http://digiaws.net/ceremonitea'
+// global.api = 'http://localhost:8080'
+global.api = 'https://digiaws.net/ceremonitea'
 global.globalSiteName = "";
 global.globalAdminMail = "statosbiz@statos.co";//falkon1@bezeqint.net
 global.globalSiteUrl = "argentools";

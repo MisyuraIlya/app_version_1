@@ -8,10 +8,10 @@ const useClientStore = create((set, get) => ({
     setClients:(arr) => set({clients:arr}),
     selectedClient:null,
     setSelectedClient:(client) => set({selectedClient:client}),
-    getClients: async () => {
+    getClients: async (all = false) => {
         try {
             set({loading:true})
-            const response = await AdminClinetsService.getClients(get().page)
+            const response = await AdminClinetsService.getClients(get().page,all)
             set({clients:response["hydra:member"],totalClients:response["hydra:totalItems"]})
             const {totalPages, page, lastPage, nextPage, previousPage} = HydraHandler.paginationHandler(response)
             set({totalPages, page, lastPage, nextPage, previousPage})

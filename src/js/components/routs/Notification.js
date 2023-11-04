@@ -511,8 +511,8 @@ export default class Notification extends Component {
 					<BreadCrumbs breadCrumbsNav={breadCrumbsNav} title={''} searchQuery={''} lang={this.props.state.lang}/>
 					<div className="flex-container">
 						<div className="add-mobile">
-							<button onClick={this.addItem}>
-								<img src={globalFileServer + 'icons/plus-white.svg'} />
+							<button onClick={() => this.addItem()}>
+								<span class="material-symbols-outlined">add</span>
 								<span>צור הודעה חדשה</span>
 							</button>
 						</div>

@@ -129,6 +129,7 @@ import KartessetPage from "./modules/NewDocuments/pages/KartessetPage";
 import { DocumentsProvider } from "./modules/NewDocuments/provider/DocumentsProvider";
 import DocumentsItemPage from "./modules/NewDocuments/pages/DocumentsItemPage";
 import HistoryItemPage from './modules/NewDocuments/pages/HistoryItemPage';
+import NotificationPage from "./modules/PushNotificationModule/pages/NotificationPage";
 require('./globals.js');
 
 if (module.hot) {
@@ -191,7 +192,6 @@ const BasicRouter = (prop) => (
 									<Route path="/deptEdit" render={(props) => (<DeptEdit {...props}{...prop}/>)}/>
 
 
-									<Route path="/notification" render={(props) => (<Notification {...props}{...prop}/>)}/>
 									<Route path="/departments/:id" render={(props) => (<Departments {...props}{...prop}/>)}/>
 
 							{localStorage.user ?
@@ -283,6 +283,8 @@ const BasicRouter = (prop) => (
 							<Route path="/admin/clients" render={(props) => (<Clients {...props}{...prop}/>)}/>
 							<Route path="/admin/approveDoc" render={(props) => (<Orders {...props}{...prop}/>)}/>
 							<Route path="/admin/approveDocItems/:id" render={(props) => (<OrderItemPage {...props}{...prop}/>)}/>
+							<Route path="/admin/notification" render={(props) => (<NotificationPage {...props}{...prop}/>)}/>
+
 
 							{/* DOCUMENTS */}
 							<Route path="/historyItemPage/:id" render={(props) => (<HistoryItemPage {...props}{...prop}/>)}/> 

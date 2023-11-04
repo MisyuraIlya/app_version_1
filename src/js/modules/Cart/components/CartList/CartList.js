@@ -57,6 +57,7 @@ const CartList = () => {
                                 let price = calculatePrice(element.product, element.quantity, element.UnitChosen); // 37 * 15.5 = 5812.5
                                 let discount = getDiscountPrecent(element);
                                 let priceByOriginal = getPriceByOriginalPrice(element);
+                                console.log('element',element)
                                 return (
                                     <tr key={index} className={"item"} id={'docRow_' + element.Id} >
 
@@ -66,7 +67,7 @@ const CartList = () => {
 
                                         <th className="col-cont">
                                             <img className="img"
-                                                src={element.product?.ImgPath ? element.product?.ImgPath : globalFileServer + 'products/' + element?.product?.Img }
+                                                src={globalFileServer + 'products/' + element?.product?.defaultImagePath}
                                                 onClick={() => selectProduct(element.SelectedProduct)} 
                                             />
                                         </th>

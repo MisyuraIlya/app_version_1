@@ -1,9 +1,15 @@
 import axios from "axios"
 
 export const AdminClinetsService = {
-    async getClients(page) {
-        const response = await axios.get(global.api + `/api/users?page=${page}`);
-        return response.data
+    async getClients(page,all = false) {
+        if(all){
+            const response = await axios.get(global.api + `/api/users?itemsPerPage=10000`);
+            return response.data
+        } else {
+            const response = await axios.get(global.api + `/api/users?page=${page}`);
+            return response.data
+
+        }
     },
 
     async getClientItem(userId) {

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { ajaxService } from '../../../../helpers/ajaxService';
 import { getCurrentUserId } from '../../../Auth/helpers/getCurrentUserId';
 
@@ -153,5 +154,35 @@ export const NotificationsServices =  {
       } 
     },
 
+    //=====================
 
+    async createItem(object){
+      const response = await axios.post(global.api + '/api/notifications',object);
+      return response.data
+    }, 
+
+    async updateItem(object){
+      const response = await axios.patch(global.api + `/api/notifications/${object.id}`,object,
+      {
+        headers: {
+          'Content-Type': 'application/merge-patch+json'
+      }
+      });
+      return response.data
+    }, 
+
+    async deeletItem(id){
+      const response = await axios.delete(global.api + `/api/notifications/${id}`);
+      return response.data
+    }, 
+
+    async fetchNotifications(){
+      const response = await axios.get(global.api + '/api/notifications');
+      return response.data
+    }, 
+
+    async sendNotification(data){
+      const response = await axios.post(global.api + '/api/notifications/send',data);
+      return response.data
+    }, 
 }
