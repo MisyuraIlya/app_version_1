@@ -30,10 +30,16 @@ const DocsFilter = () => {
 
     const handleResoreCart = async () => {
         const res = await handleRestoreCartFunction(id)
-        console.log('res',res)
         setCart(res)
-        // push('/cart')
+        push('/cart')
     }
+
+    const handleDocument = async (file) => {
+        const link = await downloadDocument(file, id)
+        // console.log('link',link.url)
+        window.open(link.url, '_blank');
+    }
+
     return (
     <div className="for-calendar flex-container card">
         <div className="flex-container right-side-header col-lg-7">
@@ -102,15 +108,15 @@ const DocsFilter = () => {
                     {(isDocumentItemPage || isHistoryItemPage) &&
                         <>
                         <div className="select-cont first">
-                            <div className="file-cont" onClick={()=>downloadDocument(id, 'pdf')}>
+                            <div className="file-cont" onClick={()=>handleDocument('pdf')}>
                                 <span className="material-symbols-outlined">picture_as_pdf</span>
                             </div>
                         </div>
-                        <div className="select-cont second">
-                            <div className="file-cont" onClick={()=> downloadDocument(id, 'xls')}>
+                        {/* <div className="select-cont second">
+                            <div className="file-cont" onClick={()=> downloadDocument('xls',id)}>
                                 <span className="material-symbols-outlined">description</span>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="select-cont">
                             <div className="file-cont" onClick={()=> handleResoreCart()}>
                                 <span className="material-symbols-outlined">cloud_sync</span>

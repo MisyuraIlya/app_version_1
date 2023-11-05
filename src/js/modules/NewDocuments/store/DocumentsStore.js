@@ -51,7 +51,84 @@ const useDocuments = create((set, get) => ({
     },
     searchValue: '',
     setSearchValue: (value) => {set({searchItemsValue:value})},
-    downloadDocument: (id,value) => {
+    downloadDocument: async (value, documentNumber) => {
+        try {
+            set({loading:true})
+            let data = null;
+            if(get().documentType == 'document' || get().documentType == 'documentItem') {
+                let documents = []
+                get().orderItems.map((item) => {
+                    let obj = {
+                        sku: item.sku,
+                        barcode: 'TODO',
+                        title: item.title,
+                        price: item.priceByOne,
+                        quantity: item.quantity,
+                        discount: item.discount,
+                        totalBeforeTax:  item.total * 0.17,
+                        totalPrice: item.total,
+                        image: 'TODO',
+                    }
+                    documents.push(obj)
+                })
+                
+                let objectData = {
+                    documentNumber:documentNumber,
+                    userExtId: getClientExtId(),
+                    documentType:'הזמנה',
+                    erpData:{
+                        totalPrice: get().totalAfterDiscount,
+                        totalPriceBeforeTax: get().totalAfterDiscount * 0.17,
+                        documents
+                    }
+                }
+                data = objectData;
+            } else if(get().documentType == 'history' || get().documentType == 'historyItem') {
+                let documents = []
+                get().orderItems.map((item) => {
+                    let obj = {
+                        sku: item?.product?.sku,
+                        barcode: 'TODO',
+                        title: item?.product?.title,
+                        price: item.singlePrice,
+                        quantity: item.quantity,
+                        discount: item.discount,
+                        totalBeforeTax:  item.total * 0.17,
+                        totalPrice: item.total,
+                        image: globalFileServer + item?.product?.defaultImagePath ,
+                    }
+                    documents.push(obj)
+                })
+                
+                let objectData = {
+                    documentNumber:documentNumber,
+                    userExtId: getClientExtId(),
+                    documentType:'הזמנה',
+                    erpData:{
+                        totalPrice: get().totalAfterDiscount,
+                        totalPriceBeforeTax: get().totalAfterDiscount * 0.17,
+                        documents
+                    }
+                }
+                data = objectData;
+            } else if(get().documentType === 'kartesset') {
+    
+            }
+            // console.log('data',data)
+            if(value === 'pdf') {
+                const response = await DocumentsService.createPdf(data);
+                return response
+            }
+    
+            // if(value === 'xls'){
+            //     const response = await DocumentsService.createXl(data);
+            //     return response?.url
+            // }
+        } catch(e) {
+            console.log('[ERROR] error get document xlsx')
+        } finally {
+            set({loading:false})
+        }
 
     },
     handleRestoreCartFunction: async (documentNumber) => {

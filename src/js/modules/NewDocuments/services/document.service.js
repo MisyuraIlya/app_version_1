@@ -33,7 +33,15 @@ export const DocumentsService = {
         })
 
         return response.data
-        
+    },
+
+    async createPdf(data){
+        const response = await axios.post(global.api + `/api/pdf`,data)
+        return response.data
+    },
+    async createXl(data){
+        const response = await axios.post(global.api + `/api/xl`, data)
+        return response.data
     }
 
 }

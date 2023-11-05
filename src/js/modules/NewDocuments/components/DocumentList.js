@@ -81,13 +81,13 @@ const DocumentList = () => {
                               }
                             </th>
                 
-                            <th className="col-cont">
+                            {/* <th className="col-cont">
                               {element?.DocumentID != '31' && element?.DocumentID != '3' ?
                                 <div className="file-cont" onClick={()=> downloadFile(element, 'pdf')}>
                                   <span className="material-symbols-outlined">picture_as_pdf</span>
                                 </div>
                               :null}
-                            </th>
+                            </th> */}
                            
                         </tr>
                     );
