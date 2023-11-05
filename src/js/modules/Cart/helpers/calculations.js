@@ -1,10 +1,18 @@
 export const calculatePrice = (product, quantity, unitChosed) => {
 
-    return parseFloat(product.finalPrice) * parseFloat(quantity)
+    if(product?.finalPrice){
+        return parseFloat(product.finalPrice) * parseFloat(quantity)
+    } else {
+        return 0;
+    }
 }
 
 export const getDiscountPrecent = (productCart) => {
-    return parseFloat((100-(parseFloat(productCart.product.finalPrice) * 100 /parseFloat(productCart.product.basePrice))).toFixed(1));
+    if(productCart?.product?.finalPrice){
+        return parseFloat((100-(parseFloat(productCart.product.finalPrice) * 100 /parseFloat(productCart.product.basePrice))).toFixed(1));
+    } else {
+        return 0
+    }
 }
 
 export const getDiscountPrecentProduct = (product) => {
@@ -17,7 +25,11 @@ export const getDiscountPrecentProduct = (product) => {
 }
 
 export const getPriceByOriginalPrice = (element) => {
-    return (parseFloat(element.product.basePrice) * parseInt(element.product.packQuantity) * element.quantity).toFixed(1);
+    if(element?.product?.basePrice){
+        return (parseFloat(element.product.basePrice) * parseInt(element.product.packQuantity) * element.quantity).toFixed(1);
+    } else {
+        return 0
+    }
 }
 
 export const calPriceWithTax = (finalPrice) => {

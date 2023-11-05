@@ -26,14 +26,13 @@ const DocsFilter = () => {
     const isDocumentItemPage = location.pathname.includes('documentItemPage')
     const isHistoryItemPage = location.pathname.includes('historyItemPage')
     const {id} = useParams()
-    const {addToCart} = useCart()
+    const {cart, setCart} = useCart()
 
     const handleResoreCart = async () => {
         const res = await handleRestoreCartFunction(id)
-        res.map((item) => {
-            addToCart(item)
-        })
-        push('/cart')
+        console.log('res',res)
+        setCart(res)
+        // push('/cart')
     }
     return (
     <div className="for-calendar flex-container card">
@@ -109,7 +108,7 @@ const DocsFilter = () => {
                         </div>
                         <div className="select-cont second">
                             <div className="file-cont" onClick={()=> downloadDocument(id, 'xls')}>
-                                <span class="material-symbols-outlined">description</span>
+                                <span className="material-symbols-outlined">description</span>
                             </div>
                         </div>
                         <div className="select-cont">

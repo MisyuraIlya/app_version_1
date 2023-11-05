@@ -512,7 +512,7 @@ export default class Notification extends Component {
 					<div className="flex-container">
 						<div className="add-mobile">
 							<button onClick={() => this.addItem()}>
-								<span class="material-symbols-outlined">add</span>
+								<span className="material-symbols-outlined">add</span>
 								<span>צור הודעה חדשה</span>
 							</button>
 						</div>

@@ -28,7 +28,7 @@ const PriceBlock = ({product}) => {
                                 value={product.discount}
                             />
                         :
-                            <p className="row-val percent">{product.discount ?? 0}</p>
+                            <p className="row-val percent">{inCart.discount ?? 0}</p>
                         }
                     </div>
                     <div className="price-cont-sub-right-box  col-lg-4">

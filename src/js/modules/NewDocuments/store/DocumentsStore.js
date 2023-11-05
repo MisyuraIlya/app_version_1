@@ -66,7 +66,7 @@ const useDocuments = create((set, get) => ({
                 response = await DocumentsService.RestoreCart('history',getClientExtId(),documentNumber)
             }
     
-            return response["hydra:member"];
+            return response;
         } catch(e) {
             console.error('[ERROR] fetch restored cart',e)
         } finally {

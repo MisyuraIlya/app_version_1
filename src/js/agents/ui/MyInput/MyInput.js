@@ -7,7 +7,7 @@ const MyInput = ({imgLink,googleIcon,placeholder, props ,value, onChange, disabl
                 <div className='col-lg-2'>
                     <div className='myCenterAlign img'>
                         {googleIcon ? 
-                            <span class="material-symbols-outlined">{googleIcon}</span>
+                            <span className="material-symbols-outlined">{googleIcon}</span>
                         :
                         <img src={imgLink} />
                         }

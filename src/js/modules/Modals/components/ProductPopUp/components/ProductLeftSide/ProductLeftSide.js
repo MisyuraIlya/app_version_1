@@ -23,7 +23,7 @@ const ProductLeftSide = () => {
                 {subProducts?.length> 0 &&
                     <>
                     <div className="devider"></div>
-                    <SubProducts/>
+                        <SubProducts/>
                     <div className="devider"></div>
                     </>
                 }

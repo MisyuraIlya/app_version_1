@@ -26,7 +26,11 @@ export const DocumentsService = {
     }, 
 
     async RestoreCart(documentType,userExtId,documentNumber){
-        const response = await axios.get(global.api + `/api/restoreCart/${documentType}/${userExtId}/${documentNumber}`)
+        const response = await axios.get(global.api + `/api/restoreCart/${documentType}/${userExtId}/${documentNumber}`,{
+            headers: {
+                'Accept': 'application/json',
+              }
+        })
 
         return response.data
         

@@ -12,6 +12,7 @@ const useCart = create((set, get) => ({
 
 	setCart: (data) => {
 		set({cart: data})
+		setProductLocalstorage(data)
 	},
 	getCartItem: (product) => {
 		const cart = get().cart;
@@ -106,7 +107,7 @@ const useCart = create((set, get) => ({
     priceBefore: 0,
     deliveryPrice: 250,
 	deliveryDate:'2023-11-21', //TODO
-    discount: 0,
+    discount: 7,
     Maam: 17,
     totalBasket: 0,
 	sendNoApproval: false,
@@ -162,9 +163,9 @@ const useCart = create((set, get) => ({
 
 	priceBeforeTax: () => {
 		const priceBefore = get().cart.reduce((accumulator, item) => {
-			const itemPrice = item.product.finalPrice * item.quantity;
-			return accumulator + itemPrice;
-		  }, 0); 
+			const itemPrice = item.price * item.quantity;
+		return accumulator + itemPrice;
+		}, 0); 
 
 		return priceBefore
 	},

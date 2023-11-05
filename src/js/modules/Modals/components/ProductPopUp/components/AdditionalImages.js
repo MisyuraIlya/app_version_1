@@ -81,7 +81,7 @@ const AdditionalImages = () => {
                 onClick={goPrev}
                 data-disabled={activeIndex == 0 ? true : false}
               >
-                <span class="material-symbols-outlined" style={{position:'relative',background:'none'}}>arrow_forward_ios</span>
+                <span className="material-symbols-outlined" style={{position:'relative',background:'none'}}>arrow_forward_ios</span>
               </button>
               <button
                 className="swiper-nav next"
@@ -90,7 +90,7 @@ const AdditionalImages = () => {
                   activeIndex == selectedProd?.imagePath - (toShow * column) - 2 ? true : false
                 }
               >
-                <span class="material-symbols-outlined" style={{position:'relative',background:'none'}}>arrow_back_ios</span>
+                <span className="material-symbols-outlined" style={{position:'relative',background:'none'}}>arrow_back_ios</span>
               </button>
             </div>
         </div>

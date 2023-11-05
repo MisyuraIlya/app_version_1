@@ -6,7 +6,7 @@ import { useModals } from '../../../Modals/provider/ModalsProvider';
 const AddToCartCatalog = ({item}) => {
     const {cart,addToCart,increaseCart,decreaseCart, deleteFromCart, changeQuantity, avoidNullInCart} = useCart()
     const {openStockNotify,openAddToCartTotify} = useModals()
-    const find = cart?.filter((itemCart) => itemCart.sku === item.sku)
+    const find = cart?.filter((itemCart) => itemCart?.sku === item?.sku)
     const Quantity = find[0]?.quantity
     const isInCart = find[0]?.sku ? true : false
     const selectInput = (id) =>{
@@ -17,7 +17,7 @@ const AddToCartCatalog = ({item}) => {
 
     const addToCartFunc = () => {
         console.log('item',item)
-        if(parseFloat(item.stock) >= parseFloat(item.packQuantity)) {
+        if(parseFloat(item?.stock) >= parseFloat(item.packQuantity)) {
             addToCart(item)
             openAddToCartTotify()
         } else {
@@ -26,7 +26,7 @@ const AddToCartCatalog = ({item}) => {
     }
 
     const increaseCartFunc = () => {
-        if(parseFloat(item.stock) > parseFloat(Quantity)) {
+        if(parseFloat(item?.stock) > parseFloat(Quantity)) {
             increaseCart(item.sku)
         } else {
             openStockNotify()
@@ -34,7 +34,7 @@ const AddToCartCatalog = ({item}) => {
     }
 
     const onChangeQuantityFunc = (value) => {
-        if(parseFloat(item.stock) >= (value * parseFloat(item.packQuantity))) {
+        if(parseFloat(item?.stock) >= (value * parseFloat(item.packQuantity))) {
             changeQuantity(item.sku, value)
         } else {
             openStockNotify()

@@ -83,8 +83,10 @@ export const getRole = () => {
     } else if(res?.roles.includes("ROLE_AGENT")) {
         return 'AGENT'
     } else if( res?.roles.includes("ROLE_USER") ) {
-       return 'USER'
+        return 'USER'
     } else {
         return null;
     }
+
+
 }

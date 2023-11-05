@@ -25,7 +25,7 @@ const ProductAddToCart = () => {
                 <div className="actions flex-container">
                     {cartItem?.sku && (
                         <div className="added">
-                            <span class="material-symbols-outlined">done</span>
+                            <span className="material-symbols-outlined">done</span>
                             <p>{'נוסף לסל'}</p>
                         </div>
                     )}

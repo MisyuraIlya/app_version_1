@@ -41,10 +41,6 @@ const MainSummary = () => {
                     className="title">{'סה״כ לפני מע״מ'}</span>
                 <span className="price">{(priceBeforeTax()).toFixed(1)}</span>
             </li>
-            <li>
-                <span className="title">{'סה״כ'}</span>
-                <span className="price">{(priceBeforeTax()).toFixed(1)}</span>
-            </li>
             {calucalteDiscountTotal() !== 0 &&
             <div>
                 <li className="">

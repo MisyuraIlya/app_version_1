@@ -8,7 +8,7 @@ const AddToCart = ({item}) => {
     const {cart,addToCart,increaseCart,decreaseCart, deleteFromCart, changeQuantity, avoidNullInCart} = useCart()
     const {selectedProd} = useSelectedProduct()
     const {openStockNotify,openAddToCartTotify} = useModals()
-    const find = cart?.filter((itemCart) => itemCart.sku === item.sku)
+    const find = cart?.filter((itemCart) => itemCart?.sku === item?.sku)
     const Quantity = find[0]?.quantity
     const isInCart = find[0]?.sku ? true : false
 
@@ -46,7 +46,7 @@ const AddToCart = ({item}) => {
     return (
         <>
         
-        {parseInt(item.stock) !== 0 ?
+        {parseInt(item?.stock) !== 0 ?
         <div className="product-page barcode-pop">
             <div className="wrapp flex-container" onClick={!isInCart ? () =>  addToCartFunc() : null}>
                 <div className="col-lg-4 fx-btn MyCenetred" onClick={() => increaseCartFunc()}>
@@ -69,7 +69,7 @@ const AddToCart = ({item}) => {
                     </Fragment>
                 :
                 <>
-                    {parseInt(item.stock) !== 0 ?
+                    {parseInt(item?.stock) !== 0 ?
                         <div className="col-lg-8">
                             <p>{'הוספה לסל'}</p>
                         </div>

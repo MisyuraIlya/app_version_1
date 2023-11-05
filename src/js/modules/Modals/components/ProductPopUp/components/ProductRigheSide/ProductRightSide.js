@@ -29,7 +29,7 @@ const ProductRightSide = () => {
             <img className="img" src={globalFileServer + 'placeholder.jpg'}/>
             }
             <div className="additional-img-cont col-lg-11">
-                {selectedProd?.imagePath.length > 1 &&
+                {selectedProd?.imagePath?.length > 1 &&
                 <AdditionalImages/>
                 }
             </div>
