@@ -80,7 +80,7 @@ const SearchHook = (params) => {
 		<div className="search">
 			{preload ? <style>{ css }</style> : null}
 			<div className="search-wrapp">
-				<input
+				{/* <input
           required
 					id="main_search"
 					onChange={ e => setWord(e.target.value) }
@@ -88,7 +88,7 @@ const SearchHook = (params) => {
 					value={search}
 					type="text"
 					placeholder="חיפוש מוצר..."
-				/>
+				/> */}
 				{search ?
 					<img className="icon close" onClick={ e => setWord('') } src={globalFileServer + "icons/close.svg"} alt=""/>
 				:

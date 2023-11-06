@@ -17,22 +17,6 @@ const ClientRightSideBar = ({active, setActive}) => {
                                         <p>{'בית'}</p>
                                     </li>
                                 </NavLink>
-                                <NavLink to={'/category/sales/0/0/0/1/0/'}>
-                                    <li oonClick={() => setActive(false)}>
-                                        <p>{"מבצעים"}</p>
-                                    </li>
-                                </NavLink>
-                            
-                                <NavLink to={'/brands/collection/0/'}>
-                                    <li onClick={() => setActive(false)}>
-                                        <p>{"סדרות"}</p>
-                                    </li>
-                                </NavLink>
-                                <NavLink to={'/brands/brands/0/'}>
-                                    <li onClick={() => setActive(false)}>
-                                        <p>{"מותגים"}</p>
-                                    </li>
-                                </NavLink>
                                 <NavLink to={'/profile/'}>
                                     <li onClick={() => setActive(false)}>
                                         <p>{"אזור אישי"}</p>

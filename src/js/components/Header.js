@@ -256,14 +256,14 @@ const SearchHook= params =>
 				{localStorage.user || localStorage.agent || localStorage.role ? 
 					<div className="search-cont">
 						<div className="input">
-							<input
+							{/* <input
 								onChange={e => setWord(e.target.value)}
 								value={search}
 								type="text"
 								placeholder={app.state.lang == 'he' ? "חיפוש מוצר..." : "Search"}
 								onKeyPress={e => searchCheckEnter(e)}
 
-							/>
+							/> */}
 							{search == "" ?
 								<span className="material-symbols-outlined search-img">search</span>
 								:
@@ -1265,13 +1265,13 @@ export default class Header extends Component
 
 
 							</div>
-							<div className={!this.state.showSearchMob ? "search-li col-lg-4 hide-mob" : "search-li show-mob"}>
-								{/* <SearchHook searchPhpFunc={this.searchPhpFunc} setProdPopUp={this.setProdPopUp}
+							{/* <div className={!this.state.showSearchMob ? "search-li col-lg-4 hide-mob" : "search-li show-mob"}>
+								<SearchHook searchPhpFunc={this.searchPhpFunc} setProdPopUp={this.setProdPopUp}
 								            searchProds={this.state.searchProds} preload={this.state.preload}
 								            showNotFound={this.state.showNotFound} props={this.props} lang={lang}
-								            closeSearchMob={this.closeSearchMob}/> */}
+								            closeSearchMob={this.closeSearchMob}/>
 								<CatalogSearch />
-							</div>
+							</div> */}
 
 							<div className="actions col-lg-2">
 								<ul className={!localStorage.user ? "prelogIn" : "afterLog"}>

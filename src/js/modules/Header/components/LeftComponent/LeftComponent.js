@@ -6,6 +6,7 @@ import ProfileMenu from './components/ProfileMenu';
 import NotificationIcon from '../../../PushNotificationModule/components/NotificationIcon/NotificationIcon';
 import { useModals } from '../../../Modals/provider/ModalsProvider';
 import useAuthStore from '../../../Modals/store/AuthModalStore';
+import IdentifyCont from './components/IdentifyCont';
 
 const LeftComponent = () => {
   const { user, isAgent } = useAuth();
@@ -67,6 +68,7 @@ const LeftComponent = () => {
           </li>
         )}
       </ul>
+      <IdentifyCont/>
     </>
   );
 };
