@@ -35,7 +35,7 @@ const NewB2bForm = () => {
                 <AuthInput
                     title={'ח.פ'}
                     type='number'
-                    name={'companyId'}
+                    name={'hp'}
                     register={register}
                     error={errors.company?.message}
                 />

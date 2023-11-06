@@ -47,5 +47,10 @@ export const AuthService = {
             password
         })
         return response.data
+    },
+
+    async createNewUser(data){
+        const response = await axios.post(global.api + '/auth/createUser', data)
+        return response.data
     }
 }

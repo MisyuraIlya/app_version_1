@@ -79,7 +79,7 @@ const AuthProvider = (props) => {
     try {
       setLoading(true)
       console.log('data',data)
-      const response = await AuthService.registerNewClient(data)
+      const response = await AuthService.createNewUser(data)
       if(response.status === 'success') {
         login(data.email,data.password)
       } else {

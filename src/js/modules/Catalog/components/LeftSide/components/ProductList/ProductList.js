@@ -42,6 +42,12 @@ const ProductList = () => {
             );
           }
         })}
+        {
+          ((productsFilter?.length > 0 && documentType === 'search')? productsFilter : products)?.length == 0 &&
+          <div style={{display:'flex',justifyItems:'center', alignItems:'center'}}>
+            <h3>לא נמצאו מוצרים</h3>
+          </div>
+        }
       </div>
     </div>
   );
