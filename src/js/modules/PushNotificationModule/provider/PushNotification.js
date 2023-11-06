@@ -37,6 +37,7 @@ const NotificationsProvider = ({children}) => {
     const [removeIosPromt, setRemoveIosPrompt] = useState(localStorage.removeIosPromt ? removeIosPromt : true)
     const [alreadyRegistered, setAlreadyRegistered] = useState(false)
     const [appId, setAppId] = useState('')
+    
     const onHandleTag = (tag) => {
       OneSignal.sendTag('tech',tag).then(() => {
       })

@@ -14,7 +14,7 @@ const Header = () => {
         <div className={user ? "header-wrapper" : "header-wrapper no-cats"}>
             <div className="header-wrapper-subcont flex-container">
                 <div className={true? "main-menu col-lg-4 opened" : "main-menu col-lg-6 closed"}>
-                    <MobileHeader/>
+                    {/* <MobileHeader/> */}
                     <RightComponent/>
                 </div>
                 <div className={true ? "search-li col-lg-5 hide-mob" : "search-li show-mob"}>

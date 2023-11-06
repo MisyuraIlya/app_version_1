@@ -1,6 +1,6 @@
 
 import { create } from 'zustand'
-import { getAgentExtId, getClientExtId, getCurrentUserName } from '../../Auth/helpers/getCurrentUserId';
+import { getAgentExtId, getClientExtId, getClientName, getCurrentUserName } from '../../Auth/helpers/getCurrentUserId';
 import { onAsk, onErrorAlert, onSuccessAlert } from '../../../agents/utils/sweetAlert';
 import { getUserFromStorage } from '../../Auth/helpers/auth.helper';
 import { CART_CONFIG } from '../config/custom';
@@ -92,14 +92,15 @@ const useCart = create((set, get) => ({
     selectedMode: 'order', // 1 - order | 2 - Request | 3 - Return
     CartTitle: () => {
         let totalTitle = 'סיכום';
-		if(get().selectedMode == '1'){
+		if(get().selectedMode == 'order'){
 			totalTitle += ' ' + 'הזמנה';
-		}else if(get().selectedMode == '2'){
+		}else if(get().selectedMode == 'request'){
 			totalTitle += ' ' + 'ה.מחיר';
-		}else if(get().selectedMode == '3'){
+		}else if(get().selectedMode == 'return'){
 			totalTitle += ' ' + 'החזרה';
 		}
-		totalTitle += ' | ' + getCurrentUserName();
+		totalTitle += ' | ' + getClientName();
+		console.log('totalTitle',totalTitle)
         return totalTitle;
     },
     saveAsDraft: () => {},

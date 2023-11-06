@@ -7,7 +7,7 @@ const VideoSection = () => {
         <GalaxyVideo /> 
         <div className={true? "showcase animated fadeInDown" : "showcase"}>
             <h1 className="h1-2">{'חליטות תה מיוחדות ומוצרי ומארזי חליטות תה מהודרים לקהל הפרטי והעסקי'}</h1>
-            <NavLink to={'/category/catalog/0/0/0/1/0/'}>
+            <NavLink to={'/client/catalog/1/0/0?page=1'}>
                 <div className="button-cls">
                     <p>{'לקטלוג המלא'}</p>
                 </div>

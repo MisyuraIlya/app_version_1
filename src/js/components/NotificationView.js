@@ -131,45 +131,7 @@ export default class NotificationView extends Component {
 								<p>הודעות</p>
 							</div>
 
-							
-							{/*
-							<NotificationsModalHead/>
-							*/}
-
 						</div>
-						
-						{/* <div className="">
-							<h3>חדשות</h3>
-						</div> */}
-						{/* <div id="notify" className="products">
-							{this.state.items.map((element, index) => {
-								return(
-									<div key={index} className="item">
-										<div className="wrapper">
-											<h2>{element.Title}</h2>
-											<span className="date">{this.returnDate(element.Date)}</span>
-											{element.Img ?
-												<img src={globalFileServer + 'notifications/' + element.Img} />
-											: null}
-											<p>{element.Description}</p>
-											{element.Video ?
-												<YouTube
-													videoId={element.Video}
-													opts={opts}
-												/>
-											: null}
-											{element.Link ?
-                        <div className="btn-cont">
-                          <a href={globalFileServer + 'alon/' + element.Link} target="_blank">
-                            <p>לחץ לצפייה</p>
-                          </a>
-                        </div>
-											: null}
-										</div>
-									</div>
-								);
-							})}
-						</div> */}
 						<div>
 							<NotificationsModal/>
 						</div>

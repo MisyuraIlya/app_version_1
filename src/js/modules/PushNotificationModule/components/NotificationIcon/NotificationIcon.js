@@ -4,17 +4,20 @@ import { useNotifications } from '../../provider/PushNotification';
 import { getCurrentUserId } from '../../../Auth/helpers/getCurrentUserId';
 import CircleCount from '../CircleCount/CircleCount';
 import { useAuth } from '../../../Auth/providers/AuthProvider';
+import { useModals } from '../../../Modals/provider/ModalsProvider';
 const NotificationIcon = () => {
     const {user} = useAuth()
     const {lengthNotifications, NotificationsMethods, modalNotification} = useNotifications()
+    const {setLeftSideBar} = useModals()
+
     const onHandleOpen = () => {
-        // handleOpen()
+        setLeftSideBar(true)
         NotificationsMethods.getNotifications()
     }
 
     const handleClose = () => {
         NotificationsMethods.clearNotifications()
-        // handleOpen()
+        setLeftSideBar(false)
     }
     return (
         <>

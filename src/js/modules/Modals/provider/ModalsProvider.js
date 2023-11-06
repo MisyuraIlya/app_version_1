@@ -17,6 +17,7 @@ import ClientRightSideBar from '../adminComponents/ClientRightSideBar/ClientRigh
 import Gallery from '../adminComponents/Galerry/Gallery';
 import ClientsInfo from '../adminComponents/ClientsInfo/ClientsInfo';
 import ClientOptions from '../adminComponents/ClientOptions/ClientOptions';
+import LeftSideBar from '../components/LeftSideBar/LeftSideBar';
 // Local
 
 // Defines
@@ -44,6 +45,7 @@ const ModalsProvider = ({children}) => {
   const [openSideBar, setOpenSideBar] = useState(false)
   const [adminRightSideBar, setAdminRightSideBar] = useState(false)
   const [clientRightSideBar, setClientRightSideBar] = useState(false)
+  const [leftSideBar, setLeftSideBar] = useState(false)
   //ADMINS 
   const [gallery, setGallery] = useState(false)
   const [clientsInfo, setClientsInfo] = useState(false) 
@@ -103,7 +105,9 @@ const ModalsProvider = ({children}) => {
     clientOptions,
     setClientOptions,
     clientRightSideBar,
-    setClientRightSideBar
+    setClientRightSideBar,
+    leftSideBar,
+    setLeftSideBar
   };
 
   return (
@@ -129,7 +133,7 @@ const ModalsProvider = ({children}) => {
         {/* SIDEBARDS */}
         <AdminRightSideBar active={adminRightSideBar} setActive={setAdminRightSideBar}/>
         <ClientRightSideBar active={clientRightSideBar} setActive={setClientRightSideBar} />
-
+        <LeftSideBar active={leftSideBar} setActive={setLeftSideBar}/>
         {/* ADMINS */}
         <Gallery active={gallery} setActive={setGallery}/>
         <ClientsInfo active={clientsInfo} setActive={setClientsInfo}/>

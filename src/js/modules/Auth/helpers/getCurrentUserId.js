@@ -78,3 +78,9 @@ export const getClientExtId= () => {
         // return null;
     // }
 }
+
+export const getClientName = () => {
+    const userExId = localStorage.user ? JSON.parse(localStorage.user).name  : null
+    return userExId
+ 
+}
