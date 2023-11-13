@@ -62,7 +62,7 @@ const SliderSection = ({title, array, toShow = 5, column = 1}) => {
                         return (
                         <SwiperSlide key={index} className="product-item">
                             <div className={"wrapper"}>
-                                <NavLink to={'/categoryPage/' + element?.id + '/0/0'}>
+                                <NavLink to={`/client/catalog/${element?.id}/0/0?page=1`}>
                                     <div className="img-cont">.
                                         {/* IMPLEMENT IMAGE PATH */}
                                         <img className="img" src={element?.MediaObject?.filePath ? globalFileServer + "categories/" + element?.MediaObject?.filePath : globalFileServer + 'placeholder.jpg'} />

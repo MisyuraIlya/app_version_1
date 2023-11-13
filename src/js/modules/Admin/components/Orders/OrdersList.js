@@ -2,7 +2,7 @@ import React from 'react';
 import useAdminOrders from '../../store/OrdersStore';
 import Pagination from '../../../../SharedComponents/Pagination';
 import OrderItem from './OrderItem';
-
+import moment from 'moment';
 const OrdersList = () => {
     const {
         orders,
@@ -42,10 +42,6 @@ const OrdersList = () => {
                             <th className="col-cont">
                             <p>תאריך</p>
                             </th>
-                        
-                            <th className="col-cont">
-                            <p>סוכן</p>
-                            </th>
                             <th className="col-cont">
                             <p>סה״כ</p>
                             </th>
@@ -54,9 +50,6 @@ const OrdersList = () => {
                             </th>
                             <th className="col-cont">
                             <p>סטאטוס</p>
-                            </th>
-                            <th className="col-cont">
-                            <p>גורם מאשר</p>
                             </th>
                         </tr>
                         {orders?.map((element, index) => {

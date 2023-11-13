@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-
+import moment from 'moment';
 const OrderItem = ({element,index}) => {
     const history = useHistory()
     return (
@@ -20,14 +20,12 @@ const OrderItem = ({element,index}) => {
                 <p>{element?.id}</p>
             </th>
             <th className="col-cont">
-                {/* <p>{DocType}</p> */}
+                <p>{'הזמנה'}</p>
             </th>
             <th className="col-cont">
-                <p>{element?.createdAt}</p>
+                <p>{moment(element?.createdAt).format('DD-MM-YYYY HH:mm:ss')}</p>
             </th>
-            <th className="col-cont">
-                {/* <p>{element.AgentName}</p> */}
-            </th>
+
             <th className="col-cont">
                 <p>{parseFloat(element?.total).toFixed(1)}</p>
             </th>
@@ -38,9 +36,7 @@ const OrderItem = ({element,index}) => {
             <th className="col-cont col-approved">
                 <p className={''}>{element?.orderStatus}</p>
             </th>
-            <th className="col-cont">
-                {/* <p>{element.SuperAgentName ? element.SuperAgentName : '-'}</p> */}
-            </th>
+
         </tr>
     );
 };

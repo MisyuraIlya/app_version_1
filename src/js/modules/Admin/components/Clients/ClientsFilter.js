@@ -1,16 +1,14 @@
 import React from 'react';
 import useClientStore from '../../store/ClientsStore';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const ClientsFilter = () => {
     const {totalClients} = useClientStore()
+    const {goBack} = useHistory()
     return (
         <div className="filter flex-container">
             <div className="col-lg-2">
-                    <p onClick={() => this.updateUserList.bind(this, this.state.activeTab)}>
-                        <span className="material-symbols-outlined">arrow_forward</span>
-                        <span>חזור</span>
-                    </p>
-                    <p>{'נמצאו ' + totalClients + ' לקוחות'}</p>
+                <p>{'נמצאו ' + totalClients + ' לקוחות'}</p>
             </div>
             {/* {this.state.activeTab != "approved" && this.state.activeTab != "waitForApprove" ?
             <div style={{display: 'flex'}} className="col-lg-10">
