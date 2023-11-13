@@ -10,10 +10,11 @@ const RegistrationForm = () => {
     const [acceptCondition, setAcceptCondition] = useState(false)
     const {registration} = useAuth()
     const handleLogin = (data) => {
+        console.log('data',data)
         if(!acceptCondition) {
             onErrorAlert('אנא אשר את תנאי שימוש')
         }
-        registration(userExtId, data.email, data.password)
+        registration(userExtId, data.email, data.password, data.token)
     }
 
     return (
@@ -25,6 +26,10 @@ const RegistrationForm = () => {
                 <div className="input-cont">
                     <p>{"מייל"}</p>
                     <input type="text" {...register('email', {required:`מייל שדה חובה`})} />
+                </div>
+                <div className="input-cont">
+                    <p>{"קוד סודי"}</p>
+                    <input  type="number" {...register('token', {required:`קוד סודי שדה חובה`})} />
                 </div>
                 <div className="input-cont">
                     <p>{"סיסמה"}</p>

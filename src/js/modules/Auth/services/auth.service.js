@@ -24,11 +24,12 @@ export const AuthService = {
         })
         return response.data
     },
-    async registration(extId, username, password){
+    async registration(extId, username, password,token){
         const response = await axios.put(global.api + '/auth/registration', {
             extId,
             username,
-            password
+            password,
+            token
         })
         return response.data
     },

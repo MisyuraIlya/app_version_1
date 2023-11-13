@@ -111,10 +111,10 @@ const AuthProvider = (props) => {
     }
   } 
 
-  const registration = async (userExId, username, password) => {
+  const registration = async (userExId, username, password, token) => {
     try {
       setLoading(true)
-      const response = await AuthService.registration(userExId,username, password)
+      const response = await AuthService.registration(userExId,username, password, token)
       console.log('response',response)
       if(response.status === 'success') {
         login(username,password)
