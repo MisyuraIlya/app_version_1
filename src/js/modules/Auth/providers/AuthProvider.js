@@ -6,7 +6,7 @@ import { ajax } from '../../../helpers/ajaxFunc';
 import { useHistory } from 'react-router-dom';
 import { AuthService } from '../services/auth.service';
 import { getRefreshToken, getRole, getUserFromStorage, removeFromStorage, saveToStorage, saveTokensStorage, updateAccessToken } from '../helpers/auth.helper';
-import { onErrorAlert, onSuccessAlert } from '../../../agents/utils/sweetAlert';
+import { onAsk, onErrorAlert, onSuccessAlert } from '../../../agents/utils/sweetAlert';
 import { getPayloadToken } from '../helpers/auth.helper';
 // Defines
 const AuthContext = createContext();
@@ -160,10 +160,14 @@ const AuthProvider = (props) => {
     }
   }
 
-  const logOut = () => {
-    removeFromStorage()
-    history.push('/')
-    location.reload();
+  const logOut = async () => {
+    const ask = await onAsk('האם אתה בטוח?','כל העסקאות והמוצרים מהעגלה יימחקו.')
+    if(ask){
+      removeFromStorage()
+      history.push('/')
+      location.reload();
+    }
+
   }
 
   useEffect(() => {

@@ -66,7 +66,7 @@ const CatalogSearch = () => {
                                     <div key={key} className="searchRes-row flex-container" onClick={() => selectProduct(item)}>
                                         <div className="img-cont col-lg-3">
                                             {/* set IMAGE PLACEHOLDER */}
-                                            <img className="img" src={item.defaultImagePath ? item.defaultImagePath : globalFileServer + 'products/' + item.defaultImagePath}/>
+                                            <img className="img" src={item.defaultImagePath ? globalFileServer + 'products/' + item.defaultImagePath : globalFileServer + 'placeholder.jpg'}/>
                                         </div>
                                         <div className="content col-lg-9">
                                             <p className="title">{item.title}</p>
@@ -88,7 +88,7 @@ const CatalogSearch = () => {
                             </div>
                         
                         }
-                        {(!searchValue || productsFilter.length == 0) &&
+                        {(!searchValue || productsFilter?.length == 0) &&
                             <div className="all-res-cont not-found">
                                 <p>{"לא נמצאו תוצאות"}</p>
                             </div>

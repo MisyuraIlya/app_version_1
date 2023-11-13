@@ -24,7 +24,7 @@ const Pagination = ({totalPages, page, lastPage, nextPage, previousPage,}) => {
       };
     
     return (
-        <div className="paginate-main-cont">
+        <div className="paginate-main-cont" style={{padding:'10px 0px'}}>
             <div className="paginate-sub-cont flex-container">
                 <div className="paginate-controller-main col-lg-8">
                     <div className="paginate-controller-sub">
@@ -60,7 +60,7 @@ const Pagination = ({totalPages, page, lastPage, nextPage, previousPage,}) => {
                     //TODO
                     // <p>{`מציג ${toShow}- `}</p>        
                     } */}
-                    <p>{totalPages}</p>
+                    {/* <p>סה"כ - {totalPages} </p> */}
                 </div>
             </div>
         </div>

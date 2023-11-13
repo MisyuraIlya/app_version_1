@@ -14,14 +14,14 @@ const Header = () => {
     return (
         <div className={user ? "header-wrapper" : "header-wrapper no-cats"}>
             <div className="header-wrapper-subcont flex-container">
-                <div className={mobileSearchOn ? "main-menu col-lg-4 opened" : "main-menu col-lg-6 closed"}>
+                <div className={mobileSearchOn ? "main-menu col-lg-4 opened" : "main-menu col-lg-4 closed"}>
                     <MobileHeader mobileSearchOn={mobileSearchOn} setMobileSearchOn={setMobileSearchOn}/>
                     <RightComponent/>
                 </div>
-                <div className={mobileSearchOn ? "search-li col-lg-5 hide-mob" : "search-li show-mob"}>
+                <div className={!mobileSearchOn ? "search-li col-lg-4 hide-mob" : "col-lg-12 search-li show-mob"}>
                     <CenterComponent/>
                 </div>
-                <div className="actions col-lg-3">
+                <div className="actions col-lg-4">
                     <LeftComponent/>
                 </div>
             </div>

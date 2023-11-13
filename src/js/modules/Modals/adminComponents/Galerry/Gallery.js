@@ -28,7 +28,7 @@ const Gallery = ({active, setActive}) => {
                                     <span className="material-symbols-outlined" style={{color:'red', fontSize:'30px'}}>delete</span>
                                 </div>    
                                 <div style={{position:'absolute', left:'20px', top:'20px', cursor:'pointer'}}>
-                                    <div onClick={(e) => this.updateItems(1, element.id, 'Unpublished')} className="input active" style={{background:'white'}}>
+                                    <div onClick={(e) => this.updateItems(1, element.id, 'Unpublished')} className="input active" style={{background:'white', border:'1px solid black', borderRadius:'5px'}}>
                                         {selectedProduct.defaultImagePath === item?.mediaObject?.filePath ?
                                             <span className="material-symbols-outlined" style={{color:'black',height:'100%',width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}} onClick={() => updateProduct({id:selectedProduct?.id, defaultImagePath:''})}>done</span>
                                         :

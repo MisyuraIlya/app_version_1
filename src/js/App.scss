@@ -219,6 +219,7 @@ body {
       right: 5px;
     }
     .paginate-main-cont .paginate-sub-cont{
+
       .paginate-controller-main{
         text-align: left;
       }
@@ -1897,7 +1898,7 @@ body::-webkit-scrollbar-thumb {
               }
               li{
                 margin:8px 0;
-                a{
+                  cursor: pointer;
                   color: black;
                   font-size: 14px;
                   &:hover{
@@ -1908,7 +1909,6 @@ body::-webkit-scrollbar-thumb {
                     text-decoration: underline;
                     color:$c2;
                   }
-                }
               }
             }
           }

@@ -9,7 +9,6 @@ const DocsFilter = () => {
         dateFrom,
         dateTo,
         setType,
-        handleSearchClick,
         searchValue,
         setSearchValue,
         downloadDocument,

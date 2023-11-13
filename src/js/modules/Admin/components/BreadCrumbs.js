@@ -8,12 +8,12 @@ const BreadCrumbs = () => {
         <div className="container">
             <div className="flex-container">
                 <div className="col-lg-6">
-                    <h1>ניהול קטגוריות</h1>
+                    {/* <h1>ניהול קטגוריות</h1> */}
                 </div>
                 <div className="col-lg-6">
                     <ul>
                         <li>
-                            <NavLink to="/"><img src={globalFileServer + 'icons/home.svg'} alt=""/></NavLink>
+                            {/* <NavLink to="/"><img src={globalFileServer + 'icons/home.svg'} alt=""/></NavLink> */}
                         </li>
                         {/* {true ?
                             <>
@@ -39,7 +39,7 @@ const BreadCrumbs = () => {
                             </>
                         : */}
                         <li>
-                            <span>כל הקטגוריות</span>
+                            {/* <span>כל הקטגוריות</span> */}
                         </li>
                         {/* } */}
 

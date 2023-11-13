@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import ModalWrapper from '../ModalWrapper/ModalWrapper';
 import useSelectedProduct from '../../store/SelectedProductStore';
 import { BallClipRotate } from 'react-pure-loaders';
+import moment from 'moment';
 const TablePopUp = ({active, setActive}) => {
     const {purchesHistoryData, loading} = useSelectedProduct()
     const {selectedProd} = useSelectedProduct()
@@ -62,7 +63,7 @@ const TablePopUp = ({active, setActive}) => {
                                     <p>{el?.documentNumber}</p>
                                 </th>
                                 <th className={false ? "col-cont color": "col-cont"}>
-                                    <p>{el?.date}</p>
+                                    <p>{moment(el?.date).format('DD-MM-YYYY')}</p>
                                 </th>
                                 <th className={false ? "col-cont color": "col-cont"}>
                                     <p>{el?.quantity}</p>

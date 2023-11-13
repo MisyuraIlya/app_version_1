@@ -34,6 +34,7 @@ export const onInfoAlert = (title, message) => {
 export const onAsk = (title, message) => {
     return SweetAlert({
         title: title,
+        text:message,
         showCancelButton: true,
         confirmButtonColor: '#3B7A82',
         cancelButtonColor: '#959595',

@@ -10,14 +10,22 @@ const useAdminOrders = create((set, get) => ({
     setSearch:(value) => set({serach: value}),
     orders:[],
     getOrders: async () => {
-        const response = await AdminOrderService.getOrders(
-            moment(get().dateFrom).format('YYYY-MM-DD'),
-            moment(get().dateTo).format('YYYY-MM-DD'),
-            get().page
-            )
-        set({orders:response["hydra:member"],totalOrders:response["hydra:totalItems"]})
-        const {totalPages, page, lastPage, nextPage, previousPage} = HydraHandler.paginationHandler(response)
-        set({totalPages, page, lastPage, nextPage, previousPage})
+        set({loading:true})
+        try {
+            const response = await AdminOrderService.getOrders(
+                moment(get().dateFrom).format('YYYY-MM-DD'),
+                moment(get().dateTo).format('YYYY-MM-DD'),
+                get().page
+                )
+            set({orders:response["hydra:member"],totalOrders:response["hydra:totalItems"]})
+            const {totalPages, page, lastPage, nextPage, previousPage} = HydraHandler.paginationHandler(response)
+            set({totalPages, page, lastPage, nextPage, previousPage})
+        } catch(e) {
+            console.log('[ERROR fetch orders]', e)
+        } finally {
+            set({loading:false})
+        }
+
     },
 
     //pagination

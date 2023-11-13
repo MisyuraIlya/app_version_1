@@ -8,6 +8,7 @@ import moment from 'moment-timezone';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 const Orders = () => {
     const {
+        loading,
         getOrders,
         choosedDate,
         showCalendar,
@@ -34,35 +35,28 @@ const Orders = () => {
     }
 
     useEffect(() => {
-        // if(!UrlHandler.isThereParams(history.location.search)) {
-        //     let from= moment().subtract(1, 'months').format('YYYY-MM-DD');
-        //     let to =  moment().format('YYYY-MM-DD');
-        //     let search= '';
-        //     let documentType = 'all'
-        //     let page = 1
-        //     const url = UrlHandler.createUrl(history.location.search,page,from,to,documentType,search)
-        //     history.push(history.location.pathname + url);
-        //     setDateFrom(from)
-        //     setDateTo(to)
-        //     setSearch(search)
-        //     setDocumentType(documentType)
-        //     setPage(page)
-        // } else {
-        //     const {page, from, to, documentType, search} = UrlHandler.getUrlParams(history.location.search)
-        //     const url = UrlHandler.createUrl(history.location.search,page,from,to,documentType,search)
-        //     history.push(history.location.pathname + url);
-        //     setDateFrom(from)
-        //     setDateTo(to)
-        //     setSearch(search)
-        //     setDocumentType(documentType)
-        //     setPage(page)
-        // }
+        const urlSearchParams = new URLSearchParams(history.location.search);
+        const page = urlSearchParams.get('page');
+        const from = urlSearchParams.get('from');
+        const to = urlSearchParams.get('to');
+        setPage(page)
+        setDateFrom(from)
+        setDateTo(to)
         getOrders()
     },[history.location.search])
     return (
         <div className="page-container history admin-history docs agent-docs agent-docs-approvePage karteset gviya">
             <div className="docs-sub-cont">
                 {/* <BreadCrumbs/> */}
+                {loading && 
+                <div className="spinner-wrapper">
+                    <div className="spinner">
+                        <div className="bounce1"></div>
+                        <div className="bounce2"></div>
+                        <div className="bounce3"></div>
+                    </div>
+                </div>
+            }
                 <Calendar
                     onChange={(date) => handleCalendar(date)}
                     value={new Date(choosedDate)}

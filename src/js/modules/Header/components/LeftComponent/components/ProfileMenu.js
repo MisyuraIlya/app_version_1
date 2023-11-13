@@ -186,7 +186,7 @@ const ProfileMenu = () => {
                         </div>
                     }
                     <div className="btn-cont col">
-                        <div className="logOutCont" onClick={() => beforeLogOut()}>
+                        <div className="logOutCont" onClick={() => logOut()}>
                             <p>{isAgent ? 'התנתק מלקוח' : 'התנתק'}</p>
                         </div>
                     </div>

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Heading = () => {
     return (
-		<div className="heading">
+		<div className="heading" style={{paddingTop:'20px'}}>
 			<div style={{alignItems: 'flex-end'}} className="flex-container">
 				<div className="col-lg-1">
 					<p>סדר</p>

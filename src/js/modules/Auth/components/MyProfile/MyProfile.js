@@ -1,6 +1,12 @@
 import React from 'react';
 import { useAuth } from '../../providers/AuthProvider';
 import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
+import moment from 'moment';
+
+
+let from= moment().subtract(1, 'months').format('YYYY-MM-DD');
+let to =  moment().format('YYYY-MM-DD');
+
 let profileObj = [
     /*
     {
@@ -13,16 +19,16 @@ let profileObj = [
         OnlyDesktop:true
     },*/
     
-    // {
-    //     Title: 'מסמכי לקוח',
-    //     TitleEng: 'My Orders',
-    //     Link: '/docsNew/1/',
-    //     Img: 'storefront',
-    //     OnlyAgent: false,
-    //     OnlyAgentSuper: false,
-    //     OnlyDesktop:false,
-    //     notForMisrad:false
-    // },
+    {
+        Title: 'מסמכי לקוח',
+        TitleEng: 'My Orders',
+        Link: `/documentPage?page=1&from=${from}&to=${to}`,
+        Img: 'storefront',
+        OnlyAgent: false,
+        OnlyAgentSuper: false,
+        OnlyDesktop:false,
+        notForMisrad:false
+    },
     // {
     // 	Title: 'סל קבוע',
     // 	TitleEng: 'My Products',
@@ -123,7 +129,7 @@ let profileObj = [
 ];
 
 const MyProfile = () => {
-    const {user} = useAuth()
+    const {user, logOut} = useAuth()
     return (
         <div className="Profilepage-subcont2 flex-container">
             <div className={"Profile-page-sub col-lg-12"}>
@@ -166,7 +172,7 @@ const MyProfile = () => {
                         </div>
                     }
                     <div className="col-lg-1 col">
-                        <div className="logOutCont" onClick={()=> this.beforeLogOut()}>
+                        <div className="logOutCont" onClick={()=> logOut()}>
                         <p>{'התנתק'}</p>
                         </div>
                     </div>

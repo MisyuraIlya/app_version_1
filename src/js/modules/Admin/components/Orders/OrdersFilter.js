@@ -9,8 +9,8 @@ const OrdersFilter = () => {
         dateFrom,
         dateTo, 
         setType,
+        getOrders
     } = useAdminOrders()
-    console.log('vdateFrom',dateFrom)
     return (
         <div className="for-calendar flex-container card">
             <div className="flex-container right-side-header col-lg-7">
@@ -33,7 +33,7 @@ const OrdersFilter = () => {
                             </button>
                         </div>
                     </div>
-                    <div onClick={()=> handleSearchClick()}  className="cal-cls searchBtn-cont">
+                    <div onClick={()=> getOrders()}  className="cal-cls searchBtn-cont">
                         <p>חפש</p>
                     </div>
                 </div>

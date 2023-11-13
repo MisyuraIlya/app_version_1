@@ -106,7 +106,7 @@ const useCart = create((set, get) => ({
     saveAsDraft: () => {},
     goToDrafts: () => {},
     priceBefore: 0,
-    deliveryPrice: 250,
+    deliveryPrice: 0,
 	deliveryDate:'2023-11-21', //TODO
     discount: 7,
     Maam: 17,

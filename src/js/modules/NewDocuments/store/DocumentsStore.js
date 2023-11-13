@@ -46,9 +46,7 @@ const useDocuments = create((set, get) => ({
     },
     documentType:'',
     setDocumentType:(value) => set({documentType:value}),
-    handleSearchClick:() => {
 
-    },
     searchValue: '',
     setSearchValue: (value) => {set({searchItemsValue:value})},
     downloadDocument: async (value, documentNumber) => {

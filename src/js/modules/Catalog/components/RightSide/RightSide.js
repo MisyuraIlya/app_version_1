@@ -15,7 +15,6 @@ const RightSide = () => {
     const {location} = useHistory()
     const {documentType} = useParams()
     const {push} = useHistory()
-
     const isSearchDocument = documentType === 'search'
     return (
       <>
@@ -64,16 +63,19 @@ const RightSide = () => {
                                     <ul className={categoryLvl2.id == lvl2 ? "active" : null}>
                                       {categoryLvl2?.categories?.map((categoryLvl3, index3) => {
                                           return (
-                                            <li key={index3}>
-                                              <div className={lvl3 == categoryLvl3.id ? 'active-a' : null} 
-                                              onClick={() => {
-                                                isSearchDocument ?
-                                                push(`/client/${documentType}/${categoryLvl1.id}/${categoryLvl2.id}/${categoryLvl3.id}${location.search}`)
-                                                :
-                                                push(`/client/${documentType}/${categoryLvl1.id}/${categoryLvl2.id}/${categoryLvl3.id}?page=1`)
-                                                }}>
-                                                { categoryLvl3.title}
-                                                </div>
+                                            <li 
+                                            key={index3} 
+                                            className={lvl3 == categoryLvl3.id ? 'active-a' : null}              
+                                            onClick={() => {
+                                              isSearchDocument ?
+                                              push(`/client/${documentType}/${categoryLvl1.id}/${categoryLvl2.id}/${categoryLvl3.id}${location.search}`)
+                                              :
+                                              push(`/client/${documentType}/${categoryLvl1.id}/${categoryLvl2.id}/${categoryLvl3.id}?page=1`)
+                                              }}>
+                                                  <span>
+                                                  { categoryLvl3.title}
+
+                                                  </span>
                                             </li>
                                           );
                                       })}
