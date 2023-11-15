@@ -18,8 +18,8 @@ const GalaxyVideo = () => {
 			poster="${globalFileServer}poster.jpg"
 			className="video-background">
 			{window.innerWidth > 1200 ?
-				<source src="https://digitrade.com.ua/ceremonitea/src/img/video.mp4" type="video/mp4" /> :
-				<source src="https://digitrade.com.ua/ceremonitea/src/img/video.webm" type="video/webm" />	}
+				<source src="https://ctb2b.co.il/src/img/video.mp4" type="video/mp4" /> :
+				<source src="https://ctb2b.co.il/src/img/video.webm" type="video/webm" />	}
 			</video>
 			` }}>
 

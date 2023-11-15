@@ -25,7 +25,7 @@ const RightComponent = () => {
                                         <div className="img" style={{cursor:'pointer'}}>
                                             <NavLink to={'/'}>
                                                 {/* TODO CHANGE */}
-                                                <img src={'https://digitrade.com.ua/ceremonitea/src/img/logo.png'} alt=""/>
+                                                <img src={'https://ctb2b.co.il/src/img/logo.png'} alt=""/>
                                             </NavLink>
                                         </div>
                                     </li>
